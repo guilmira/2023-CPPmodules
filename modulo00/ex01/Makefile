@@ -6,14 +6,11 @@
 #    By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/17 10:57:42 by guilmira          #+#    #+#              #
-#    Updated: 2022/04/17 12:26:49 by guilmira         ###   ########.fr        #
+#    Updated: 2022/04/17 14:28:46 by guilmira         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= megaphone
-#ARGS		= "shhhhh... I think the students are asleep..."
-#ARGS		= Damnit " ! " "Sorry students, I thought this thing was off."
-ARGS		= Damnit "!!" " ! " "Sorry students, I thought this thing was off."
+NAME		= main
 #--------------------------------------------------------------------------------------------------------------COMPILER
 COMPILER	= clang++
 CFLAGS		= -Wall -Wextra -Werror -std=c++98
@@ -21,7 +18,8 @@ CSANITIZE	= -fsanitize=address
 #--------------------------------------------------------------------------------------------------------------LIBS
 #INCLUDES	= -I ./0includes
 #--------------------------------------------------------------------------------------------------------------SOURCES
-SRCS		= megaphone.cpp
+CLASS		= class.Contact.cpp
+SRCS		= main.cpp $(CLASS)
 OBJS		= $(SRCS:.cpp=.o)
 #--------------------------------------------------------------------------------------------------------------COMMANDS
 REMOVE		= rm -rf
@@ -40,7 +38,7 @@ san: $(OBJS)
 	@echo $(GREEN) "$(NAME) compiled with santitize" $(NONE)
 
 exe: san
-	./$(NAME) $(ARGS)
+	./$(NAME)
 
 clean:
 	@$(REMOVE) $(OBJS)
