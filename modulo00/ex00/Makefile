@@ -6,17 +6,16 @@
 #    By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/17 10:57:42 by guilmira          #+#    #+#              #
-#    Updated: 2022/04/17 12:26:49 by guilmira         ###   ########.fr        #
+#    Updated: 2022/04/18 11:31:39 by guilmira         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= megaphone
-#ARGS		= "shhhhh... I think the students are asleep..."
-#ARGS		= Damnit " ! " "Sorry students, I thought this thing was off."
-ARGS		= Damnit "!!" " ! " "Sorry students, I thought this thing was off."
+ARGS		= Damnit " ! " "Sorry students, I thought this thing was off."
 #--------------------------------------------------------------------------------------------------------------COMPILER
 COMPILER	= clang++
-CFLAGS		= -Wall -Wextra -Werror -std=c++98
+CFLAGS		= -Wall -Wextra -Werror
+CVERSION	= -std=c++98
 CSANITIZE	= -fsanitize=address
 #--------------------------------------------------------------------------------------------------------------LIBS
 #INCLUDES	= -I ./0includes
@@ -27,16 +26,16 @@ OBJS		= $(SRCS:.cpp=.o)
 REMOVE		= rm -rf
 #--------------------------------------------------------------------------------------------------------------RULES
 #%.o:%.cpp
-#	$(CC) $(CFLAGS) -c $< -o $@
+#	$(CC) $(CFLAGS) $(CVERSION) -c $< -o $@
 
 $(NAME): $(OBJS)
-	$(COMPILER) $(CFLAGS) $(OBJS) -o $(NAME)
+	$(COMPILER) $(CFLAGS) $(CVERSION) $(OBJS) -o $(NAME)
 	@echo $(GREEN) "$(NAME) compiled" $(NONE)
 
 all: $(NAME)
 
 san: $(OBJS)
-	$(COMPILER) $(CFLAGS) $(CSANITIZE) $(OBJS) -o $(NAME)
+	$(COMPILER) $(CFLAGS) $(CVERSION) $(CSANITIZE) $(OBJS) -o $(NAME)
 	@echo $(GREEN) "$(NAME) compiled with santitize" $(NONE)
 
 exe: san

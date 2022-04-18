@@ -6,13 +6,19 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/17 12:10:18 by guilmira          #+#    #+#             */
-/*   Updated: 2022/04/17 15:20:26 by guilmira         ###   ########.fr       */
+/*   Updated: 2022/04/18 10:29:21 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "contacts.h"
 
 void	print_msg(char *str)
+{
+	std::cout << str << std::endl;
+}
+
+//paso la clase por referencia para que no haga una copia en el heap.
+void print_string_class(const std::string& str)
 {
 	std::cout << str << std::endl;
 }
@@ -56,7 +62,7 @@ void	execute_command(int cmd)
 		std::cout << "busqueda" << std::endl;
 }
 
-/** EXECUTION : ./contacts_firstclass
+/** EXECUTION : ./contacts
  * This program will run a contact book.
  * ADD, SEARCH and EXIT accepted.									*/
 int main(void)
@@ -64,9 +70,10 @@ int main(void)
 	int	cmd;
 
 	cmd = 0;
-	print_msg("Contacts executing. ADD, SEARCH or EXIT.");
+	print_msg("Contacts executing.");
 	while (1)
 	{
+		print_msg("Waiting for ADD, SEARCH or EXIT command");
 		cmd = read_command();
 		if (cmd == TYPE_EXIT)
 			break ;

@@ -20,7 +20,10 @@
 #include <string>
 
 /* CLASS DEFINITIONS */
-#include "class.Contact.hpp"
+//#include "class.Contact.hpp"
+
+/* CONSTANTS */
+#define MAX_CONTACTS 8
 
 #define C1 "add"
 #define TYPE_ADD 1
@@ -30,7 +33,5 @@
 #define TYPE_EXIT 3
 #define MSG "Only three commands are accepted:\nADD, SEARCH and EXIT."
 
-void	print_msg(char *str);
-void print_string_class(const std::string& str);
 
 #endif

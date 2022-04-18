@@ -5,46 +5,44 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/17 10:25:35 by guilmira          #+#    #+#             */
-/*   Updated: 2022/04/17 13:38:44 by guilmira         ###   ########.fr       */
+/*   Created: 2022/04/18 11:03:52 by guilmira          #+#    #+#             */
+/*   Updated: 2022/04/18 11:27:57 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
+#define MSG "* LOUD AND UNBEARABLE FEEDBACK NOISE *"
+#define ASCII_DIFF 32
 
-#define MOD 32
-#define MESSAGE "* LOUD AND UNBEARABLE FEEDBACK NOISE *"
-
-char	ft_caps(char z)
-{
-	if (z >= 'a' && z<= 'z')
-		return (z - MOD);
-	return (z);
-}
-
-void	print_string(char *str)
+void megaphone(const char *str)
 {
 	int		i;
 	char	z;
 
+	z = 0;
 	i = -1;
 	while (str[++i])
 	{
-		z = ft_caps(str[i]);
-		std::cout << z;
+		if (str[i] >= 'a' && str[i] <= 'z')
+			z = str[i] - ASCII_DIFF;
+		else
+			z = str[i];
+		std::cout << str[i];
 	}
-
+	
 }
 
 /** EXECUTION : ./megaphone "string" */
-int	main(int argc, char **argv)
+int main(int argc, const char **argv)
 {
-	int		i;
+	int	i;
 
+	i = 0;
 	if (argc == 1)
-		std::cout << MESSAGE;
-	while (argv[++i])
-		print_string(argv[i]);
+		std::cout << MSG;
+	else
+		while(argv[++i])
+			megaphone(argv[i]);
 	std::cout << std::endl;
 	return (0);
 }
