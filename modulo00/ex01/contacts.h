@@ -29,5 +29,6 @@
 #define TYPE_EXIT 3
 #define MSG "Only three commands are accepted:\nADD, SEARCH and EXIT."
 
+void	print_msg(char *str);
 
 #endif

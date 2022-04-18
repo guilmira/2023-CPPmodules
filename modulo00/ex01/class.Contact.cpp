@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/17 14:02:18 by guilmira          #+#    #+#             */
-/*   Updated: 2022/04/17 15:09:51 by guilmira         ###   ########.fr       */
+/*   Updated: 2022/04/17 15:18:59 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ void	Contact::create_contact(void)
 	i = -1;
 	while(++i < FIELDS)
 	{
+		print_msg("Type the next category:");
+		print_msg(this->categories[i]);
 		std::cout << this->field[i] << std::endl;
 		std::cin >> str;
 		this->field[i] = str;

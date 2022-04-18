@@ -6,11 +6,16 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/17 12:10:18 by guilmira          #+#    #+#             */
-/*   Updated: 2022/04/17 15:03:58 by guilmira         ###   ########.fr       */
+/*   Updated: 2022/04/17 15:20:26 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "contacts.h"
+
+void	print_msg(char *str)
+{
+	std::cout << str << std::endl;
+}
 
 /** PURPOSE : Reads command line and loads it into a sieze 1000 buffer. 
  * The buffer is used in the stack as memory allocation is not permited.
@@ -56,13 +61,10 @@ void	execute_command(int cmd)
  * ADD, SEARCH and EXIT accepted.									*/
 int main(void)
 {
-	std::string str;
-	str = "hello";
-	std::cout << str << std::endl;
-
 	int	cmd;
 
 	cmd = 0;
+	print_msg("Contacts executing. ADD, SEARCH or EXIT.");
 	while (1)
 	{
 		cmd = read_command();
