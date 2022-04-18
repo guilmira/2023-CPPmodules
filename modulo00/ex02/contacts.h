@@ -13,7 +13,6 @@
 #ifndef RANDOM_SYMBOL_H_IS_JUST_STANDARD
 # define RANDOM_SYMBOL_H_IS_JUST_STANDARD
 
-
 /* LIBRARIES */
 #include <iostream>
 #include <iomanip>
@@ -21,6 +20,7 @@
 
 /* CLASS DEFINITIONS */
 //#include "class.Contact.hpp"
+#include "class.Notebook.hpp"
 
 /* CONSTANTS */
 #define MAX_CONTACTS 8
@@ -33,5 +33,12 @@
 #define TYPE_EXIT 3
 #define MSG "Only three commands are accepted:\nADD, SEARCH and EXIT."
 
+enum e_command
+{
+	NONE,
+	ADD,
+	SEARCH,
+	EXIT
+};
 
 #endif
