@@ -5,59 +5,54 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/17 14:02:18 by guilmira          #+#    #+#             */
-/*   Updated: 2022/04/18 10:05:25 by guilmira         ###   ########.fr       */
+/*   Created: 2022/04/19 11:19:02 by guilmira          #+#    #+#             */
+/*   Updated: 2022/04/19 15:12:37 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "contacts.h"
 
-/* Class DEFINITION. 
-* DEFINICIÓN: to code the actual function. 
-* The function behaviour within the class is specified. */
-
-/* return is written only for legibility´s sake since
-* Constructor and destructors do not have return value.  */
-
-/** CONSTRUCTOR :  */
-Contact::Contact()
+/** CONSTRUCTOR */
+Contact::Contact() //: _data[0](0) _data[1](0) se podria hacer esto?
+	: _index(0)
 {
-	std::cout << "construyendo" << std::endl;
+	std::cout << "-Contract class instantiated- " << std::endl;
+	//cuando crees la clase que llame a una funcion de la clase de añadir
 	return ;
 }
 
-/** DESTRUCTOR :  */
+/** CONSTRUCTOR overload  */
+Contact::Contact(int i)
+	: _index(i)
+{
+	std::cout << "construyendo overload" << std::endl;
+	std::cout << this->_index << std::endl;
+	
+	_fields[0] = "0";
+	_fields[1] = "1";
+	_fields[2] = "2";
+	_fields[3] = "3";
+	_fields[4] = "4";
+	return ;
+}
+
+/** DESTRUCTOR */
 Contact::~Contact()
 {
-	std::cout << "destruyendo" << std::endl;
 	return ;
 }
 
-#define FIELDS 5
-
-void	Contact::create_contact(void)
+void	Contact::get_input(void)
 {
-	int	i;
-	std::string str;
+	int i;
+	int index;
 
+	std::string line;
 	i = -1;
-	while(++i < FIELDS)
+	while (++i < MAX_FIELDS)
 	{
-		print_msg("Type the following category:");
-		std::cout << this->categories[i] << std::endl;
-		std::cin >> str;
-		this->field[i] = str;
-
-		//std::cout << this->field[i] << std::endl;
+		std::cout << "Type the field " << this->_fields[i] << std::endl;
+		std::getline(std::cin, line);
+		this->_data[i] = line;
 	}
 }
-
-void	Contact::show_fields(void) const
-{
-	int	i;
-
-	i = -1;
-	while(++i < FIELDS)
-		std::cout << this->field[i] << std::endl;
-}
-

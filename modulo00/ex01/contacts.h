@@ -13,14 +13,23 @@
 #ifndef RANDOM_SYMBOL_H_IS_JUST_STANDARD
 # define RANDOM_SYMBOL_H_IS_JUST_STANDARD
 
-
 /* LIBRARIES */
 #include <iostream>
 #include <iomanip>
 #include <string>
 
+/* CONSTANTS */
+#define MAX_CONTACTS 8
+#define MAX_FIELDS 5
+
 /* CLASS DEFINITIONS */
 #include "class.Contact.hpp"
+#include "class.Notebook.hpp"
+
+
+
+/* FIELDS */
+#define name 8
 
 #define C1 "add"
 #define TYPE_ADD 1
@@ -30,7 +39,12 @@
 #define TYPE_EXIT 3
 #define MSG "Only three commands are accepted:\nADD, SEARCH and EXIT."
 
-void	print_msg(char *str);
-void print_string_class(const std::string& str);
+enum e_command
+{
+	NONE,
+	ADD,
+	SEARCH,
+	EXIT
+};
 
 #endif
