@@ -6,22 +6,17 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 14:15:27 by guilmira          #+#    #+#             */
-/*   Updated: 2022/04/19 15:13:48 by guilmira         ###   ########.fr       */
+/*   Updated: 2022/04/19 19:48:43 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "contacts.h"
 
-/* Class DEFINITION. 
-* DEFINICIÓN: to code the actual function. 
-* The function behaviour within the class is specified. */
-
-/* return is written only for legibility´s sake since
-* Constructor and destructors do not have return value.  */
+/* Class DEFINITION. */
 
 /** CONSTRUCTOR */
 Notebook::Notebook()
-	: _command(0), _total(0)   //Initializer List. list all members in order, and in brackets, the value.
+	: _command(0), _total(0)
 {
 	this->_print_string("Constructor called. Notebook class instantiated. ");
 	this->_print_string("Notebook running.");
@@ -48,27 +43,6 @@ void	Notebook::setValue(int x)
 		std::cout << "not allowed for this class" << std::endl;
 }
 
-
-/** SYNTAX EXPLANATION : 
- * &str en la definicion de la funcion. Nuevo operador. Lo que está indicando
- * es que va a recibir una direccion de la instancia.
- * 
- * Es literalmente equivalente a 
- * void	print_string(std::string *str) {
- * std::cout << *str << std::endl; }
- * Pasamos una direccion y dereferenciamos. La dereferencia se hace mas tarde sin necesidad
- * de escribir (*str) debido a la sobrecarga del operador. 
- * 
- * ¿Por qué pasarlo por referencia? Por memoria y optimizacion. Duplicar la clase es mas costoso
- * comutacionalmente que pasar un puntero.
- * 
- * Todo lo que este a la izquierda de const, es lo que es constante. East notation.
- * En este caso, es el valor de la clase. NO es el puntero como tal.
- * void	print_string(std::string * const str) el puntero es constante. no la clase.
- * void	print_string(std::string const *str) la clase es constante.
-				
-				
-				*/
 void	Notebook::_print_string(std::string const &str)
 {
 	std::cout << str << std::endl; 
@@ -91,36 +65,50 @@ void	Notebook::read_command(void)
 		this->setValue(NONE);
 }
 
+void	Notebook::exit_contacts(void)
+{
+	int i;
+
+	i = -1;
+	if (this->_total)
+		while (++i < MAX_CONTACTS)
+			this->array_of_contacts[i].~Contact();
+	exit(0);
+}
+
 void	Notebook::execute_command(void)
 {
 	int command;
+	int position;
 
+	position = 0;
 	command = this->getValue();
 	if (command == EXIT)
-		exit(0);
+		exit_contacts();
 	else if (command == ADD)
 	{
-		add_contact(this->_total);
-		if (this->_total < MAX_CONTACTS)
-			this->_total++;
-		//std::cout << this->_total << std::endl;
+		position = this->_total % MAX_CONTACTS;
+		this->add_contact(position);
+		this->_total++;
 	}
 	else if (command == SEARCH)
 	{
-		search_contact(this->_total);
 		if (this->_total < MAX_CONTACTS)
-			this->_total++;
-		//std::cout << this->_total << std::endl;
+			this->show_contacts(this->_total);
+		else
+			this->show_contacts(MAX_CONTACTS);
 	}
 	this->_command = 0;
 }
 
-void Notebook::add_command(int index)
+void Notebook::add_contact(int index)
 {
 	Contact new_contact(index);
 
-	//this->array_of_contacts = new_contact;
-	new_contact.get_input();
+	new_contact.prompt_input();
+	if (&this->array_of_contacts[index])
+		this->array_of_contacts[index].~Contact();
 	this->array_of_contacts[index] = new_contact;
 	return ;
 }
+

@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 14:13:55 by guilmira          #+#    #+#             */
-/*   Updated: 2022/04/19 15:13:19 by guilmira         ###   ########.fr       */
+/*   Updated: 2022/04/19 18:29:36 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,7 @@
 #ifndef CLASS_NOTEBOOK_HPP
 # define CLASS_NOTEBOOK_HPP
 
-/* Class DECLARATION.
-Declaración: sinonimo de creación, ie, como será la clase.
-Esto es diferente que definir la clase o instanciarla. */
+/* Class DECLARATION. */
 class Notebook
 {
 	public:
@@ -26,12 +24,15 @@ class Notebook
 
 		void read_command(void);
 		void execute_command(void); //add , /search,/exit
-		void add_contact(int index);
 		
+
+		void add_contact(int index);
+		void show_contacts(int total) const;
+		void exit_contacts(void);
+
 		int getValue(void) const;
 		void setValue(int x);
 
-		//Contact array_of_contacts;
 		Contact array_of_contacts[MAX_CONTACTS];
 	
 	private:

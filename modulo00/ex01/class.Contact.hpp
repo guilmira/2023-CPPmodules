@@ -19,11 +19,12 @@ class Contact
 {
 	public:
 		Contact();
-		Contact(int i);
 		~Contact();
+		Contact(int i);
 
-		void get_input(void);
-
+		void			prompt_input(void);
+		std::string		getData(int i) const;
+		void			setData(int i, std::string str);
 	private:
 		std::string _data[MAX_FIELDS];
 		std::string _fields[MAX_FIELDS];

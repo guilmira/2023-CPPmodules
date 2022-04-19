@@ -6,7 +6,7 @@
 #    By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/17 10:57:42 by guilmira          #+#    #+#              #
-#    Updated: 2022/04/19 14:54:55 by guilmira         ###   ########.fr        #
+#    Updated: 2022/04/19 18:19:20 by guilmira         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ CSANITIZE	= -fsanitize=address
 #--------------------------------------------------------------------------------------------------------------LIBS
 #INCLUDES	= -I ./0includes
 #--------------------------------------------------------------------------------------------------------------SOURCES
-CLASS		= class.Notebook.cpp class.Contact.cpp
+CLASS		= class.Notebook.cpp class.Notebook.show.cpp class.Contact.cpp 
 SRCS		= main.cpp $(CLASS)
 OBJS		= $(SRCS:.cpp=.o)
 #--------------------------------------------------------------------------------------------------------------COMMANDS

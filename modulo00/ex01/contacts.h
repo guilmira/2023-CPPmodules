@@ -19,25 +19,19 @@
 #include <string>
 
 /* CONSTANTS */
-#define MAX_CONTACTS 8
+#define MAX_CONTACTS 2
 #define MAX_FIELDS 5
 
 /* CLASS DEFINITIONS */
 #include "class.Contact.hpp"
 #include "class.Notebook.hpp"
 
-
-
 /* FIELDS */
-#define name 8
-
-#define C1 "add"
-#define TYPE_ADD 1
-#define C2 "search"
-#define TYPE_SEARCH 2
-#define C3 "exit"
-#define TYPE_EXIT 3
-#define MSG "Only three commands are accepted:\nADD, SEARCH and EXIT."
+#define F1 "first name"
+#define F2 "last name" 
+#define F3 "nickname" 
+#define F4 "phone"
+#define F5 "darkest secret"
 
 enum e_command
 {

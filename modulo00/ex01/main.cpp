@@ -6,13 +6,16 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/17 12:10:18 by guilmira          #+#    #+#             */
-/*   Updated: 2022/04/19 11:00:45 by guilmira         ###   ########.fr       */
+/*   Updated: 2022/04/19 19:48:15 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "contacts.h"
 
-
+/* void ft_leaks(void)
+{
+	system("leaks contacts");
+} */
 
 /** EXECUTION : ./contacts
  * This program will run a contact book.
@@ -20,12 +23,13 @@
 int main(void)
 {
 	Notebook notebook1;
-	
+	//atexit(ft_leaks);
 	while (1)
 	{
 		notebook1.read_command();
 		notebook1.execute_command();
 	}
+	//std::cout << std::setw(2);
 	std::cout << notebook1.getValue() << std::endl;
 	return (0);
 }

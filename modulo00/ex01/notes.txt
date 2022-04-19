@@ -1,0 +1,24 @@
+/** SYNTAX EXPLANATION : 
+ * &str en la definicion de la funcion. Nuevo operador. Lo que está indicando
+ * es que va a recibir una direccion de la instancia.
+ * 
+ * Es literalmente equivalente a 
+ * void	print_string(std::string *str) {
+ * std::cout << *str << std::endl; }
+ * Pasamos una direccion y dereferenciamos. La dereferencia se hace mas tarde sin necesidad
+ * de escribir (*str) debido a la sobrecarga del operador. 
+ * 
+ * ¿Por qué pasarlo por referencia? Por memoria y optimizacion. Duplicar la clase es mas costoso
+ * comutacionalmente que pasar un puntero.
+ * 
+ * Todo lo que este a la izquierda de const, es lo que es constante. East notation.
+ * En este caso, es el valor de la clase. NO es el puntero como tal.
+ * void	print_string(std::string * const str) el puntero es constante. no la clase.
+ * void	print_string(std::string const *str) la clase es constante.
+				
+				
+				*/
+void	Notebook::_print_string(std::string const &str)
+{
+	std::cout << str << std::endl; 
+}
