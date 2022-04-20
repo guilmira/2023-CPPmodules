@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 11:19:02 by guilmira          #+#    #+#             */
-/*   Updated: 2022/04/19 18:22:15 by guilmira         ###   ########.fr       */
+/*   Updated: 2022/04/20 10:21:42 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ std::string	Contact::getData(int i) const
 	return(this->_data[i]);
 }
 
-void	Contact::setData(int i, std::string str)
+void	Contact::setData(int i, std::string &str)
 {
 	this->_data[i] = str;
 }

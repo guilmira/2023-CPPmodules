@@ -23,12 +23,14 @@ class Contact
 		Contact(int i);
 
 		void			prompt_input(void);
+		
 		std::string		getData(int i) const;
-		void			setData(int i, std::string str);
+		void			setData(int i, std::string &str);
+	
 	private:
+		int _index;
 		std::string _data[MAX_FIELDS];
 		std::string _fields[MAX_FIELDS];
-		int _index;
 };
 
 #endif

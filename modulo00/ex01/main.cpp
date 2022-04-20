@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/17 12:10:18 by guilmira          #+#    #+#             */
-/*   Updated: 2022/04/19 19:48:15 by guilmira         ###   ########.fr       */
+/*   Updated: 2022/04/20 10:57:13 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,15 @@ int main(void)
 		notebook1.execute_command();
 	}
 	//std::cout << std::setw(2);
-	std::cout << notebook1.getValue() << std::endl;
+
+	/* std::string yolo = "hey_whats_going_on";
+
+	std::string str(5, '9');
+
+	std::cout << yolo << std::endl;
+	std::cout << str << std::endl; */
+
+	//std::cout << notebook1.getValue() << std::endl;
 	return (0);
 }
 

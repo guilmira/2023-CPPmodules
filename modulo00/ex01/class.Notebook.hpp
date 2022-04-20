@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 14:13:55 by guilmira          #+#    #+#             */
-/*   Updated: 2022/04/19 18:29:36 by guilmira         ###   ########.fr       */
+/*   Updated: 2022/04/20 10:02:54 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,7 @@ class Notebook
 		~Notebook();
 
 		void read_command(void);
-		void execute_command(void); //add , /search,/exit
-		
+		void execute_command(void);
 
 		void add_contact(int index);
 		void show_contacts(int total) const;
@@ -38,14 +37,8 @@ class Notebook
 	private:
 		int _command;
 		int _total;
-		void _print_string(std::string const &str);
+		void _print_string(std::string const &str) const;
 
 };
-
-/* int getValue(void) const; 
-Ese const, es solo para prototipos dentro de funciones miembro.
-Lo que esta diciendo, es que no vas a cambiar nada utilizando this->
-i.e. puedes llamar a this->  y mostrarlo, pero no cambiar el contenido.
-*/
 
 #endif

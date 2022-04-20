@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 14:15:27 by guilmira          #+#    #+#             */
-/*   Updated: 2022/04/19 19:48:43 by guilmira         ###   ########.fr       */
+/*   Updated: 2022/04/20 10:02:37 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	Notebook::setValue(int x)
 		std::cout << "not allowed for this class" << std::endl;
 }
 
-void	Notebook::_print_string(std::string const &str)
+void	Notebook::_print_string(std::string const &str) const
 {
 	std::cout << str << std::endl; 
 }

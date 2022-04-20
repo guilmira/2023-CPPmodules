@@ -22,3 +22,10 @@ void	Notebook::_print_string(std::string const &str)
 {
 	std::cout << str << std::endl; 
 }
+
+
+/* int getValue(void) const; 
+Ese const, es solo para prototipos dentro de funciones miembro.
+Lo que esta diciendo, es que no vas a cambiar nada utilizando this->
+i.e. puedes llamar a this->  y mostrarlo, pero no cambiar el contenido.
+*/

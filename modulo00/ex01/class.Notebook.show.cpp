@@ -12,7 +12,22 @@
 
 #include "contacts.h"
 
+#define HEADERS "+----------+----------+----------+----------+"
+#define FORMAT_LINE "+----------+----------+----------+----------+"
+#define WIDTH 10
+#define CO "|"
 
+static void	print_headers()
+{
+	std::string array[4];
+	array[0] = F1;
+	array[1] = F2;
+	array[2] = F3;
+	array[3] = F4;
+	for (int i = 0; i < MAX_FIELDS - 1; i++)
+		std::cout << std::setw(WIDTH + 1) << array[i];
+	std::cout << std::endl;
+}
 
 void Notebook::show_contacts(int total) const
 {
@@ -26,21 +41,26 @@ void Notebook::show_contacts(int total) const
 		return ;
 	}
 	i = -1;
+	print_headers();
 	while (++i < total)
 	{
 		j = -1;
-		//print_headers()
-		while (++j < MAX_FIELDS - 1)
+		this->_print_string(FORMAT_LINE);
+		for (int j = 0; j < MAX_FIELDS - 1; j++)
 		{
-			str = array_of_contacts[i].getData(j);
-			std::cout << str;
-			std::cout << "    ";
+			str = this->array_of_contacts[i].getData(j);
+			std::cout << CO;;
+			if (str.size() > 10)
+				std::cout << str.substr(0, 9) << ".";
+			else
+				std::cout << std::setw(WIDTH) << str;
+			
 		}
+		std::cout << CO;
 		std::cout << std::endl;
-	}
-}
 
-/* Cada columna debe tener 10 caracteres de ancho, estar alineada a la derecha
-y separada por el caracter “|”. Cualquier salida que supere el ancho de la
-columna, es truncada y el último carácter imprimible es reemplazado por un
-punto (“.”). */
+		
+	}
+		
+	
+}
