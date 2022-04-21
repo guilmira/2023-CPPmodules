@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 09:50:34 by guilmira          #+#    #+#             */
-/*   Updated: 2022/04/21 12:51:26 by guilmira         ###   ########.fr       */
+/*   Updated: 2022/04/21 18:38:31 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ public:
 	static void	displayAccountsInfos( void );
 
 	Account( int initial_deposit );
-	~Account( void ) { return ;}
+	~Account( void );
 
 	void	makeDeposit( int deposit );
 	bool	makeWithdrawal( int withdrawal );
