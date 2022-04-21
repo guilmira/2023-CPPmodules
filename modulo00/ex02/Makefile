@@ -6,11 +6,11 @@
 #    By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/17 10:57:42 by guilmira          #+#    #+#              #
-#    Updated: 2022/04/20 14:41:46 by guilmira         ###   ########.fr        #
+#    Updated: 2022/04/21 11:11:52 by guilmira         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= contacts
+NAME		= tests
 #--------------------------------------------------------------------------------------------------------------COMPILER
 COMPILER	= clang++
 CFLAGS		= -Wall -Wextra -Werror
@@ -19,8 +19,8 @@ CSANITIZE	= -fsanitize=address
 #--------------------------------------------------------------------------------------------------------------LIBS
 #INCLUDES	= -I ./0includes
 #--------------------------------------------------------------------------------------------------------------SOURCES
-CLASS		= class.Notebook.cpp class.Notebook.show.cpp class.Contact.cpp 
-SRCS		= main.cpp $(CLASS)
+CLASS		= Account.cpp
+SRCS		= tests.cpp $(CLASS)
 OBJS		= $(SRCS:.cpp=.o)
 #--------------------------------------------------------------------------------------------------------------COMMANDS
 REMOVE		= rm -rf

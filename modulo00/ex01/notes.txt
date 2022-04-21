@@ -29,3 +29,27 @@ Ese const, es solo para prototipos dentro de funciones miembro.
 Lo que esta diciendo, es que no vas a cambiar nada utilizando this->
 i.e. puedes llamar a this->  y mostrarlo, pero no cambiar el contenido.
 */
+
+
+/* int main(void)
+{
+	std::string prueba("inicializando str");
+	//es la manera correcta, para que no lo haga dos veces
+
+	//el constructor reserva memoria (libera en el caso de que estuviese ocupada)
+	y acontinuacion reserva.
+
+	Tambien se puede realizar luego
+	prueba = "esto es una prueba";
+	el operador = esta sobrecargado, utiliza una funcion que seria:
+	prueba.ft_strdup("esto es una prueba");
+	esta funcion miembro, escribe el atributo string_value de la clase str.
+
+
+	std::string prueba;
+	//std::string prueba("hello");
+
+	prueba = "hello";
+	print_string(prueba); //como puede saber la direccion la funcion?
+	//en que momento saca la direccion de la instancia?
+} */

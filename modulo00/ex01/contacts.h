@@ -19,7 +19,7 @@
 #include <string>
 
 /* CONSTANTS */
-#define MAX_CONTACTS 2
+#define MAX_CONTACTS 8
 #define MAX_FIELDS 5
 
 /* CLASS DEFINITIONS */

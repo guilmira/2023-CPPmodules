@@ -32,19 +32,17 @@ static void	print_headers()
 void Notebook::show_contacts(int total) const
 {
 	int			i;
-	int			j;
 	std::string	str;
 
 	if (this->_total < 1)
 	{
-		std::cout << "No contacts stored." << std::endl;
+		this->_print_string("No contacts stored.");
 		return ;
 	}
 	i = -1;
 	print_headers();
 	while (++i < total)
 	{
-		j = -1;
 		this->_print_string(FORMAT_LINE);
 		for (int j = 0; j < MAX_FIELDS - 1; j++)
 		{
@@ -58,9 +56,45 @@ void Notebook::show_contacts(int total) const
 		}
 		std::cout << CO;
 		std::cout << std::endl;
-
-		
 	}
-		
+	this->_print_string(FORMAT_LINE);
+	this->single_contact(total);
 	
 }
+
+void Notebook::single_contact(int total) const
+{
+	int index;
+	std::string	str;
+
+	index = 0;
+	this->_print_string("Type index of contact to be displayed: (0, 1, ...)");
+	std::getline(std::cin, str);
+	if (!isdigit(str[0]))
+		index = -1;
+	else
+		index = std::stoi(str);
+	if (index >= 0 && index < total)
+	{
+		this->_print_string(FORMAT_LINE);
+		for (int j = 0; j < MAX_FIELDS - 1; j++)
+		{
+			str = this->array_of_contacts[index].getData(j);
+			std::cout << CO;;
+			if (str.size() > 10)
+				std::cout << str.substr(0, 9) << ".";
+			else
+				std::cout << std::setw(WIDTH) << str;
+		}
+			std::cout << CO;
+			std::cout << std::endl;
+			this->_print_string(FORMAT_LINE);
+		return ;
+	}
+	this->_print_string("Index not valid");
+}
+
+
+/* Por último, el programa pedirá al usuario introducir el índice de la entrada a
+buscar y mostrará su información de contacto, con los datos de línea en línea.
+Si la entrada no tiene sentido, establece el comportamiento relevante */
