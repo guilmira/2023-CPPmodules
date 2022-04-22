@@ -93,8 +93,3 @@ void Notebook::single_contact(int total) const
 	}
 	this->_print_string("Index not valid");
 }
-
-
-/* Por último, el programa pedirá al usuario introducir el índice de la entrada a
-buscar y mostrará su información de contacto, con los datos de línea en línea.
-Si la entrada no tiene sentido, establece el comportamiento relevante */
