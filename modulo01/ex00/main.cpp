@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/24 12:29:31 by guilmira          #+#    #+#             */
-/*   Updated: 2022/04/24 14:56:50 by guilmira         ###   ########.fr       */
+/*   Updated: 2022/04/24 19:29:58 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ int	main(void)
 
 		ptr = NULL;
 		ptr = newZombie("Example6: heap via function");
-		delete ptr;
+		delete ptr; //se podria usar ptr->eraseZombie();
 	}
 
 	/* Ex7: --ARRAY-- of classes declared on the HEAP using function.
@@ -120,7 +120,6 @@ int	main(void)
 		ptr[2].announce();
 		delete [] ptr;
 	}
-
 	atexit(ft_leaks);
 	return (0);
 }
