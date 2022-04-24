@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/24 18:34:12 by guilmira          #+#    #+#             */
-/*   Updated: 2022/04/24 19:58:57 by guilmira         ###   ########.fr       */
+/*   Updated: 2022/04/24 20:00:55 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ int	main(void)
 	std::cout << *stringPTR << std::endl; 
 	//Note: operator << loaded in the class string. 
 	//Thats why *ptr displays the string, which is nothing more than an atribute member.
-
 
 	/* REGERENCES in C++ */
 	//A reference has to be assigned in the moment of its creation.
