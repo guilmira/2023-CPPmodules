@@ -6,12 +6,11 @@
 #    By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/17 10:57:42 by guilmira          #+#    #+#              #
-#    Updated: 2022/04/27 04:21:03 by guilmira         ###   ########.fr        #
+#    Updated: 2022/04/27 04:20:30 by guilmira         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= files
-ARGS		= 1test Legolas elf_Archer_pro
+NAME		= karen
 #--------------------------------------------------------------------------------------------------------------COMPILER
 COMPILER	= clang++
 CFLAGS		= -Wall -Wextra -Werror
@@ -20,7 +19,7 @@ CSANITIZE	= -fsanitize=address
 #--------------------------------------------------------------------------------------------------------------LIBS
 #INCLUDES	= -I ./0includes
 #--------------------------------------------------------------------------------------------------------------SOURCES
-CLASS		= 
+CLASS		= Karen.cpp
 SRCS		= main.cpp $(CLASS)
 OBJS		= $(SRCS:.cpp=.o)
 #--------------------------------------------------------------------------------------------------------------COMMANDS
@@ -40,10 +39,10 @@ san: $(OBJS)
 	@echo $(GREEN) "$(NAME) compiled with santitize" $(NONE)
 
 exe: san
-	./$(NAME) $(ARGS)
+	./$(NAME)
 
 leaks: re
-	./$(NAME) $(ARGS)
+	./$(NAME)
 
 clean:
 	@$(REMOVE) $(OBJS)

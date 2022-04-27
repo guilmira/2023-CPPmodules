@@ -1,0 +1,24 @@
+define error function
+
+int treat_error(int err_num)
+{
+    std::string error_msgs_list[] = {
+        "Is not an error.",                 // SUCCESS
+        "Error.",                           // ERROR
+        "Number of arguments is invalid.",  // ERROR_NBR_ARGS
+        "An argument is empty.",            // ERROR_EMPTY_ARG
+        "File does not exist."              // ERROR_FILE_DOES_NOT_EXIST
+    };
+
+    std::cout << "Error : " << error_msgs_list[err_num] << std::endl;
+    return (err_num);
+}
+
+for next time
+
+send_error("Error at opeing  file);
+
+send_error(std::string const &str)
+{
+	std::cout ...
+}
