@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 14:15:27 by guilmira          #+#    #+#             */
-/*   Updated: 2022/04/20 10:02:37 by guilmira         ###   ########.fr       */
+/*   Updated: 2022/04/28 12:15:14 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ void	Notebook::read_command(void)
 
 	this->_print_string("Awaiting command, ADD, SEARCH or EXIT:");
 	std::getline(std::cin, command);
+	if (std::cin.fail())
+		exit(0);
 	if (!command.compare("ADD"))
 		this->setValue(ADD);
 	else if (!command.compare("SEARCH"))
