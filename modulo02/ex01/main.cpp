@@ -17,12 +17,10 @@
 int main(void)
 {
 	//float f = 3.300001;
-	float f = 3.192;
-	Fixed a(2300);
+	float f = 3.255;
+	//Fixed a(2300);
 	Fixed b(f);
 
-
-	
 	std::cout << b << std::endl;
 
 	//std::cout << a;

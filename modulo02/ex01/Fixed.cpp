@@ -92,6 +92,16 @@ Fixed::Fixed(const int i)
 }
 
 /* --------------------------------- FLOAT CONST --------------------------------- */
+static int store_int_part(int x)
+{
+	int new_bits;
+
+	if (parser(x))
+		return (0);
+	new_bits = x << 8; 
+	return(new_bits);
+}
+
 int power_to(const int base, const int exponent)
 {
 	int res;
@@ -99,8 +109,7 @@ int power_to(const int base, const int exponent)
 	res = base;
 	for(int i = 0; i < exponent - 1; i++)
 		res *= base;
-
-		std::cout << "here " << res << std::endl;
+	std::cout << "here " << res << std::endl;
 	return (res);
 }
 
@@ -120,15 +129,20 @@ int count_mantissa(float fl)
 	return (count);
 }
 
-
-static int store_int_part(int x)
+static int get_dec_part(float fl, int integer_part)
 {
-	int new_bits;
-
-	if (parser(x))
-		return (0);
-	new_bits = x << 8; 
-	return(new_bits);
+	int		decimal_part;
+	int		precision;
+	float	decimal_only;
+	float	int_aspect;
+	
+	precision = count_mantissa(fl);
+	std::cout << precision << std::endl;
+	precision = 3;
+	decimal_only = (fl - integer_part);
+	int_aspect = decimal_only * power_to(10, precision);
+	decimal_part = roundf(int_aspect);
+	return (decimal_part);
 }
 
 Fixed::Fixed(const float fl)
@@ -139,18 +153,8 @@ Fixed::Fixed(const float fl)
 
 	integer_part = (int) fl;
 	this->_value = store_int_part(integer_part);
-	//roundf ALLOWED FUNCTION
-
-	int precision ;
-	/* precision = count_mantissa(fl);
-	std::cout << precision << std::endl; */
-	precision = 3;
-	decimal_part = (fl - integer_part) * power_to(10, precision);
-	std::cout << "here " << (fl - integer_part) << std::endl;
-	std::cout << "here " << decimal_part << std::endl;
-
+	decimal_part = get_dec_part(fl, integer_part);
 	
-
 	if (parser2(decimal_part))
 		return ;
 	this->_value = (this->_value) | decimal_part;
@@ -192,13 +196,11 @@ Fixed::~Fixed()
 
 int Fixed::getRawBits(void) const
 {
-	log("getRawBits member fuction called.");
 	return (this->_value);
 }
 
 void Fixed::setRawBits(int const raw)
 {
-	log("setRawBits member fuction called.");
 	this->_value = raw;
 }
 
@@ -210,7 +212,6 @@ Fixed::Fixed(Fixed const &src)
 {
 	log("Copy constructor called.");
 	*this = src; //this is actually the operator overload of = function being used
-	
 	//equivalent to
 	//this->operator=(src);
 	return ;
