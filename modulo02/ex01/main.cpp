@@ -6,14 +6,27 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 14:12:31 by guilmira          #+#    #+#             */
-/*   Updated: 2022/05/03 14:40:46 by guilmira         ###   ########.fr       */
+/*   Updated: 2022/05/04 08:39:07 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
 
+
+
 int main(void)
 {
+	//float f = 3.300001;
+	float f = 3.192;
+	Fixed a(2300);
+	Fixed b(f);
+
+
 	
+	std::cout << b << std::endl;
+
+	//std::cout << a;
+
+
 	return (0);
 }

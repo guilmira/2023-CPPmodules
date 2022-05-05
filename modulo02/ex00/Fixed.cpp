@@ -14,65 +14,62 @@
 
 #define DECIMAL_BIT_NBR 8
 
-const int Fixed::_enteroConst = DECIMAL_BIT_NBR;
+const int Fixed::_decimalBits = DECIMAL_BIT_NBR;
+
+static void log(std::string const &str)
+{
+	std::cout << str << std::endl;
+}
+
 
 Fixed::Fixed()
+	: _entero(0)
 {
-	std::cout << "Default constructor called." << std::endl;
+	log("Default constructor called.");
 	return ;
 }
 
-Fixed::Fixed(Fixed const &fixed1)
+//COPY CONSTRUCTOR.  THE NAME IS KEY. copy as in, creates a copy, a second object with same values.
+//Class SOURCE and the new one just created are NOT the same.
+//they dont have the same adress.
+//notice how = operator is being used, therefore only contents are copied.
+Fixed::Fixed(Fixed const &src)
 {
 	std::cout << "Copy constructor called." << std::endl;
-	std::cout << "Class origin and source are actually the same. Indistinguishable." << std::endl;
-	*this = fixed1;
+	*this = src; //this is actually operator function being used
+	//equivalent to
+	//this->operator=(src);
 	return ;
 }
 
 Fixed::~Fixed()
 {
+	log("Destructor called.");
 	return ;
 }
 
 
 Fixed & Fixed::operator=(Fixed const &rhs)
 {
+	log("Assignation operator called.");
 	if (this != &rhs)
 	{
-		//igualar todas las privadas.
-		return ;
+		this->_entero = rhs._entero;
+		return (*this);
 	}
 		
 	return (*this);
 }
 
-Example::Example()
+
+
+int Fixed::getRawBits(void) const
 {
-	this->x = 5;
-	return ;
+	log("getRawBits member fuction called.");
+	return (this->_entero);
 }
 
-Example::Example(Example const &src)
+void Fixed::setRawBits(int const raw)
 {
-	std::cout << "Copy constructor called." << std::endl;
-	*this = src;
-	return ;
-}
-
-//basicamente, =, es cambiar el puntero this. (POR SUPUESTO, no cte.)
-Example & Example::operator=(Example const &rhs)
-{
-	std::cout << "ASSIGNMENT called." << std::endl;
-
-	if (this != &rhs)
-		this->x = rhs.x;
-	
-	return (*this);
-	
-}
-
-Example::~Example()
-{
-	return ;
+	this->_entero = raw;
 }

@@ -12,7 +12,8 @@
 
 NAME		= canonica
 #--------------------------------------------------------------------------------------------------------------COMPILER
-COMPILER	= clang++
+COMPILER	= g++
+#COMPILER	= clang++
 CFLAGS		= -Wall -Wextra -Werror
 CVERSION	= -std=c++98
 CSANITIZE	= -fsanitize=address

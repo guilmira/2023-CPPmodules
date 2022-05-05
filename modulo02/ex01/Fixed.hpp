@@ -12,12 +12,16 @@
 
 #include <iostream>
 #include <string>
+#include <math.h>
 
 class Fixed
 {
 	public:
 		Fixed();
 		Fixed(Fixed const &src);
+		
+		Fixed(const int x);
+		Fixed(const float fl);
 		
 		~Fixed();
 
@@ -27,6 +31,8 @@ class Fixed
 		void setRawBits(int const raw);
 
 	private:
-		int _entero;
-		static const int _decimalBits;
+		int					_value;
+		static const int	_decimalBits;
 };
+
+std::ostream & operator<<(std::ostream &stream, Fixed const &fixedClass);

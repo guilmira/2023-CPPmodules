@@ -6,13 +6,14 @@
 #    By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/17 10:57:42 by guilmira          #+#    #+#              #
-#    Updated: 2022/05/03 14:42:05 by guilmira         ###   ########.fr        #
+#    Updated: 2022/05/03 14:15:14 by guilmira         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= flujo
+NAME		= canonica
 #--------------------------------------------------------------------------------------------------------------COMPILER
-COMPILER	= clang++
+COMPILER	= g++
+#COMPILER	= clang++
 CFLAGS		= -Wall -Wextra -Werror
 CVERSION	= -std=c++98
 CSANITIZE	= -fsanitize=address
