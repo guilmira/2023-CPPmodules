@@ -17,7 +17,7 @@
 int main(void)
 {
 	//float f = 3.300001;
-	float f = 3.255;
+	float f = 3.025;
 	//Fixed a(2300);
 	Fixed b(f);
 

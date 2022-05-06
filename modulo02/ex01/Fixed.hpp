@@ -14,11 +14,9 @@
 #include <string>
 #include <cmath>
 
-#define LIMITmax_23bit 8388607
-#define LIMITmin_23bit -8388608
+#define LIMITmax_23bit 2000
+#define LIMITmin_23bit -2000
 #define dec_LIMITunsigned_8bit 255
- 
-
 #define DECIMAL_BIT_NBR 8
 
 class Fixed

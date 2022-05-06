@@ -21,13 +21,13 @@ static void log(std::string const &str)
 
 /* --------------------------------- OVERLOAD OUTPUT-STREAM --------------------------------- */
 //modifier 8 times = yields 255 (1111 1111). Activates every bit the number specified on the loop.
-static int	get_decimal(const int x)
+static int	get_decimal(const int x, const int decimal_bits)
 {
 	int dec;
 	int modifier;
 
 	modifier = 0;
-	for (int i = 0; i < DECIMAL_BIT_NBR; i++)
+	for (int i = 0; i < decimal_bits; i++)
 	{
 		if (i != 0)
 			modifier = modifier << 1;
@@ -37,12 +37,12 @@ static int	get_decimal(const int x)
 	return (dec);
 }
 
-static int	get_integer(const int x)
+static int	get_integer(const int x, const int decimal_bits)
 {
 	int integer;
 	int offset;
 
-	offset = DECIMAL_BIT_NBR;
+	offset = decimal_bits;
  	integer = x >> offset;
 	return (integer);
 }
@@ -52,8 +52,8 @@ std::ostream & operator<<(std::ostream &stream, Fixed const &fixedClass)
 	int integer_part;
 	int decimal_part;
 	
-	integer_part = get_integer(fixedClass.getRawBits());
-	decimal_part = get_decimal(fixedClass.getRawBits());
+	integer_part = get_integer(fixedClass.getRawBits(), DECIMAL_BIT_NBR);
+	decimal_part = get_decimal(fixedClass.getRawBits(), DECIMAL_BIT_NBR);
 	std::cout << integer_part << "." << decimal_part << std::endl;
 	return (stream);
 }
@@ -86,19 +86,19 @@ Fixed::Fixed(const int i)
 {
 	if (parser(i))
 		return ;
-	this->_value = i << 8;
+	this->_value = i << Fixed::_decimalBits;
 	log("Int constructor called.");
 	return ;
 }
 
 /* --------------------------------- FLOAT CONST --------------------------------- */
-static int store_int_part(int x)
+static int store_int_part(int x, const int decimal_bits)
 {
 	int new_bits;
 
 	if (parser(x))
 		return (0);
-	new_bits = x << 8; 
+	new_bits = x << decimal_bits; 
 	return(new_bits);
 }
 
@@ -106,10 +106,11 @@ int power_to(const int base, const int exponent)
 {
 	int res;
 
+	if (!exponent)
+		return (1);
 	res = base;
 	for(int i = 0; i < exponent - 1; i++)
 		res *= base;
-	std::cout << "here " << res << std::endl;
 	return (res);
 }
 
@@ -129,7 +130,7 @@ int count_mantissa(float fl)
 	return (count);
 }
 
-static int get_dec_part(float fl, int integer_part)
+static int get_dec_part(float fl, int integer_part, const int decimal_bits)
 {
 	int		decimal_part;
 	int		precision;
@@ -152,8 +153,8 @@ Fixed::Fixed(const float fl)
 	int decimal_part;
 
 	integer_part = (int) fl;
-	this->_value = store_int_part(integer_part);
-	decimal_part = get_dec_part(fl, integer_part);
+	this->_value = store_int_part(integer_part, Fixed::_decimalBits);
+	decimal_part = get_dec_part(fl, integer_part, Fixed::_decimalBits);
 	
 	if (parser2(decimal_part))
 		return ;
@@ -161,9 +162,6 @@ Fixed::Fixed(const float fl)
 	log("Float constructor called.");
 	return ;
 }
-
-
-
 
 /* --------------------------------- OPERATOR OVERLOAD --------------------------------- */
 Fixed & Fixed::operator=(Fixed const &rhs)
@@ -176,8 +174,6 @@ Fixed & Fixed::operator=(Fixed const &rhs)
 	}
 	return (*this);
 }
-
-
 
 /* --------------------------------- BASE CLASS DEFINITION --------------------------------- */
 
