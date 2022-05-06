@@ -19,12 +19,61 @@ static void log(std::string const &str)
 	std::cout << str << std::endl;
 }
 
+/* --------------------------------- OVERLOAD OUTPUT-STREAM --------------------------------- */
+//modifier 8 times = yields 255 (1111 1111). Activates every bit the number specified on the loop.
+static int	get_decimal(const int x, const int decimal_bits)
+{
+	int dec;
+	int modifier;
+
+	modifier = 0;
+	for (int i = 0; i < decimal_bits; i++)
+	{
+		if (i != 0)
+			modifier = modifier << 1;
+		modifier = 1 | modifier;
+	}
+ 	dec = x & modifier;
+	return (dec);
+}
+
+static int	get_integer(const int x, const int decimal_bits)
+{
+	int integer;
+	int offset;
+
+	offset = decimal_bits;
+ 	integer = x >> offset;
+	return (integer);
+}
+
+std::ostream & operator<<(std::ostream &stream, Fixed const &fixedClass)
+{
+	int integer_part;
+	int decimal_part;
+	
+	integer_part = get_integer(fixedClass.getRawBits(), DECIMAL_BIT_NBR);
+	decimal_part = get_decimal(fixedClass.getRawBits(), DECIMAL_BIT_NBR);
+	std::cout << integer_part << "." << decimal_part << std::endl;
+	return (stream);
+}
+
 /* --------------------------------- INT CONST --------------------------------- */
 static int parser(const int i)
 {
 	if (i > LIMITmax_23bit || i < LIMITmin_23bit)
 	{
 		log("invalid int. Beyond limits");
+		return (1);
+	}
+	return (0);
+}
+
+static int parser2(const int i)
+{
+	if (i > dec_LIMITunsigned_8bit || i < 0)
+	{
+		log("invalid decimal part. Beyond limits");
 		return (1);
 	}
 	return (0);
@@ -43,25 +92,87 @@ Fixed::Fixed(const int i)
 }
 
 /* --------------------------------- FLOAT CONST --------------------------------- */
-//scale (number of decimal bits) = 8		BFP		0000 0000  -  0000 0000  -  0000 0000 . 0000 0000
-//2^0			=		  0000 0001		= 1
-//1 << scale	=	0001  0000 0000		= 256
-//2^8			=	0001  0000 0000		= 256
-//therefore 		2^scale = 1<<scale
-//2.5 * 1<<scale=   0010  1000 0000		= 640   Tenemos el FBP perfecto, ya que ese bit en la octava posicion, representa 2^-1 = 0.5
+static int store_int_part(int x, const int decimal_bits)
+{
+	int new_bits;
+
+	if (parser(x))
+		return (0);
+	new_bits = x << decimal_bits; 
+	return(new_bits);
+}
+
+int power_to(const int base, const int exponent)
+{
+	int res;
+
+	if (!exponent)
+		return (1);
+	res = base;
+	for(int i = 0; i < exponent - 1; i++)
+		res *= base;
+	return (res);
+}
+
+int count_mantissa(float fl)
+{
+	int i;
+	int count;
+
+	i = (int) fl;
+	count = 0;
+	while (i != fl)
+	{
+		fl *= 10;
+		i = (int) fl;
+		count++;
+	}
+	return (count);
+}
+
+static int get_dec_part(float fl, int integer_part, const int decimal_bits)
+{
+	int		decimal_part;
+	int		precision;
+	float	decimal_only;
+	float	int_aspect;
+	
+	precision = count_mantissa(fl);
+	std::cout << precision << std::endl;
+	precision = 3;
+	decimal_only = (fl - integer_part);
+	int_aspect = decimal_only * power_to(10, precision);
+	decimal_part = roundf(int_aspect);
+	return (decimal_part);
+}
+
 Fixed::Fixed(const float fl)
 	: _value(0)
 {
-	int		fixed_point_value;
-	float	offset;
+	int integer_part;
+	int decimal_part;
 
-	if (parser((int) fl))
+	integer_part = (int) fl;
+	this->_value = store_int_part(integer_part, Fixed::_decimalBits);
+	decimal_part = get_dec_part(fl, integer_part, Fixed::_decimalBits);
+	
+	if (parser2(decimal_part))
 		return ;
-	offset = (float) (1 << Fixed::_decimalBits);
-	fixed_point_value = (int) roundf(fl * offset);
-	this->_value = fixed_point_value;
+	this->_value = (this->_value) | decimal_part;
 	log("Float constructor called.");
 	return ;
+}
+
+/* --------------------------------- OPERATOR OVERLOAD --------------------------------- */
+Fixed & Fixed::operator=(Fixed const &rhs)
+{
+	log("Assignation operator called.");
+	if (this != &rhs)
+	{
+		this->_value = rhs._value;
+		return (*this);
+	}
+	return (*this);
 }
 
 /* --------------------------------- BASE CLASS DEFINITION --------------------------------- */
@@ -89,18 +200,6 @@ void Fixed::setRawBits(int const raw)
 	this->_value = raw;
 }
 
-/* --------------------------------- OPERATOR OVERLOAD --------------------------------- */
-Fixed & Fixed::operator=(Fixed const &rhs)
-{
-	log("Assignation operator called.");
-	if (this != &rhs)
-	{
-		this->_value = rhs._value;
-		return (*this);
-	}
-	return (*this);
-}
-
 //COPY CONSTRUCTOR.  THE NAME IS KEY. copy as in, creates a copy, a second object with same values.
 //Class SOURCE and the new one just created are NOT the same.
 //they dont have the same adress.
@@ -112,36 +211,4 @@ Fixed::Fixed(Fixed const &src)
 	//equivalent to
 	//this->operator=(src);
 	return ;
-}
-
-/* --------------------------------- OVERLOAD OUTPUT-STREAM --------------------------------- */
-int		Fixed::toInt(void) const
-{
-	int	decimal_int;
-
-	decimal_int = this->_value >> Fixed::_decimalBits;
-	return (decimal_int);
-}
-
-
-//scale (number of decimal bits) = 8		BFP		0000 0000  -  0000 0000  -  0000 0000 . 0000 0000
-//2^0			=		  0000 0001		= 1
-//1 << scale	=	0001  0000 0000		= 256
-//1.5			=	0001  1000 0000		= 384
-//384 / 256		= 	1.5
-//therefore 	fixed_binary(384) / 1<<scale = actual float number
-float	Fixed::toFloat(void) const
-{
-	float	float_representation;
-	float	binary_fixed_nbr;
-
-	binary_fixed_nbr = ( (float) this->getRawBits() );
-	float_representation = binary_fixed_nbr / ((float) (1 << Fixed::_decimalBits));
-	return (float_representation);
-}
-
-std::ostream & operator<<(std::ostream &stream, Fixed const &fixedClass)
-{
-	std::cout << fixedClass.toFloat();
-	return (stream);
 }

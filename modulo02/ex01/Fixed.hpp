@@ -24,16 +24,17 @@ class Fixed
 	public:
 		Fixed();
 		Fixed(Fixed const &src);
-		
 		Fixed(const int x);
 		Fixed(const float fl);
-		
 		~Fixed();
 
 		Fixed & operator=(Fixed const &rhs);
 
-		int getRawBits(void) const;
-		void setRawBits(int const raw);
+		int		getRawBits(void) const;
+		void	setRawBits(int const raw);
+
+		int		toInt(void) const;
+		float	toFloat(void) const;
 
 	private:
 		int					_value;
