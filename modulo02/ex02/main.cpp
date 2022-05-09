@@ -16,17 +16,26 @@
 
 int main(void)
 {
-	Fixed		a;
-	Fixed const b(10.0f);
-	Fixed c(10.0f);
-	Fixed const d(b);
+	Fixed		a(1);
+	Fixed z = Fixed(5.05f);
+	Fixed x = Fixed(2);
+	std::cout << "aqui\n";
 
-	std::cout << "hatever" << std::endl;
-	Fixed z;
-	//std::cout << c << std::endl;
-	z = c + b;
-std::cout << z << std::endl;
+	//PENDIENTE IMPLEMENTAR MULTIPLICACION
+	Fixed const b(z * x);
 
-std::cout << c << std::endl;
+std::cout << "primero" << std::endl;
+//llama al destructor al devolver una clase. mirar como funciona lo de a++ en CPP
+	std::cout << a++ << std::endl;
+	//std::cout << ++a << std::endl;
+	std::cout << a << std::endl;
+	std::cout << ++a << std::endl;
+	std::cout << a << std::endl;
+
+	std::cout << b << std::endl;
+	
+	std::cout << Fixed::min(a,b) << std::endl;
+	std::cout << Fixed::max(b,a) << std::endl;
+
 	return (0);
 }

@@ -179,14 +179,92 @@ int Fixed::operator!=(Fixed const &rhs) const
 }
 
 //DUDA IMPORTANTE AQUI. POR QUE NO DEVOLVER REFERENCIA. Y COMO DELCARAS EN STACK Y LUEGO DEVUEVES
-//entendido. en el constructor se sete el atributo decimal bits. luego solo
-//hay que decirle cuanto vale _value.
+//entendido. en el constructor se seta el atributo decimal bits. luego solo
+//hay que decirle cuanto vale _value. se setea porque es un estatico, comun para todas las instancias.
 Fixed Fixed::operator+(Fixed const &rhs)
 {
 	Fixed object_sum;
 
 	std::cout << "adding    ";
-	std::cout << object_sum._decimalBits;
 	object_sum.setRawBits(this->getRawBits() + rhs.getRawBits());
 	return (object_sum);
+}
+
+Fixed Fixed::operator-(Fixed const &rhs)
+{
+	Fixed result;
+
+	result.setRawBits(this->getRawBits() - rhs.getRawBits()); 
+	return (result);
+}
+
+Fixed Fixed::operator*(Fixed const &rhs)
+{
+	Fixed result;
+
+	log("Mutiplication operator called.");
+	std::cout << this->getRawBits() <<std::endl;
+	result.setRawBits(this->getRawBits() * rhs.getRawBits());
+	std::cout << result.toFloat() <<std::endl;
+	return (result);
+}
+
+Fixed Fixed::operator/(Fixed const &rhs)
+{
+	Fixed result;
+
+	result.setRawBits(this->getRawBits() / rhs.getRawBits()); 
+	return (result);
+}
+
+/* --------------------------------- Incrementation --------------------------------- */
+
+Fixed & Fixed::operator++()
+{
+	this->setRawBits(this->getRawBits() + 1);
+	return (*this);
+}
+
+Fixed Fixed::operator++(int)
+{
+	Fixed result;
+	Fixed actual_instance;
+
+	actual_instance = *this;
+	result = actual_instance;
+	++result;
+	return(result);
+}
+
+/* --------------------------------- STATIC FUNCTIONS --------------------------------- */
+static Fixed & min(Fixed &lhs, Fixed &rhs)
+{
+	if (lhs < rhs)
+		return (lhs);
+	else
+		return (rhs);
+}
+
+Fixed const & Fixed::min(Fixed const &lhs, Fixed const &rhs)
+{
+	if (lhs < rhs)
+		return (lhs);
+	else
+		return (rhs);
+}
+
+static Fixed & max(Fixed &lhs, Fixed &rhs)
+{
+	if (lhs > rhs)
+		return (lhs);
+	else
+		return (rhs);
+}
+
+Fixed const & Fixed::max(Fixed const &lhs, Fixed const &rhs)
+{
+	if (lhs > rhs)
+		return (lhs);
+	else
+		return (rhs);
 }
