@@ -236,6 +236,11 @@ Fixed Fixed::operator++(int)
 	return(result);
 }
 
+void Fixed::operator--(int)
+{
+	return ;
+}
+
 /* --------------------------------- STATIC FUNCTIONS --------------------------------- */
 static Fixed & min(Fixed &lhs, Fixed &rhs)
 {

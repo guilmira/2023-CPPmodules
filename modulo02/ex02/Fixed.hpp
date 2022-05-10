@@ -52,6 +52,8 @@ class Fixed
 		Fixed & operator++();
 		Fixed operator++(int);
 
+		void operator--(int);
+
 		static Fixed & min(Fixed &lhs, Fixed &rhs);
 		static Fixed const & min(Fixed const &lhs, Fixed const &rhs);
 
