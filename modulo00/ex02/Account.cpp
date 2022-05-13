@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 09:49:56 by guilmira          #+#    #+#             */
-/*   Updated: 2022/04/22 12:44:44 by guilmira         ###   ########.fr       */
+/*   Updated: 2022/05/13 09:15:01 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,6 +133,7 @@ void	Account::_displayTimestamp(void)
 	time(&current_time);
 	local_time = std::localtime(&current_time);
 	std::cout << "[";
+	std::cout << "20";
 	std::cout << local_time->tm_year - YEARS_MOD;
 	std::cout << std::setfill('0') << std::setw(2);
 	std::cout << local_time->tm_mon + 1 ;
@@ -147,4 +148,29 @@ void	Account::_displayTimestamp(void)
 	std::cout << local_time->tm_sec;
 	std::cout << "] ";
 	return ; 
+}
+
+int		Account::checkAmount(void) const
+{ 
+	return(this->_amount);
+}
+
+int	Account::getNbAccounts(void)
+{
+	return(Account::_nbAccounts);
+}
+
+int	Account::getTotalAmount(void)
+{ 
+	return(Account::_totalAmount);
+}
+
+int	Account::getNbDeposits(void )
+{
+	return(Account::_totalNbDeposits);
+}
+
+int	Account::getNbWithdrawals(void)
+{
+	return(Account::_totalNbWithdrawals);
 }

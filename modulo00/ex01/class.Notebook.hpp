@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 14:13:55 by guilmira          #+#    #+#             */
-/*   Updated: 2022/04/20 12:01:25 by guilmira         ###   ########.fr       */
+/*   Updated: 2022/05/13 08:35:16 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ class Notebook
 		void exit_contacts(void);
 		void single_contact(int total) const;
 
-		int getValue(void) const;
-		void setValue(int x);
+		int		getValue(void) const;
+		void	setValue(int x);
 
 		Contact array_of_contacts[MAX_CONTACTS];
 	

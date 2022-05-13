@@ -1,7 +1,7 @@
 ADD
-Jose Ignacio
-Alvarado Cevallos
-jalvarad
+Pepe
+Martinez Casablancas
+whta
 +642774380A
  +642774380
 qwertyuiopasdfghjkl
@@ -18,8 +18,7 @@ SEARCH
 A
 1
 ADD
-
-
+juanm
 
 
 
@@ -73,3 +72,19 @@ MAria
 
 SEARCH
 5
+
+SEARCH
+8
+
+SEARCH
+2
+
+ADD
+Pepe
+
+
+
+
+SEARCH
+2
+EXIT

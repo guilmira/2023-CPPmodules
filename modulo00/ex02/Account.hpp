@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 09:50:34 by guilmira          #+#    #+#             */
-/*   Updated: 2022/04/21 18:38:31 by guilmira         ###   ########.fr       */
+/*   Updated: 2022/05/13 09:09:16 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,10 @@ public:
 
 	typedef Account		t;
 
-	static int	getNbAccounts( void ) { return(Account::_nbAccounts); }
-	static int	getTotalAmount( void ) { return(Account::_totalAmount); }
-	static int	getNbDeposits( void ) { return(Account::_totalNbDeposits); }
-	static int	getNbWithdrawals( void ) { return(Account::_totalNbWithdrawals); }
+	static int	getNbAccounts( void ); 
+	static int	getTotalAmount( void );
+	static int	getNbDeposits( void );
+	static int	getNbWithdrawals( void );
 	static void	displayAccountsInfos( void );
 
 	Account( int initial_deposit );
@@ -46,7 +46,7 @@ public:
 
 	void	makeDeposit( int deposit );
 	bool	makeWithdrawal( int withdrawal );
-	int		checkAmount( void ) const { return(this->_amount); }
+	int		checkAmount( void ) const;
 	void	displayStatus( void ) const;
 
 

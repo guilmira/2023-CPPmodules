@@ -27,6 +27,7 @@
 #include "class.Notebook.hpp"
 
 /* FIELDS */
+#define F0 "index"
 #define F1 "first name"
 #define F2 "last name" 
 #define F3 "nickname" 

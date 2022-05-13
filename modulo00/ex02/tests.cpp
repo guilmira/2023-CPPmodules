@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 09:51:08 by guilmira          #+#    #+#             */
-/*   Updated: 2022/04/21 19:21:31 by guilmira         ###   ########.fr       */
+/*   Updated: 2022/05/13 09:08:52 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int		main( void ) {
 
 	int	const				amounts[]	= { 42, 54, 957, 432, 1234, 0, 754, 16576 };
 	size_t const			amounts_size( sizeof(amounts) / sizeof(int) );
-	//construye un array de la case accounts, con el contenido de amounts.
+
 	accounts_t				accounts( amounts, amounts + amounts_size );
 	accounts_t::iterator	acc_begin	= accounts.begin();
 	accounts_t::iterator	acc_end		= accounts.end();
@@ -42,7 +42,7 @@ int		main( void ) {
 
 	int	const			d[]			= { 5, 765, 564, 2, 87, 23, 9, 20 };
 	size_t const		d_size( sizeof(d) / sizeof(int) );
-	//construye un array de ins, con el contenido de d. na mas.
+
 	ints_t				deposits( d, d + d_size );
 	ints_t::iterator	dep_begin	= deposits.begin();
 	ints_t::iterator	dep_end		= deposits.end();

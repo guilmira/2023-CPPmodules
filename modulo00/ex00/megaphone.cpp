@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 11:03:52 by guilmira          #+#    #+#             */
-/*   Updated: 2022/04/18 11:27:57 by guilmira         ###   ########.fr       */
+/*   Updated: 2022/05/13 08:29:29 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void megaphone(const char *str)
 			z = str[i] - ASCII_DIFF;
 		else
 			z = str[i];
-		std::cout << str[i];
+		std::cout << z;
 	}
 	
 }
