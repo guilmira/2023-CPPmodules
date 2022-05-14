@@ -6,15 +6,14 @@
 #    By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/17 10:57:42 by guilmira          #+#    #+#              #
-#    Updated: 2022/05/03 14:15:14 by guilmira         ###   ########.fr        #
+#    Updated: 2022/05/14 15:59:58 by guilmira         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= canonica
 #--------------------------------------------------------------------------------------------------------------COMPILER
-COMPILER	= g++
-#COMPILER	= clang++
-CFLAGS		= -Wall -Wextra -Werror
+CXX			= clang++
+CXXFLAGS	= -Wall -Wextra -Werror
 CVERSION	= -std=c++98
 CSANITIZE	= -fsanitize=address
 #--------------------------------------------------------------------------------------------------------------LIBS

@@ -6,15 +6,15 @@
 #    By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/17 10:57:42 by guilmira          #+#    #+#              #
-#    Updated: 2022/05/13 09:01:28 by guilmira         ###   ########.fr        #
+#    Updated: 2022/05/14 16:01:57 by guilmira         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= megaphone
 ARGS		= Damnit " ! " "Sorry students, I thought this thing was off."
 #--------------------------------------------------------------------------------------------------------------COMPILER
-COMPILER	= clang++
-CFLAGS		= -Wall -Wextra -Werror
+CXX			= clang++
+CXXFLAGS	= -Wall -Wextra -Werror
 CVERSION	= -std=c++98
 CSANITIZE	= -fsanitize=address
 #--------------------------------------------------------------------------------------------------------------LIBS
@@ -27,13 +27,13 @@ REMOVE		= rm -rf
 #--------------------------------------------------------------------------------------------------------------RULES
 
 $(NAME): $(OBJS)
-	$(COMPILER) $(CFLAGS) $(CVERSION) $(OBJS) -o $(NAME)
+	$(CXX) $(CXXFLAGS) $(CVERSION) $(OBJS) -o $(NAME)
 	@echo $(GREEN) "$(NAME) compiled" $(NONE)
 
 all: $(NAME)
 
 san: $(OBJS)
-	$(COMPILER) $(CFLAGS) $(CVERSION) $(CSANITIZE) $(OBJS) -o $(NAME)
+	$(CXX) $(CXXFLAGS) $(CVERSION) $(CSANITIZE) $(OBJS) -o $(NAME)
 	@echo $(GREEN) "$(NAME) compiled with santitize" $(NONE)
 
 exe: san
