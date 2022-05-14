@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 11:19:02 by guilmira          #+#    #+#             */
-/*   Updated: 2022/04/20 11:18:37 by guilmira         ###   ########.fr       */
+/*   Updated: 2022/05/14 16:35:09 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ Contact::~Contact()
 void	Contact::prompt_input(void)
 {
 	int i;
-	int index;
 
 	std::string line;
 	i = -1;

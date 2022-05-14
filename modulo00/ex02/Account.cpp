@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 09:49:56 by guilmira          #+#    #+#             */
-/*   Updated: 2022/05/13 09:15:01 by guilmira         ###   ########.fr       */
+/*   Updated: 2022/05/14 16:40:51 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ void	print_value(std::string const &str, int value, int endline)
 
 /** CONSTRUCTOR  */
 Account::Account()
-	:	_amount(0),
-		_accountIndex(Account::_nbAccounts),
+	:	_accountIndex(Account::_nbAccounts),
+		_amount(0),
 		_nbDeposits(0), _nbWithdrawals(0)
 {
 	this->_displayTimestamp();
@@ -47,8 +47,8 @@ Account::Account()
 
 /** CONSTRUCTOR overload  */
 Account::Account(int initial_deposit)
-	:	_amount(initial_deposit), 
-		_accountIndex(Account::_nbAccounts),
+	:	_accountIndex(Account::_nbAccounts),
+		_amount(initial_deposit), 
 		_nbDeposits(0), _nbWithdrawals(0)
 {
 	this->_displayTimestamp();

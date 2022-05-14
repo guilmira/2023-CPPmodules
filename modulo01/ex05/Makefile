@@ -6,7 +6,7 @@
 #    By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/17 10:57:42 by guilmira          #+#    #+#              #
-#    Updated: 2022/05/14 15:59:34 by guilmira         ###   ########.fr        #
+#    Updated: 2022/05/14 16:30:56 by guilmira         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,17 +25,17 @@ OBJS		= $(SRCS:.cpp=.o)
 #--------------------------------------------------------------------------------------------------------------COMMANDS
 REMOVE		= rm -rf
 #--------------------------------------------------------------------------------------------------------------RULES
-#%.o: %.cpp
-#	$(CC) $(CFLAGS) $(CVERSION) -c $< -o $@
+%.o: %.cpp
+	$(CXX) $(CXXFLAGS) $(CVERSION) -c $< -o $@
 
 $(NAME): $(OBJS)
-	$(COMPILER) $(CFLAGS) $(CVERSION) $(OBJS) -o $(NAME)
+	$(CXX) $(CXXFLAGS) $(CVERSION) $(OBJS) -o $(NAME)
 	@echo $(GREEN) "$(NAME) compiled" $(NONE)
 
 all: $(NAME)
 
 san: $(OBJS)
-	$(COMPILER) $(CFLAGS) $(CSANITIZE) $(OBJS) -o $(NAME)
+	$(CXX) $(CXXFLAGS) $(CSANITIZE) $(OBJS) -o $(NAME)
 	@echo $(GREEN) "$(NAME) compiled with santitize" $(NONE)
 
 exe: san
