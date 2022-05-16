@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ScavTrap.cpp                                       :+:      :+:    :+:   */
+/*   FragTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/15 22:04:31 by guilmira          #+#    #+#             */
-/*   Updated: 2022/05/16 13:35:25 by guilmira         ###   ########.fr       */
+/*   Created: 2022/05/16 13:34:52 by guilmira          #+#    #+#             */
+/*   Updated: 2022/05/16 13:37:03 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ScavTrap.hpp"
+#include "FragTrap.hpp"
 
 static void	log(std::string const &str)
 {
@@ -22,17 +22,17 @@ static void	msg(std::string const &str)
 	std::cout << str;
 }
 
-ScavTrap::ScavTrap()
+FragTrap::FragTrap()
 {
 	log("-Default constructor called for child.");
 	this->setName("Default");
 	this->setHp(100);
-	this->setMp(50);
-	this->setDps(20);
+	this->setMp(100);
+	this->setDps(30);
 	return ;
 }
 
-ScavTrap::ScavTrap(std::string name)
+FragTrap::FragTrap(std::string name)
 {
 	msg(this->getName());
 	log("-Overload constructor called for child.");
@@ -43,7 +43,7 @@ ScavTrap::ScavTrap(std::string name)
 	return ;
 }
 
-ScavTrap::~ScavTrap()
+FragTrap::~FragTrap()
 {
 	msg(this->getName());
 	log("-Destructor called for child.");
@@ -51,7 +51,7 @@ ScavTrap::~ScavTrap()
 }
 
 /* --------------------------------- CANONIC --------------------------------- */
-ScavTrap::ScavTrap(ScavTrap const &src)
+FragTrap::FragTrap(FragTrap const &src)
 {
 	msg(this->getName());
 	log("-Copy constructor called for child.");
@@ -59,7 +59,7 @@ ScavTrap::ScavTrap(ScavTrap const &src)
 }
 
 
-ScavTrap & ScavTrap::operator=(ScavTrap const &rhs)
+FragTrap & FragTrap::operator=(FragTrap const &rhs)
 {
 	log("Assignation operator called for child.");
 	this->_name = rhs.getName();
@@ -69,9 +69,9 @@ ScavTrap & ScavTrap::operator=(ScavTrap const &rhs)
 	return (*this);
 }
 /* --------------------------------- METHODS --------------------------------- */
-void ScavTrap::attack(std::string const & target)
+void FragTrap::attack(std::string const & target)
 {
-	msg("ScavTrap (child) ");
+	msg("FragTrap (child) ");
 	msg(getName());
 	msg(" attacked ");
 	msg(target);
@@ -79,8 +79,8 @@ void ScavTrap::attack(std::string const & target)
 	std::cout << getDps() << " points of damage!" << std::endl;
 }
 
-void ScavTrap::guardGate(void)
+void FragTrap::highFiveGuys(void)
 {
 	msg(this->getName());
-	log(" has entered Gate Keeper mode.");
+	log(" gives you a high five.");
 }

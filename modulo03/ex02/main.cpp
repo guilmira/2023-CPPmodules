@@ -1,32 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ScavTrap.hpp                                       :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/15 22:04:29 by guilmira          #+#    #+#             */
-/*   Updated: 2022/05/16 12:35:15 by guilmira         ###   ########.fr       */
+/*   Created: 2022/05/15 22:04:27 by guilmira          #+#    #+#             */
+/*   Updated: 2022/05/16 13:46:52 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SCAVTRAP_HPP
-#define SCAVTRAP_HPP
-
-/* LIBRARIES */
 #include "ClapTrap.hpp"
+#include "ScavTrap.hpp"
+#include "FragTrap.hpp"
 
-class ScavTrap : public ClapTrap
+
+int	main(void)
 {
-	public:
-		ScavTrap();
-		ScavTrap(std::string name);
-		~ScavTrap();
-		ScavTrap(ScavTrap const &src);
-		ScavTrap & operator=(ScavTrap const &rhs);
+	ClapTrap slime("SLIME");
+	ClapTrap bastard_copy("copy");
+	ClapTrap the_true_bastard;
 
-		void attack(std::string const & target);
-		void guardGate(void);
-};
+	slime.takeDamage(2);
+	the_true_bastard = (bastard_copy = slime);
+	the_true_bastard.beRepaired(1);
 
-#endif
+	FragTrap fragy("RED STRANGE SLIME");
+	fragy.beRepaired(1);
+
+	return (0);
+}

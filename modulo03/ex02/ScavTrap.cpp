@@ -6,11 +6,12 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/15 22:04:31 by guilmira          #+#    #+#             */
-/*   Updated: 2022/05/16 13:35:25 by guilmira         ###   ########.fr       */
+/*   Updated: 2022/05/16 11:53:55 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScavTrap.hpp"
+
 
 static void	log(std::string const &str)
 {

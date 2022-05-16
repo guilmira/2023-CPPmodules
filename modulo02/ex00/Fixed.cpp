@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 14:15:22 by guilmira          #+#    #+#             */
-/*   Updated: 2022/05/04 10:05:59 by guilmira         ###   ########.fr       */
+/*   Updated: 2022/05/16 13:34:33 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,11 @@ Fixed::~Fixed()
 	return ;
 }
 
-
+/* IMPORTANT: why the return is Fixed &. is a reference, because the operation itself  ha a return.
+This means:
+a = b -> this, as we know, assignst to a the value of b. But also the operation (a = b) returns something.
+This is easy to test, by doing something like if (a = b) . The same way, the operation assignation for classes has
+to have a return, in this case, the return is the class that is assigned b refererence. */
 Fixed & Fixed::operator=(Fixed const &rhs)
 {
 	log("Assignation operator called.");
@@ -60,8 +64,6 @@ Fixed & Fixed::operator=(Fixed const &rhs)
 		
 	return (*this);
 }
-
-
 
 int Fixed::getRawBits(void) const
 {

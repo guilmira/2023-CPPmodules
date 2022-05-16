@@ -6,17 +6,20 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/15 22:04:29 by guilmira          #+#    #+#             */
-/*   Updated: 2022/05/16 12:35:15 by guilmira         ###   ########.fr       */
+/*   Updated: 2022/05/16 14:09:29 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SCAVTRAP_HPP
 #define SCAVTRAP_HPP
 
+
 /* LIBRARIES */
+#include <iostream>
+#include <string>
 #include "ClapTrap.hpp"
 
-class ScavTrap : public ClapTrap
+class ScavTrap : virtual public ClapTrap
 {
 	public:
 		ScavTrap();
@@ -28,5 +31,10 @@ class ScavTrap : public ClapTrap
 		void attack(std::string const & target);
 		void guardGate(void);
 };
+
+
+
+
+
 
 #endif

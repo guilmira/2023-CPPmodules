@@ -6,43 +6,25 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/15 22:04:27 by guilmira          #+#    #+#             */
-/*   Updated: 2022/05/16 11:53:30 by guilmira         ###   ########.fr       */
+/*   Updated: 2022/05/16 14:13:07 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
 #include "ScavTrap.hpp"
+#include "FragTrap.hpp"
+#include "DiamondTrap.hpp"
 
 int	main(void)
 {
-	ClapTrap slime("Slime");
-	ClapTrap slime_copy(slime);
-	ClapTrap black_slime;
+	DiamondTrap dmd("DiAmOnD.");
 	
-	slime.attack("galazard");
-	slime.beRepaired(1);
-	slime.takeDamage(5);
-	black_slime = slime;
-	black_slime.setName("blackie");
-	slime.takeDamage(100);
-	black_slime.takeDamage(1);
-
-
-
-
-
-	std::cout << "-------------------" << std::endl;
-	ScavTrap hijo("Slime hijo");
-
-	hijo.attack("gala");
-	hijo.takeDamage(10);
-	hijo.beRepaired(1);
-
-
-	std::cout << "copying child" << std::endl;
-
-	ScavTrap son(hijo);
-	son.setName("SON");
-	son.guardGate();
+/* 	Very risky and horrible act the DiamondTrap class will declare a private attribute
+called name like the one inside ClapTrap.
+Its attributes and functions will be chosen from either of its parent classes:
+•Name (Parameter of constructor)
+•Claptrap::Name (Parameter of constructor + "_clap_name") */
+	//dmd.attack("gala");
+	dmd.guardGate();
 	return (0);
 }
