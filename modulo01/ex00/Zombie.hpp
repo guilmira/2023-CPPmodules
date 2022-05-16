@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/24 12:30:30 by guilmira          #+#    #+#             */
-/*   Updated: 2022/04/24 13:35:48 by guilmira         ###   ########.fr       */
+/*   Updated: 2022/05/16 15:42:15 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,13 @@ class Zombie
 		Zombie* newZombie(std::string name);
 		void	eraseZombie(void);
 
-		std::string	getName() const { return (this->_name); };
-		void	setPtr(Zombie *ptr) { this->_ptr = ptr; };
-		void	setName(std::string name) { this->_name = name; };
+		std::string	getName() const;
+		void		setPtr(Zombie *ptr);
+		void		setName(std::string name);
 
 	private:
-		std::string _name;
-		Zombie *_ptr;
-
-	
+		std::string	_name;
+		Zombie		*_ptr;
 };
 
 #endif

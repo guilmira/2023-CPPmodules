@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/24 12:33:41 by guilmira          #+#    #+#             */
-/*   Updated: 2022/04/24 14:39:21 by guilmira         ###   ########.fr       */
+/*   Updated: 2022/05/16 15:29:08 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ Zombie::~Zombie()
 	return ;
 }
 
+/* --------------------------------- METHODS --------------------------------- */
+
 void	Zombie::eraseZombie(void)
 {
 	if (this->_ptr != NULL)
@@ -50,10 +52,24 @@ void	Zombie::eraseZombie(void)
 
 void	Zombie::announce() const
 {
-	
 	print_name(this->_name);
 	std::cout << " ";
 	std::cout << BRAIN << std::endl;
 }
 
+/* --------------------------------- GET | SET --------------------------------- */
 
+void		Zombie::setPtr(Zombie *ptr)
+{ 
+	this->_ptr = ptr; 
+}
+
+std::string	Zombie::getName() const
+{ 
+	return (this->_name); 
+}
+
+void		Zombie::setName(std::string name)
+{ 
+	this->_name = name;
+}

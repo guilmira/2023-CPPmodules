@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/24 12:29:31 by guilmira          #+#    #+#             */
-/*   Updated: 2022/04/24 19:29:58 by guilmira         ###   ########.fr       */
+/*   Updated: 2022/05/16 15:42:09 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,32 +14,8 @@
 
 #define ARRAY_NBR 6
 
-void ft_leaks(void)
-{
-	system("leaks zombies");
-}
-
-/** --Allocates zombie class.
- * 1. Alocates using keyword "new".
- * 2. Sets within the class the pointer given by new.
- * 3. Sets the vaiable name. */
-Zombie *newZombie(std::string name)
-{
-	Zombie *new_ptr;
-	
-	new_ptr = new Zombie;
-	(*new_ptr).setPtr(new_ptr);
-	new_ptr->setName(name);
-	return (new_ptr);
-}
-
-void randomChump(std::string name)
-{
-	Zombie chump;
-
-	chump.setName(name);
-	chump.announce();
-}
+Zombie *newZombie(std::string name);
+void randomChump(std::string name);
 
 /* A resolver: si instancias las clases en el stack con nombre
 (es decir, inicializadas) y preceden a la reserva en el heap,
@@ -68,8 +44,10 @@ int	main(void)
 		ptr = NULL;
 		ptr = new Zombie("example3: sin delete debe dar leaks");
 		ptr->announce();
+		//Example that 'this' from inside the class and ptr are the same
+		/* std::cout << ptr->getter() << std::endl; void 		*getter() {return(this);};
+		std::cout << ptr << std::endl; */
 		delete ptr;
-		
 	}
 
 	/* Ex5: Class declared on the HEAP.
@@ -106,12 +84,12 @@ int	main(void)
 
 		ptr = NULL;
 		ptr = newZombie("Example6: heap via function");
+		ptr->announce();
 		delete ptr; //se podria usar ptr->eraseZombie();
 	}
 
 	/* Ex7: --ARRAY-- of classes declared on the HEAP using function.
-	Destructor is called at the end of scope.
-	The pointer ptr is "destroyed, but not so the content" */
+	*/
 	{
 		Zombie *ptr;
 
@@ -120,6 +98,5 @@ int	main(void)
 		ptr[2].announce();
 		delete [] ptr;
 	}
-	atexit(ft_leaks);
 	return (0);
 }
