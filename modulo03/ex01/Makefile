@@ -6,11 +6,11 @@
 #    By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/17 10:57:42 by guilmira          #+#    #+#              #
-#    Updated: 2022/05/15 20:57:21 by guilmira         ###   ########.fr        #
+#    Updated: 2022/05/16 01:58:02 by guilmira         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= contacts
+NAME		= trap
 #--------------------------------------------------------------------------------------------------------------COMPILER
 CXX			= clang++
 CXXFLAGS	= -Wall -Wextra -Werror
@@ -19,7 +19,7 @@ CSANITIZE	= -fsanitize=address
 #--------------------------------------------------------------------------------------------------------------LIBS
 #INCLUDES	= -I ./0includes
 #--------------------------------------------------------------------------------------------------------------SOURCES
-CLASS		= class.Notebook.cpp class.Notebook.show.cpp class.Contact.cpp 
+CLASS		= ClapTrap.cpp ScavTrap.cpp
 SRCS		= main.cpp $(CLASS)
 OBJS		= $(SRCS:.cpp=.o)
 #--------------------------------------------------------------------------------------------------------------COMMANDS
@@ -27,7 +27,7 @@ REMOVE		= rm -rf
 #--------------------------------------------------------------------------------------------------------------RULES
 %.o: %.cpp
 	$(CXX) $(CXXFLAGS) $(CVERSION) -c $< -o $@
-	
+
 $(NAME): $(OBJS)
 	$(CXX) $(CXXFLAGS) $(CVERSION) $(OBJS) -o $(NAME)
 	@echo $(GREEN) "$(NAME) compiled" $(NONE)
@@ -52,7 +52,7 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re norm
+.PHONY: all clean fclean re
 #--------------------------------------------------------------------------------------------------------------FORMAT
 NONE='\033[0m'
 GREEN='\033[1;32m'
