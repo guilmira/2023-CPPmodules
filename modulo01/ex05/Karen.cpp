@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 04:24:01 by guilmira          #+#    #+#             */
-/*   Updated: 2022/04/27 20:32:34 by guilmira         ###   ########.fr       */
+/*   Updated: 2022/05/16 20:36:37 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ void Karen::complain(std::string level)
 			ptrFunction_to_execute = array_of_pointers[i];
 			(this->*ptrFunction_to_execute)();
 		}
-	
 	}
 }
 
