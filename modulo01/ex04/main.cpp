@@ -6,12 +6,9 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/24 18:34:12 by guilmira          #+#    #+#             */
-/*   Updated: 2022/04/27 04:22:16 by guilmira         ###   ########.fr       */
+/*   Updated: 2022/05/16 19:53:01 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-
-
 
 #include <iostream>
 #include <fstream>
@@ -81,8 +78,7 @@ int	main(int argc, char **argv)
 	std::string s2("not empty2");
 	std::ifstream in_file_object;
 	std::ofstream out_file_object;
-	std::string buffer;
-	
+		
 	if (argc != 4)
 	{
 		std::cout << "Requires three arguments." << std::endl;
