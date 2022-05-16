@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/24 12:33:41 by guilmira          #+#    #+#             */
-/*   Updated: 2022/04/24 19:23:21 by guilmira         ###   ########.fr       */
+/*   Updated: 2022/05/16 19:19:18 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,23 @@ void	Zombie::announce() const
 	print_name(this->_name);
 	std::cout << " ";
 	std::cout << BRAIN << std::endl;
+}
+
+/* --------------------------------- GET | SET --------------------------------- */
+
+void		Zombie::setPtr(Zombie *ptr)
+{ 
+	this->_ptr = ptr; 
+}
+
+std::string	Zombie::getName() const
+{ 
+	return (this->_name); 
+}
+
+void		Zombie::setName(std::string name)
+{ 
+	this->_name = name;
 }
 
 

@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/24 18:34:12 by guilmira          #+#    #+#             */
-/*   Updated: 2022/04/24 20:00:55 by guilmira         ###   ########.fr       */
+/*   Updated: 2022/05/16 19:23:09 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,18 +25,14 @@ int	main(void)
 	std::string str(MSG);
 	std::string *stringPTR;
 	
-
 	stringPTR = NULL;
 	stringPTR = &str;
 
 	/* Task1 */
 	std::cout << "Address using pointers: " ;
 	std::cout << stringPTR << std::endl;
-
 	std::cout << "Value using pointers: " ;
 	std::cout << *stringPTR << std::endl; 
-	//Note: operator << loaded in the class string. 
-	//Thats why *ptr displays the string, which is nothing more than an atribute member.
 
 	/* REGERENCES in C++ */
 	//A reference has to be assigned in the moment of its creation.
@@ -47,8 +43,10 @@ int	main(void)
 	std::cout << &stringREF << std::endl;
 	std::cout << "Value using reference: " ;
 	std::cout << stringREF << std::endl;
-
-	//References are a sort of syntatic sugar: 
+	//atexit(ft_leaks);
+	return (0);
+}
+//References are a sort of syntatic sugar: 
 	/* A variable declared as a reference
 	as is stringREF in this case, becomes
 	an alternative name for an existing variable.
@@ -57,6 +55,7 @@ int	main(void)
 	Its main use is to feed it to functions as input, that
 	way a copy of the object will not be created and direct access
 	to the object will be possible. */
-	//atexit(ft_leaks);
-	return (0);
-}
+
+//std::cout << *stringPTR << std::endl; 
+//Note: operator << loaded in the class string. 
+//Thats why *ptr displays the string, which is nothing more than an atribute member.

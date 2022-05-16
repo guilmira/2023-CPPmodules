@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/15 22:04:31 by guilmira          #+#    #+#             */
-/*   Updated: 2022/05/16 14:09:06 by guilmira         ###   ########.fr       */
+/*   Updated: 2022/05/16 19:28:57 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ ClapTrap::~ClapTrap()
 
 
 /* --------------------------------- GET | SET --------------------------------- */
-std::string ClapTrap::getName(void) const
+const std::string & ClapTrap::getName(void) const
 {
 	return (this->_name);
 }

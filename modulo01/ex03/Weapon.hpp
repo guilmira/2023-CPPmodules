@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/24 20:04:28 by guilmira          #+#    #+#             */
-/*   Updated: 2022/04/24 21:17:52 by guilmira         ###   ########.fr       */
+/*   Updated: 2022/05/16 19:31:33 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ class Weapon
 		~Weapon();
 		Weapon(std::string name);
 
-		void		setType(std::string name) { this->_type = name; };
-		std::string	getType() const { return (this->_type); };
+		void				setType(std::string name);
+		std::string	const & getType() const;
 
 	private:
 		std::string _type;
