@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 14:15:22 by guilmira          #+#    #+#             */
-/*   Updated: 2022/05/04 10:05:59 by guilmira         ###   ########.fr       */
+/*   Updated: 2022/05/17 20:07:09 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,16 +49,24 @@ Fixed::Fixed(const int i)
 //2^8			=	0001  0000 0000		= 256
 //therefore 		2^scale = 1<<scale
 //2.5 * 1<<scale=   0010  1000 0000		= 640   Tenemos el FBP perfecto, ya que ese bit en la octava posicion, representa 2^-1 = 0.5
-Fixed::Fixed(const float fl)
-	: _value(0)
+static int float_to_FBP(const float fl, int decimal_bits)
 {
 	int		fixed_point_value;
 	float	offset;
 
+	offset = (float) (1 << decimal_bits);
+	fixed_point_value = (int) roundf(fl * offset);
+	return (fixed_point_value);
+}
+
+Fixed::Fixed(const float fl)
+	: _value(0)
+{
+	int	fixed_point_value;
+	
 	if (parser((int) fl))
 		return ;
-	offset = (float) (1 << Fixed::_decimalBits);
-	fixed_point_value = (int) roundf(fl * offset);
+	fixed_point_value = float_to_FBP(fl, Fixed::_decimalBits);
 	this->_value = fixed_point_value;
 	log("Float constructor called.");
 	return ;
@@ -89,18 +97,10 @@ void Fixed::setRawBits(int const raw)
 	this->_value = raw;
 }
 
-
-
-//COPY CONSTRUCTOR.  THE NAME IS KEY. copy as in, creates a copy, a second object with same values.
-//Class SOURCE and the new one just created are NOT the same.
-//they dont have the same adress.
-//notice how = operator is being used, therefore only contents are copied.
 Fixed::Fixed(Fixed const &src)
 {
 	log("Copy constructor called.");
-	*this = src; //this is actually the operator overload of = function being used
-	//equivalent to
-	//this->operator=(src);
+	*this = src;
 	return ;
 }
 
@@ -112,7 +112,6 @@ int		Fixed::toInt(void) const
 	decimal_int = this->_value >> Fixed::_decimalBits;
 	return (decimal_int);
 }
-
 
 //scale (number of decimal bits) = 8		BFP		0000 0000  -  0000 0000  -  0000 0000 . 0000 0000
 //2^0			=		  0000 0001		= 1
@@ -178,14 +177,10 @@ int Fixed::operator!=(Fixed const &rhs) const
 	return ((this->getRawBits() != rhs.getRawBits()));
 }
 
-//DUDA IMPORTANTE AQUI. POR QUE NO DEVOLVER REFERENCIA. Y COMO DELCARAS EN STACK Y LUEGO DEVUEVES
-//entendido. en el constructor se seta el atributo decimal bits. luego solo
-//hay que decirle cuanto vale _value. se setea porque es un estatico, comun para todas las instancias.
 Fixed Fixed::operator+(Fixed const &rhs)
 {
 	Fixed object_sum;
 
-	std::cout << "adding    ";
 	object_sum.setRawBits(this->getRawBits() + rhs.getRawBits());
 	return (object_sum);
 }
@@ -201,19 +196,24 @@ Fixed Fixed::operator-(Fixed const &rhs)
 Fixed Fixed::operator*(Fixed const &rhs)
 {
 	Fixed result;
+	float result_float;
+	int	fixed_point_value;
 
-	log("Mutiplication operator called.");
-	std::cout << this->getRawBits() <<std::endl;
-	result.setRawBits(this->getRawBits() * rhs.getRawBits());
-	std::cout << result.toFloat() <<std::endl;
+	result_float = (this->toFloat()) * (rhs.toFloat());
+	fixed_point_value = float_to_FBP(result_float, Fixed::_decimalBits);
+	result.setRawBits(fixed_point_value);
 	return (result);
 }
 
 Fixed Fixed::operator/(Fixed const &rhs)
 {
 	Fixed result;
+	float result_float;
+	int	fixed_point_value;
 
-	result.setRawBits(this->getRawBits() / rhs.getRawBits()); 
+	result_float = (this->toFloat()) / (rhs.toFloat());
+	fixed_point_value = float_to_FBP(result_float, Fixed::_decimalBits);
+	result.setRawBits(fixed_point_value);
 	return (result);
 }
 
@@ -225,24 +225,31 @@ Fixed & Fixed::operator++()
 	return (*this);
 }
 
+//exactly the same as ++i, but the return has to be a COPY of the previous state.
 Fixed Fixed::operator++(int)
 {
-	Fixed result;
-	Fixed actual_instance;
+	Fixed tmp(*this); //copy constructor used to replicate a temporal class.
 
-	actual_instance = *this;
-	result = actual_instance;
-	++result;
-	return(result);
+	this->setRawBits(this->getRawBits() + 1);
+	return (tmp);
 }
 
-void Fixed::operator--(int)
+Fixed & Fixed::operator--()
 {
-	return ;
+	this->setRawBits(this->getRawBits() - 1);
+	return (*this);
+}
+
+Fixed Fixed::operator--(int)
+{
+	Fixed tmp(*this);
+
+	this->setRawBits(this->getRawBits() - 1);
+	return (tmp);
 }
 
 /* --------------------------------- STATIC FUNCTIONS --------------------------------- */
-static Fixed & min(Fixed &lhs, Fixed &rhs)
+Fixed & min(Fixed &lhs, Fixed &rhs)
 {
 	if (lhs < rhs)
 		return (lhs);
@@ -258,7 +265,7 @@ Fixed const & Fixed::min(Fixed const &lhs, Fixed const &rhs)
 		return (rhs);
 }
 
-static Fixed & max(Fixed &lhs, Fixed &rhs)
+Fixed & max(Fixed &lhs, Fixed &rhs)
 {
 	if (lhs > rhs)
 		return (lhs);

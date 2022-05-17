@@ -6,36 +6,26 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 14:12:31 by guilmira          #+#    #+#             */
-/*   Updated: 2022/05/04 08:39:07 by guilmira         ###   ########.fr       */
+/*   Updated: 2022/05/17 20:07:53 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
 
-
-
 int main(void)
 {
-	Fixed		a(1);
-	Fixed z = Fixed(5.05f);
-	Fixed x = Fixed(2);
-	std::cout << "aqui\n";
+	Fixed		a(0);
+	Fixed const	b(Fixed(5.05f) * Fixed(2));
+	Fixed const	c(Fixed(6) / Fixed(3));
 
-	//PENDIENTE IMPLEMENTAR MULTIPLICACION
-	Fixed const b(z * x);
-
-std::cout << "primero" << std::endl;
-//llama al destructor al devolver una clase. mirar como funciona lo de a++ en CPP
-	std::cout << a++ << std::endl;
-	//std::cout << ++a << std::endl;
 	std::cout << a << std::endl;
 	std::cout << ++a << std::endl;
 	std::cout << a << std::endl;
-
+	std::cout << a++ << std::endl;
+	std::cout << a << std::endl;
+	std::cout << "multipication" << std::endl;
 	std::cout << b << std::endl;
-	
-	std::cout << Fixed::min(a,b) << std::endl;
-	std::cout << Fixed::max(b,a) << std::endl;
-
+	std::cout << c << std::endl;
+	std::cout << Fixed::max(a,b) << std::endl;
 	return (0);
 }

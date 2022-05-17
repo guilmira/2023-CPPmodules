@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 14:15:28 by guilmira          #+#    #+#             */
-/*   Updated: 2022/05/04 10:11:03 by guilmira         ###   ########.fr       */
+/*   Updated: 2022/05/17 19:40:21 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,16 +49,20 @@ class Fixed
 		Fixed operator*(Fixed const &rhs);
 		Fixed operator/(Fixed const &rhs);
 
+		//prefix (++i) operator.
 		Fixed & operator++();
+		Fixed & operator--();
+
+		//Overloading the post-fix increment (i++) has a dummy int.
 		Fixed operator++(int);
+		Fixed operator--(int);
 
-		void operator--(int);
+		static Fixed &			min(Fixed &lhs, Fixed &rhs);
+		static Fixed const &	min(Fixed const &lhs, Fixed const &rhs);
 
-		static Fixed & min(Fixed &lhs, Fixed &rhs);
-		static Fixed const & min(Fixed const &lhs, Fixed const &rhs);
-
-		static Fixed & max(Fixed &lhs, Fixed &rhs);
-		static Fixed const & max(Fixed const &lhs, Fixed const &rhs);
+		static Fixed &			max(Fixed &lhs, Fixed &rhs);
+		static Fixed const &	max(Fixed const &lhs, Fixed const &rhs);
+	
 	private:
 		int					_value;
 		static const int	_decimalBits;
