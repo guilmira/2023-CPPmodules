@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 04:24:01 by guilmira          #+#    #+#             */
-/*   Updated: 2022/05/16 20:36:37 by guilmira         ###   ########.fr       */
+/*   Updated: 2022/05/17 11:46:35 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,3 +78,11 @@ void Karen::complain(std::string level)
 /* How its done for a single variable.
 void (Karen::*vari)() = &Karen::error;
 (this->*vari)(); */
+
+/* typedef int myinteger;
+typedef char *mystring;
+typedef void (*myfunc)(); */
+
+/* myinteger i;   // is equivalent to    int i;
+mystring s;    // is the same as      char *s;
+myfunc f;      // compile equally as  void (*f)(); */
