@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/24 18:34:12 by guilmira          #+#    #+#             */
-/*   Updated: 2022/05/16 19:53:01 by guilmira         ###   ########.fr       */
+/*   Updated: 2022/05/17 15:46:34 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,16 @@ static void	replace(std::string &buffer, std::string const &original, \
 {
 	std::size_t	position;
 	int	lenght;
+	int lenght2;
 
 	lenght = original.length();
-	position = 0;
-	while ((buffer.find(original) != std::string::npos))
+	lenght2 = replace.length();
+	position = buffer.find(original);
+	while ((position != std::string::npos))
 	{
-		position = buffer.find(original);
 		buffer.erase(position, lenght);
 		buffer.insert(position, replace);
+		position = buffer.find(original, position + lenght2);
 	}
 	
 }	

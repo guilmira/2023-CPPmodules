@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 14:15:22 by guilmira          #+#    #+#             */
-/*   Updated: 2022/05/04 10:05:59 by guilmira         ###   ########.fr       */
+/*   Updated: 2022/05/17 12:32:59 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,16 +101,10 @@ Fixed & Fixed::operator=(Fixed const &rhs)
 	return (*this);
 }
 
-//COPY CONSTRUCTOR.  THE NAME IS KEY. copy as in, creates a copy, a second object with same values.
-//Class SOURCE and the new one just created are NOT the same.
-//they dont have the same adress.
-//notice how = operator is being used, therefore only contents are copied.
 Fixed::Fixed(Fixed const &src)
 {
 	log("Copy constructor called.");
-	*this = src; //this is actually the operator overload of = function being used
-	//equivalent to
-	//this->operator=(src);
+	*this = src;
 	return ;
 }
 

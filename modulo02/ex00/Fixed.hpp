@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 14:15:28 by guilmira          #+#    #+#             */
-/*   Updated: 2022/05/04 10:11:03 by guilmira         ###   ########.fr       */
+/*   Updated: 2022/05/17 12:24:03 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ class Fixed
 	public:
 		Fixed();
 		Fixed(Fixed const &src);
-		
 		~Fixed();
 
 		Fixed & operator=(Fixed const &rhs);

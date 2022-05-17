@@ -6,13 +6,11 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 14:12:31 by guilmira          #+#    #+#             */
-/*   Updated: 2022/05/04 08:39:07 by guilmira         ###   ########.fr       */
+/*   Updated: 2022/05/17 12:33:18 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
-
-
 
 int main(void)
 {
