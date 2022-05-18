@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 14:15:22 by guilmira          #+#    #+#             */
-/*   Updated: 2022/05/18 14:00:43 by guilmira         ###   ########.fr       */
+/*   Updated: 2022/05/18 14:15:26 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -199,6 +199,7 @@ Fixed Fixed::operator-(Fixed const &rhs)
 	return (result);
 }
 
+//range is gonna be limited
 Fixed Fixed::operator*(Fixed const &rhs)
 {
 	Fixed result;
