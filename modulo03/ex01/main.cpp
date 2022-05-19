@@ -27,10 +27,6 @@ int	main(void)
 	slime.takeDamage(100);
 	black_slime.takeDamage(1);
 
-
-
-
-
 	std::cout << "-------------------" << std::endl;
 	ScavTrap hijo("Slime hijo");
 

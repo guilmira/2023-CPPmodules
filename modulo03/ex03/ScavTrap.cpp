@@ -49,10 +49,11 @@ ScavTrap::~ScavTrap()
 	msg(this->getName());
 	log("-Destructor called FOR SCAV_TRAP.");
 	return ;
-}
+} 	
 
 /* --------------------------------- CANONIC --------------------------------- */
 ScavTrap::ScavTrap(ScavTrap const &src)
+	: ClapTrap(src.getName())
 {
 	msg(this->getName());
 	log("-Copy constructor called FOR SCAV_TRAP.");

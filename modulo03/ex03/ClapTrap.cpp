@@ -25,7 +25,7 @@ static void	msg(std::string const &str)
 ClapTrap::ClapTrap()
 	: _name("Default"), _hp(10), _mp(10), _dps(0)
 {
-	log("Default constructor called.");
+	log("Default constructor called for base class.");
 	return ;
 }
 

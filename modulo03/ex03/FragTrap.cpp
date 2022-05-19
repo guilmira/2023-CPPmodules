@@ -38,8 +38,8 @@ FragTrap::FragTrap(std::string name)
 	log("-Overload constructor called for FragTrap.");
 	this->setName(name);
 	this->setHp(100);
-	this->setMp(50);
-	this->setDps(20);
+	this->setMp(100);
+	this->setDps(30);
 	return ;
 }
 
@@ -52,6 +52,7 @@ FragTrap::~FragTrap()
 
 /* --------------------------------- CANONIC --------------------------------- */
 FragTrap::FragTrap(FragTrap const &src)
+	: ClapTrap(getName())
 {
 	msg(this->getName());
 	log("-Copy constructor called for FragTrap.");

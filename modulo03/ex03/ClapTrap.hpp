@@ -40,7 +40,6 @@ class ClapTrap
 		void setMp(int mp);
 		void setDps(int dps);
 		
-		
 	protected:
 		std::string 	_name;
 		int			_hp;

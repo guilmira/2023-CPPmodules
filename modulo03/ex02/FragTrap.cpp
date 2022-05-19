@@ -38,8 +38,8 @@ FragTrap::FragTrap(std::string name)
 	log("-Overload constructor called for child.");
 	this->setName(name);
 	this->setHp(100);
-	this->setMp(50);
-	this->setDps(20);
+	this->setMp(100);
+	this->setDps(30);
 	return ;
 }
 

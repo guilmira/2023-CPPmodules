@@ -12,7 +12,7 @@
 
 NAME		= trap
 #--------------------------------------------------------------------------------------------------------------COMPILER
-CXX			= clang++
+CXX			= g++
 CXXFLAGS	= -Wall -Wextra -Werror
 CVERSION	= -std=c++98
 CSANITIZE	= -fsanitize=address
@@ -38,7 +38,7 @@ san: $(OBJS)
 	$(CXX) $(CXXFLAGS) $(CSANITIZE) $(OBJS) -o $(NAME)
 	@echo $(GREEN) "$(NAME) compiled with santitize" $(NONE)
 
-exe: san
+exe: re
 	./$(NAME)
 
 leaks: re

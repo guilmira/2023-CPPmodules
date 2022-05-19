@@ -25,21 +25,28 @@ static void	msg(std::string const &str)
 DiamondTrap::DiamondTrap()
 {
 	log("//Diamond default.");
-	this->setName("Default");
-	this->setHp(100);
-	this->setMp(100);
-	this->setDps(30);
+	this->setName("Default diamond name");
+	//this->ClapTrap::setName(this->_name.append("_clap_name"));
+	this->setHp(FragTrap::getHp());
+	this->setMp(ScavTrap::getMp());
+	this->setDps(FragTrap::getDps());
 	return ;
 }
 
+//dont initialize like this : ClapTrap(name.append("_clap_name")), because the append works by reference and it will modify the string.
 DiamondTrap::DiamondTrap(std::string name)
+	: ClapTrap("Default")
 {
-	msg(this->getName());
-	log("//Diamond constructor//.");
+	std::string copy(name);
+
 	this->setName(name);
-	this->setHp(100);
-	this->setMp(50);
-	this->setDps(20);
+	ClapTrap::setName(copy.append("_clap_name"));
+	log(this->getName());
+	log("//Diamond overload constructor//.");
+	log(name);
+	this->setHp(FragTrap::getHp());
+	this->setMp(ScavTrap::getMp());
+	this->setDps(FragTrap::getDps());
 	return ;
 }
 
@@ -52,9 +59,13 @@ DiamondTrap::~DiamondTrap()
 
 /* --------------------------------- CANONIC --------------------------------- */
 DiamondTrap::DiamondTrap(DiamondTrap const &src)
+	: 	ClapTrap(src.getName()), 
+		ScavTrap(src.getName()),
+		FragTrap(src.getName())
+
 {
 	msg(this->getName());
-	log("//Diamond Destructor.");
+	log("//Diamond copy constructor called.");
 	*this = src;
 }
 
