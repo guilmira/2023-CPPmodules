@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   WrongAnimal.hpp                                           :+:      :+:    :+:   */
+/*   Animal.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,27 +10,50 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef WRONGANIMAL_HPP
-#define	WRONGANIMAL_HPP
+#include "Animal.hpp"
 
-#include <iostream>
-#include <string>
-
-class WrongAnimal
+static void log(std::string const & str)
 {
-	public:
-		WrongAnimal();
-		~WrongAnimal();
-		WrongAnimal(WrongAnimal const &src);
-		WrongAnimal & operator=(WrongAnimal const &rhs);
+	std::cout << str << std::endl;
+}
 
-		std::string const &	getType(void) const;
-		void				setType(const std::string src);
+Animal::Animal()
+	: _type("Default")
+{
+	log("ANIMAL | Default constructor called.");
+	return ;
+}
 
-		void makeSound(void) const;
+Animal::~Animal()
+{
+	log("ANIMAL | Destructor called.");
+	return ;
+}
 
-	protected:
-		std::string _type;
-};
+Animal::Animal(Animal const &src)
+{
+	log("ANIMAL | Copy constructor called.");
+	*this = src;
+}
 
-#endif
+Animal & Animal::operator=(Animal const &rhs)
+{
+	log("ANIMAL | Assignation operator called.");
+	setType(rhs.getType());
+	return(*this);
+}
+
+std::string const &	Animal::getType(void) const
+{
+	return(this->_type);
+}
+
+void				Animal::setType(const std::string src)
+{
+	this->_type = src;
+}
+
+void Animal::makeSound(void) const
+{
+	log("ANIMAL | -");
+}

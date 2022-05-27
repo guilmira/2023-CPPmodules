@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   WrongAnimal.hpp                                           :+:      :+:    :+:   */
+/*   Cat.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,27 +10,34 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef WRONGANIMAL_HPP
-#define	WRONGANIMAL_HPP
+#ifndef CAT_HPP
+#define	CAT_HPP
 
 #include <iostream>
 #include <string>
+#include "Animal.hpp"
+#include "Brain.hpp"
 
-class WrongAnimal
+class Cat : public Animal
 {
 	public:
-		WrongAnimal();
-		~WrongAnimal();
-		WrongAnimal(WrongAnimal const &src);
-		WrongAnimal & operator=(WrongAnimal const &rhs);
-
-		std::string const &	getType(void) const;
-		void				setType(const std::string src);
+		Cat();
+		~Cat();
+		Cat(Cat const &src);
+		Cat & operator=(Cat const &rhs);
 
 		void makeSound(void) const;
 
-	protected:
-		std::string _type;
+//setBrain is not really needed, just a test
+		const Brain *getBrain() { return (this->_pointer); };
+		void setBrain(Brain *src) 
+		{ 	if (this->_pointer)
+				delete _pointer;
+			this->_pointer = src; 
+			};
+	
+	private:
+		Brain *_pointer;
 };
 
 #endif

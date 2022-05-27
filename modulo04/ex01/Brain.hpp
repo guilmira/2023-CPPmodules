@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   WrongAnimal.hpp                                           :+:      :+:    :+:   */
+/*   Animal.hpp                                           :+:      :+:    :+: */
 /*                                                    +:+ +:+         +:+     */
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,27 +10,27 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef WRONGANIMAL_HPP
-#define	WRONGANIMAL_HPP
+#ifndef BRAIN_HPP
+#define	BRAIN_HPP
 
 #include <iostream>
 #include <string>
+#include <sstream>
+#define	N 100
 
-class WrongAnimal
+class Brain
 {
 	public:
-		WrongAnimal();
-		~WrongAnimal();
-		WrongAnimal(WrongAnimal const &src);
-		WrongAnimal & operator=(WrongAnimal const &rhs);
+		Brain();
+		~Brain();
+		Brain(Brain const &src);
+		Brain &operator=(Brain const&rhs);
 
-		std::string const &	getType(void) const;
-		void				setType(const std::string src);
+		std::string const & getIdeas(const int index) const;
+		void setIdeas(const int index, std::string const &src);
 
-		void makeSound(void) const;
-
-	protected:
-		std::string _type;
+	private:
+		std::string _ideas[N];
 };
 
 #endif

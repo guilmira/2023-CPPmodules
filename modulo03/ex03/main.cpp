@@ -15,22 +15,15 @@
 #include "FragTrap.hpp"
 #include "DiamondTrap.hpp"
 
+
+//PENDIENTE
+//ademas falta pedir ayuda de las flags raras de compilacion
 int	main(void)
 {
 	DiamondTrap dmd("DiAmOnD.");
 
-dmd.attack("other");
-dmd.whoAmI();
-
-
-	
-	
-
-/* 	Very risky and horrible act the DiamondTrap class will declare a private attribute
-called name like the one inside ClapTrap.
-Its attributes and functions will be chosen from either of its parent classes:
-•Name (Parameter of constructor)
-•Claptrap::Name (Parameter of constructor + "_clap_name") */
+	dmd.attack("other");
+	dmd.whoAmI();
 	//dmd.attack("gala");
 	//dmd.guardGate();
 	return (0);

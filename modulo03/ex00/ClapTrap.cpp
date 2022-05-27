@@ -135,5 +135,4 @@ void ClapTrap::beRepaired(unsigned int amount)
 	setHp(getHp() + amount);
 	std::cout << "Current hp: " << getHp() << std::endl;
 	this->_mp--;
-
 }

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Dog.cpp                                           :+:      :+:    :+:   */
+/*   Cat.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,41 +10,55 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Dog.hpp"
+#include "Cat.hpp"
 
 static void log(std::string const & str)
 {
 	std::cout << str << std::endl;
 }
 
-Dog::Dog()
+Cat::Cat()
+	: _pointer(new Brain)
 {
-	Animal::setType("Syv the pup");
-	log("Dog | Default constructor called.");
+	Animal::setType("Covenant cat");
+	
+	log("Cat | Default constructor called.");
+	;log("Cat | Mem for brain allocated.");
+
 	return ;
 }
 
-Dog::~Dog()
+Cat::~Cat()
 {
-	log("Dog | Destructor called.");
+	log("Cat | Destructor called.");
+	log("Cat | Mem for brain deallocated.");
+	delete this->_pointer;
 	return ;
 }
 
-Dog::Dog(Dog const &src)
+Cat::Cat(Cat const &src)
 	: Animal()
 {
-	log("Dog | Copy constructor called.");
+	log("Cat | Copy constructor called.");
 	*this = src;
 }
 
-Dog & Dog::operator=(Dog const &rhs)
+Cat & Cat::operator=(Cat const &rhs)
 {
-	log("Dog | Assignation operator called.");
+	log("Cat | Assignation operator called.");
 	setType(rhs.getType());
+
+	Brain *new_pointer;
+	new_pointer = new Brain(*rhs._pointer); //con el constructor copia de Brain, creo una replica. Para eso está
+
+	this->_pointer = new_pointer;
+/* 	for (int i = 0; i < N; i++)
+		this->_ideas[i] = out.str(); */
+
 	return(*this);
 }
 
-void Dog::makeSound(void) const
+void Cat::makeSound(void) const
 {
-	log("Dog | Be as it may, im Mr. Bad dog.");
+	log("Cat | Mr. good cat.");
 }

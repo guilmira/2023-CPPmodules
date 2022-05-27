@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   WrongAnimal.hpp                                           :+:      :+:    :+:   */
+/*   Animal.hpp                                           :+:      :+:    :+: */
 /*                                                    +:+ +:+         +:+     */
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,24 +10,24 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef WRONGANIMAL_HPP
-#define	WRONGANIMAL_HPP
+#ifndef ANIMAL_HPP
+#define	ANIMAL_HPP
 
 #include <iostream>
 #include <string>
 
-class WrongAnimal
+class Animal
 {
 	public:
-		WrongAnimal();
-		~WrongAnimal();
-		WrongAnimal(WrongAnimal const &src);
-		WrongAnimal & operator=(WrongAnimal const &rhs);
+		Animal();
+		virtual ~Animal(); //si no la preparas para override, aparece un error de compilacion
+		Animal(Animal const &src);
+		Animal & operator=(Animal const &rhs);
 
 		std::string const &	getType(void) const;
 		void				setType(const std::string src);
 
-		void makeSound(void) const;
+		virtual void makeSound(void) const;
 
 	protected:
 		std::string _type;

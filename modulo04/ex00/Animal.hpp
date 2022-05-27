@@ -20,7 +20,7 @@ class Animal
 {
 	public:
 		Animal();
-		virtual ~Animal();
+		virtual ~Animal(); //si no la preparas para override, aparece un error de compilacion
 		Animal(Animal const &src);
 		Animal & operator=(Animal const &rhs);
 

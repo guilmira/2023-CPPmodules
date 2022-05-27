@@ -26,7 +26,6 @@ DiamondTrap::DiamondTrap()
 {
 	log("//Diamond default.");
 	this->setName("Default diamond name");
-	//this->ClapTrap::setName(this->_name.append("_clap_name"));
 	this->setHp(FragTrap::getHp());
 	this->setMp(ScavTrap::getMp());
 	this->setDps(FragTrap::getDps());
@@ -41,9 +40,7 @@ DiamondTrap::DiamondTrap(std::string name)
 
 	this->setName(name);
 	ClapTrap::setName(copy.append("_clap_name"));
-	log(this->getName());
 	log("//Diamond overload constructor//.");
-	log(name);
 	this->setHp(FragTrap::getHp());
 	this->setMp(ScavTrap::getMp());
 	this->setDps(FragTrap::getDps());

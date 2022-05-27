@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   WrongAnimal.hpp                                           :+:      :+:    :+:   */
+/*   Dog.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,27 +10,45 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef WRONGANIMAL_HPP
-#define	WRONGANIMAL_HPP
+#include "Dog.hpp"
 
-#include <iostream>
-#include <string>
-
-class WrongAnimal
+static void log(std::string const & str)
 {
-	public:
-		WrongAnimal();
-		~WrongAnimal();
-		WrongAnimal(WrongAnimal const &src);
-		WrongAnimal & operator=(WrongAnimal const &rhs);
+	std::cout << str << std::endl;
+}
 
-		std::string const &	getType(void) const;
-		void				setType(const std::string src);
+Dog::Dog()
+	: _pointer(new Brain)
+{
+	Animal::setType("Syv the pup");
+	log("Dog | Default constructor called.");
+	log("Dog | Mem for brain allocated.");
+	return ;
+}
 
-		void makeSound(void) const;
+Dog::~Dog()
+{
+	log("Dog | Destructor called.");
+	log("Dog | Mem for brain deallocated.");
+	delete this->_pointer;
+	return ;
+}
 
-	protected:
-		std::string _type;
-};
+Dog::Dog(Dog const &src)
+	: Animal()
+{
+	log("Dog | Copy constructor called.");
+	*this = src;
+}
 
-#endif
+Dog & Dog::operator=(Dog const &rhs)
+{
+	log("Dog | Assignation operator called.");
+	setType(rhs.getType());
+	return(*this);
+}
+
+void Dog::makeSound(void) const
+{
+	log("Dog | Be as it may, im Mr. Bad dog.");
+}

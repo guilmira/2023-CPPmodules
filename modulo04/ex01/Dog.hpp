@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   WrongAnimal.hpp                                           :+:      :+:    :+:   */
+/*   Dog.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,27 +10,26 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef WRONGANIMAL_HPP
-#define	WRONGANIMAL_HPP
+#ifndef DOG_HPP
+#define	DOG_HPP
 
 #include <iostream>
 #include <string>
+#include "Animal.hpp"
+#include "Brain.hpp"
 
-class WrongAnimal
+class Dog : public Animal
 {
 	public:
-		WrongAnimal();
-		~WrongAnimal();
-		WrongAnimal(WrongAnimal const &src);
-		WrongAnimal & operator=(WrongAnimal const &rhs);
-
-		std::string const &	getType(void) const;
-		void				setType(const std::string src);
+		Dog();
+		~Dog();
+		Dog(Dog const &src);
+		Dog & operator=(Dog const &rhs);
 
 		void makeSound(void) const;
 
-	protected:
-		std::string _type;
+		private:
+			Brain *_pointer;
 };
 
 #endif
