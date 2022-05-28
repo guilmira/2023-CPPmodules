@@ -16,6 +16,7 @@
 #include <iostream>
 #include <string>
 #include "ICharacter.hpp"
+#define MAX_MATERIA 4
 
 class Fighter : public ICharacter
 {
@@ -28,14 +29,17 @@ class Fighter : public ICharacter
 
 		std::string const & getName() const;
 		
-		//void equip(AMateria* m);
-		//void unequip(int idx);
+		void equip(AMateria* m);
+		void unequip(int idx);
 		void use(int idx, ICharacter& target);
+
+		int getCurrentEq() const { return (this->_current_equipment); };
 	
 	private:
 		std::string _name;
-		AMateria *_materia_array;
+		AMateria	*_materia_pointers_array[MAX_MATERIA];
+		static int	_max_equipment;
+		int			_current_equipment;
 };
-
 
 #endif

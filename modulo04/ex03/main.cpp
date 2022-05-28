@@ -11,12 +11,16 @@
 /* ************************************************************************** */
 
 #include "AMateria.hpp"
+#include "IMateriaSource.hpp"
+
+#include "Fighter.hpp"
 
 int	main(void)
 {
 
 	std::cout << "----------------------------------------------" << std::endl;
 	Ice ice;
+	
 
 	std::cout << "----------------------------------------------" << std::endl;
 

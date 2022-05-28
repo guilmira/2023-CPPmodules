@@ -50,12 +50,6 @@ class Ice : public AMateria
 		Ice & operator=(Ice const &rhs);
 
 		AMateria* clone() const;
-
-	private:
-
 };
-
-
-
 
 #endif

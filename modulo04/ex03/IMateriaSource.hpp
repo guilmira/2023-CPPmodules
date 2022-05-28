@@ -16,6 +16,7 @@
 #include <iostream>
 #include <string>
 #include "AMateria.hpp"
+#define MAX_MATERIA 4
 
 class IMateriaSource
 {
@@ -25,10 +26,25 @@ class IMateriaSource
 		virtual AMateria* createMateria(std::string const & type) = 0;
 };
 
-class MateriaSource
+class MateriaSource : public IMateriaSource
 {
+	public:
+		MateriaSource();
+		~MateriaSource();
+		MateriaSource(MateriaSource const &src);
+		MateriaSource & operator=(MateriaSource const &rhs);
+
+		void learnMateria(AMateria *ptr);
+		AMateria* createMateria(std::string const & type);
+		
+		int getCurrentMateria() const { return (this->_current_materia); };
+
 	
 	private:
-}
+		AMateria	*origins[MAX_MATERIA];
+		static int	_max_materia;
+		int			_current_materia;	
+
+};
 
 #endif

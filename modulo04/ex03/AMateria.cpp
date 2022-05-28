@@ -47,9 +47,7 @@ AMateria & AMateria::operator=(AMateria const &rhs)
 	
 	deep_log(this->_type, "assgined operator called.		| ~ABSTRACT BASE CLASS~");
 	if (this != &rhs)
-	{
 		this->_type = rhs.getType();
-	}
 	return (*this);
 }
 
@@ -69,6 +67,8 @@ void AMateria::use(ICharacter& target)
 
 }
 
+
+/* --------------------------------- ICE --------------------------------- */
 Ice::Ice() 
 	: AMateria("ice") //explicacion en (*)
 {
@@ -97,15 +97,11 @@ Ice::Ice(Ice const &src)
 	deep_log(this->_type, "copy constructed.");
 }
 
-/* While assigning a Materia to another, copying the type doesn’t make
-sense... */ //WTF????
 Ice & Ice::operator=(Ice const &rhs)
 {
 	deep_log(this->_type, "assgined operator called.");
 	if (this != &rhs)
-	{
 		this->_type = rhs.getType();
-	}
 	return (*this);
 }
 
