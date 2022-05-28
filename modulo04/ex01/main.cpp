@@ -14,7 +14,8 @@
 #include "Cat.hpp"
 #include "Dog.hpp"
 
-//TERMINADO
+//FALTA HACER VARIAS PRUEBAS, Y VER CUANDO DA LEAK Y PETA. PRUEBA HA AHCER UN SHALLOW COPY. 
+//POR LO DEMAS, EL MAIN ESTARIA
 int	main(void)
 {
 	//PART 1
