@@ -27,14 +27,15 @@ class Fighter : public ICharacter
 		Fighter & operator=(Fighter const &rhs);
 
 		std::string const & getName() const;
-		void equip(AMateria* m);
-		void unequip(int idx) = 0;
-		void use(int idx, ICharacter& target) = 0;
+		
+		//void equip(AMateria* m);
+		//void unequip(int idx);
+		void use(int idx, ICharacter& target);
 	
 	private:
 		std::string _name;
 		AMateria *_materia_array;
-}
+};
 
 
 #endif

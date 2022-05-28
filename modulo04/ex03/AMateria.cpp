@@ -12,14 +12,9 @@
 
 #include "AMateria.hpp"
 
-static void log(std::string const & str)
-{
-	std::cout << str << std::endl;
-}
-
 static void deep_log(std::string const & type, std::string const & str)
 {
-	std::cout << type << str << std::endl;
+	std::cout << type << " " << str << std::endl;
 }
 
 AMateria::AMateria()
@@ -89,21 +84,21 @@ Lo que estamos haciendo, es overriding, y que de esta manera, se instancie el at
 con el nombre que realmente queremos.
 */
 
-Ice::Ice() 
-	: AMateria("ice") //explicacion en (*)
+Ice::~Ice() 
 {
 	deep_log(this->_type, "destructed.");
 	return ;
 }
 
 Ice::Ice(Ice const &src)
+	: AMateria(src.getType())
 {
 	*this = src;
 	deep_log(this->_type, "copy constructed.");
 }
 
 /* While assigning a Materia to another, copying the type doesn’t make
-sense... */
+sense... */ //WTF????
 Ice & Ice::operator=(Ice const &rhs)
 {
 	deep_log(this->_type, "assgined operator called.");

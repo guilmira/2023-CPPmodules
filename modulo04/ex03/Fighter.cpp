@@ -12,14 +12,9 @@
 
 #include "Fighter.hpp"
 
-static void log(std::string const & str)
-{
-	std::cout << str << std::endl;
-}
-
 static void deep_log(std::string const & type, std::string const & str)
 {
-	std::cout << type << str << std::endl;
+	std::cout << type << " " << str << std::endl;
 }
 
 Fighter::Fighter()
@@ -63,17 +58,18 @@ std::string const & Fighter::getName() const
 	return (this->_name);
 }
 
-void equip(AMateria* m)
+/* void equip(AMateria* m)
 {
-
+	m = (AMateria*) m;
 }
 
 void unequip(int idx)
 {
-
-}
+	idx = (int) idx;
+} */
 
 void Fighter::use(int idx, ICharacter& target)
 {
+	idx = (int) idx;
 	std::cout << this->_name << "used on" << target.getName() << std::endl;
 }

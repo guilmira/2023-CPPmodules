@@ -16,8 +16,8 @@ int	main(void)
 {
 
 	std::cout << "----------------------------------------------" << std::endl;
-	AMateria ice;
-	
+	Ice ice;
+
 	std::cout << "----------------------------------------------" << std::endl;
 
 	return (0);

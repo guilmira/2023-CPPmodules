@@ -20,6 +20,8 @@
 #define CURE "Cure"
 #include <stdlib.h>
 
+class ICharacter;
+
 class AMateria
 {
 	public:
@@ -41,12 +43,16 @@ class AMateria
 
 class Ice : public AMateria
 {
+	public:
 		Ice();
 		~Ice();
 		Ice(Ice const &src);
 		Ice & operator=(Ice const &rhs);
 
 		AMateria* clone() const;
+
+	private:
+
 };
 
 

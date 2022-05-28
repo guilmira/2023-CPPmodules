@@ -17,6 +17,10 @@
 #include <string>
 #include "AMateria.hpp"
 
+class AMateria; //why without this:
+/* error: ‘AMateria’ has not been declared
+   27 |   virtual void equip(AMateria* m) = 0; */
+
 class ICharacter
 {
 	public:
