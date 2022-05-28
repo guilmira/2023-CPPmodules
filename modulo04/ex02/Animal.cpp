@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.cpp                                           :+:      :+:    :+:   */
+/*   Animal.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,55 +10,45 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Cat.hpp"
+#include "Animal.hpp"
 
 static void log(std::string const & str)
 {
 	std::cout << str << std::endl;
 }
 
-Cat::Cat()
-	: _pointer(new Brain)
+Animal::Animal()
+	: _type("Default")
 {
-	Animal::setType("Covenant cat");
-	
-	log("Cat | Default constructor called.");
-	log("Cat | Mem for brain allocated.");
-
+	log("ANIMAL | Default constructor called.");
 	return ;
 }
 
-Cat::~Cat()
+Animal::~Animal()
 {
-	log("Cat | Destructor called.");
-	log("Cat | Mem for brain deallocated.");
-	delete this->_pointer;
+	log("ANIMAL | Destructor called.");
 	return ;
 }
 
-Cat::Cat(Cat const &src)
-	: Animal()
+Animal::Animal(Animal const &src)
 {
-	log("Cat | Copy constructor called.");
+	log("ANIMAL | Copy constructor called.");
 	*this = src;
 }
 
-Cat & Cat::operator=(Cat const &rhs)
+Animal & Animal::operator=(Animal const &rhs)
 {
-	log("Cat | Assignation operator called.");
+	log("ANIMAL | Assignation operator called.");
 	setType(rhs.getType());
-
-	Brain *new_pointer;
-	new_pointer = new Brain(*rhs._pointer); //con el constructor copia de Brain, creo una replica. Para eso está
-
-	this->_pointer = new_pointer;
-/* 	for (int i = 0; i < N; i++)
-		this->_ideas[i] = out.str(); */
-
 	return(*this);
 }
 
-void Cat::makeSound(void) const
+std::string const &	Animal::getType(void) const
 {
-	log("Cat | Mr. good cat.");
+	return(this->_type);
+}
+
+void				Animal::setType(const std::string src)
+{
+	this->_type = src;
 }

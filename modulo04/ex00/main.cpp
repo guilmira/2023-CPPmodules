@@ -33,7 +33,7 @@ int	main(void)
 	std::cout << i->getType() << " " << std::endl;
 	std::cout << w_i->getType() << " " << std::endl;
 	i->makeSound(); //will output the cat sound!
-	w_i->makeSound();
+	w_i->makeSound(); //here the difference will appear. The function at base isn't virtual, therefore it isnt overwritten, and the Animal::makesound is the one that is called.
 	j->makeSound();
 	meta->makeSound();
 
@@ -43,6 +43,11 @@ int	main(void)
 	delete j;
 	std::cout << std::endl;
 	delete i;
+	std::cout << std::endl;
+	std::cout << "And the most important:" << std::endl;
+	std::cout << "It does not have a virtual destructor, so it only calls the WrongAnimal destructor." << std::endl;
+	std::cout << "It doesnt call the WrongCat destructor, and this could easily give memory leaks." << std::endl;
+	delete w_i;
 
 	return (0);
 }

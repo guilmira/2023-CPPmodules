@@ -62,3 +62,13 @@ void Cat::makeSound(void) const
 {
 	log("Cat | Mr. good cat.");
 }
+
+std::string const &	Cat::getType(void) const
+{
+	return(this->_type);
+}
+
+void				Cat::setType(const std::string src)
+{
+	this->_type = src;
+}
