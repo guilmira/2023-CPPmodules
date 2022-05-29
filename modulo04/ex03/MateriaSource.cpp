@@ -24,7 +24,7 @@ MateriaSource::MateriaSource()
 	:_current_materia(0)
 {
 	for (int i = 0; i < this->_max_materia; i++)
-		this->origins[i] = NULL;
+		this->_origins[i] = NULL;
 	log("MATERIA SOURCE constructed.");
 	return ;
 }
@@ -32,6 +32,11 @@ MateriaSource::MateriaSource()
 MateriaSource::~MateriaSource()
 {
 	log("MATERIA SOURCE destructed.");
+	for (int i = 0; i < this->getCurrentMateria(); i++)
+	{
+		if (this->_origins[i])
+			delete this->_origins[i];
+	}
 	return ;
 }
 
@@ -49,20 +54,22 @@ MateriaSource & MateriaSource::operator=(MateriaSource const &rhs)
 		this->_current_materia = rhs.getCurrentMateria();
 		for (int i = 0; i < rhs.getCurrentMateria(); i++)
 		{
-			if (this->origins[i])
-				delete this->origins[i];
-			this->origins[i] = rhs.origins[i]->clone();
+			if (this->_origins[i])
+				delete this->_origins[i];
+			this->_origins[i] = rhs._origins[i]->clone();
 		}
 	}
 	return (*this);
 }
 
-
 void MateriaSource::learnMateria(AMateria *ptr)
 {
 	if (_current_materia >= this->_max_materia)
+	{
+		std::cout << "Materia slots full.\n";
 		return ;
-	this->origins[this->_current_materia] = ptr;
+	}
+	this->_origins[this->_current_materia] = ptr;
 	this->_current_materia++;
 }
 
@@ -74,12 +81,13 @@ AMateria* MateriaSource::createMateria(std::string const & type)
 	materia_creation = NULL;
 	for (int i = 0; i < this->_current_materia; i++)
 	{
-		aux = this->origins[i]->getType();
+		aux = this->_origins[i]->getType();
 		if (aux.compare(type) == 0)
 		{
-			materia_creation = (origins[i])->clone();
+			materia_creation = (_origins[i])->clone();
+			return (materia_creation);
 		}
-		return (materia_creation);
 	}
+	std::cout << "Materia not available for creation.\n";
 	return (0);
 }

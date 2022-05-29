@@ -19,10 +19,10 @@ static void deep_log(std::string const & type, std::string const & str)
 	std::cout << type << " " << str << std::endl;
 }
 
-//static void init_pointers(AMateria *array, int array_size)
-
+//constructor initalize pointers on materia_array to NULL.
+//also, interface is not INSTACIATED, unlike abstract classes.
 Fighter::Fighter()
-	: _name("Unknown character")
+	: _name("Unknown character"), _current_equipment(0)
 {
 	for (int i = 0; i < this->_max_equipment; i++)
 		this->_materia_pointers_array[i] = NULL;
@@ -30,7 +30,7 @@ Fighter::Fighter()
 	return ;
 }
 Fighter::Fighter(std::string const & type)
-	: _name(type)
+	: _name(type), _current_equipment(0)
 {
 	for (int i = 0; i < this->_max_equipment; i++)
 		this->_materia_pointers_array[i] = NULL;
@@ -40,7 +40,14 @@ Fighter::Fighter(std::string const & type)
 
 Fighter::~Fighter()
 {
-	deep_log(this->_name, "destructed.");
+	deep_log(this->_name, "object destructed.");
+	/* for (int i = 0; i < this->getCurrentEq(); i++)
+	{
+		if (this->_materia_pointers_array[i])
+			delete this->_materia_pointers_array[i];
+	} */
+	/* if (this->_materia_pointers_array[0])
+			delete this->_materia_pointers_array[0]; */
 	return ;
 }
 Fighter::Fighter(Fighter const &src)
@@ -76,26 +83,43 @@ std::string const & Fighter::getName() const
 void Fighter::equip(AMateria* m)
 {
 	if (!m)
+	{
+		deep_log(m->getType(), "faulty. Not equiped");
 		return ;
+	}
 	if (this->_current_equipment > MAX_MATERIA)
 		deep_log(this->getName(), "reached equip limit.");
 	else
 	{
 		this->_materia_pointers_array[_current_equipment] = m;
 		this->_current_equipment++;
+		std::cout << "Class fighter ";
+		deep_log(this->getName(), "equips materia.");
 	}
 }
 
 void Fighter::unequip(int idx)
 {
-	if (idx >= MAX_MATERIA || idx < 0)
+	if ((idx >= MAX_MATERIA || idx < 0) || idx + 1 > getCurrentEq())
+	{
+		deep_log(this->getName(), "does not have equipment in that slot.");
 		return ;
+	}
 	this->_materia_pointers_array[idx] = NULL;
 	this->_current_equipment--;
+	deep_log(this->getName(), "unequiped successfully.");
 }
 
 void Fighter::use(int idx, ICharacter& target)
 {
-	if (idx < 0 && idx < MAX_MATERIA)	
+	if (idx + 1 > this->getCurrentEq())
+	{
+		std::cout << "nothing equiped on slot\n";
+		return ;
+	}
+	deep_log(this->getName(), "prepares to cast.");
+	if (idx >= 0 && idx < MAX_MATERIA)
 		this->_materia_pointers_array[idx]->use(target);
+	else
+		deep_log(this->getName(), "fails to cast.");
 }

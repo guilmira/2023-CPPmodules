@@ -41,7 +41,7 @@ class MateriaSource : public IMateriaSource
 
 	
 	private:
-		AMateria	*origins[MAX_MATERIA];
+		AMateria	*_origins[MAX_MATERIA];
 		static int	_max_materia;
 		int			_current_materia;	
 

@@ -11,11 +11,27 @@
 /* ************************************************************************** */
 
 #include "AMateria.hpp"
+#define GREEN "\033[1;32m"
+#define BLUE "\033[1;34m"
+#define END "\033[0m"
+
 
 static void deep_log(std::string const & type, std::string const & str)
 {
-	std::cout << type << " " << str << std::endl;
+	if (!type.compare("ice"))
+		std::cout << BLUE;
+	else if (!type.compare("cure"))
+		std::cout << GREEN;
+	else
+	{
+		std::cout << type << " " << str << std::endl;
+		return ;
+	}
+	std::cout << type << " " << str;
+	std::cout << END;
+	std::cout << std::endl;
 }
+
 
 AMateria::AMateria()
 	: _type("Default")
@@ -58,10 +74,10 @@ std::string const & AMateria::getType() const
 
 void AMateria::use(ICharacter& target)
 {
-	if (this->getType().compare(ICE))
-		std::cout << "* shoots an ice bolt at " << target.getName() << " *" << std::endl;
-	else if (this->getType().compare(CURE))
-		std::cout << "* heals " << target.getName() << " wounds *"<< std::endl;
+	if (!this->getType().compare(ICE))
+		std::cout << BLUE << "* shoots an ice bolt at " << target.getName() << " *" << END << std::endl;
+	else if (!this->getType().compare(CURE))
+		std::cout << GREEN << "* heals " << target.getName() << " wounds *" << END << std::endl;
 	else
 		deep_log(this->_type, "is a unestable materia. Try Ice/Cure");
 
@@ -70,9 +86,8 @@ void AMateria::use(ICharacter& target)
 
 /* --------------------------------- ICE --------------------------------- */
 Ice::Ice() 
-	: AMateria("ice") //explicacion en (*)
+	: AMateria(ICE) //explicacion en (*)
 {
-	system("Color 0A");
 	deep_log(this->_type, "constructed.");
 	return ;
 }
@@ -111,4 +126,40 @@ AMateria* Ice::clone() const
 	Ice *ice_ptr;
 	ice_ptr = new Ice(*this);
 	return (ice_ptr);
+}
+
+/* --------------------------------- CURE --------------------------------- */
+
+Cure::Cure()
+	: AMateria(CURE)
+{
+	deep_log(this->_type, "constructed.");
+	return ;
+}
+
+Cure::~Cure()
+{
+	deep_log(this->_type, "destructed.");
+	return ;
+}
+
+Cure::Cure(Cure const &src)
+	: AMateria(src.getType())
+{
+	*this = src;
+	deep_log(this->_type, "copy constructed.");
+}
+
+Cure & Cure::operator=(Cure const &rhs)
+{
+	deep_log(this->_type, "assgined operator called.");
+	if (this != &rhs)
+		this->_type = rhs.getType();
+	return (*this);
+}
+
+AMateria* Cure::clone() const
+{
+	deep_log(this->_type, "being cloned. Memory allocated.");
+	return (new Cure(*this)); //compacted version
 }

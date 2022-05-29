@@ -16,8 +16,9 @@
 #include <iostream>
 #include <string>
 #include "ICharacter.hpp"
-#define ICE "Ice"
-#define CURE "Cure"
+#define ICE "ice"
+#define CURE "cure"
+#define FIRA "fira"
 #include <stdlib.h>
 
 class ICharacter;
@@ -52,4 +53,17 @@ class Ice : public AMateria
 		AMateria* clone() const;
 };
 
+
+class Cure : public AMateria
+{
+	public:
+		Cure();
+		~Cure();
+
+		Cure(Cure const &src);
+		Cure & operator=(Cure const &rhs);
+
+		AMateria* clone() const;
+
+};
 #endif
