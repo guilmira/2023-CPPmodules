@@ -15,6 +15,9 @@
 
 #include <iostream>
 #include <stdexcept>
+#include "Form.hpp"
+
+class Form;
 
 class Bureaucrat
 {
@@ -52,6 +55,8 @@ class Bureaucrat
 				GradeTooLowException();
 				virtual const char *what() const throw();
 		};
+
+		void signForm(Form const &form) const;
 
 	private:
 		std::string	_name;

@@ -29,38 +29,27 @@ std::ostream & operator<<(std::ostream &stream, Form const &rhs)
 	return (stream);
 }
 
-void Form::ft_throw()
-{
-	int grade;
-	
-	grade = this->getGrade();
-	if (grade < 1)
-		throw Form::GradeTooHighException();
-	else if (grade > 150)
-		throw Form::GradeTooLowException();
-}
-
 static void log(std::string const &str)
 {
 	std::cout << str << std::endl;
 }
 
 Form::Form()
-	: _name("default"), _grade(150)
+	: _name("default"), _signed(0), _grade_to_sign(150), _grade_to_exe(150)
 {
 	log("Form constructed.");
 }
 
 Form::Form(std::string str)
-	: _name(str), _grade(150)
+	: _name(str), _signed(0), _grade_to_sign(150), _grade_to_exe(150)
 {
 	log("Form overload constructed 1 .");
 }
 
 Form::Form(std::string str, int grade)
-	: _name(str), _grade(grade)
+	: _name(str), _signed(0), _grade_to_sign(grade), _grade_to_exe(150)
 {
-	this->ft_throw();
+	//this->ft_throw();
 	log("Form overload constructed 2.");
 }
 
@@ -73,50 +62,20 @@ Form::Form(Form const &src)
 {
 
 	*this = src;
-	log("Form copy constructed.");
+	log("Form copy constructed. It dosent do anyhthing.");
 }
 
 Form & Form::operator=(Form const &rhs)
 {
-	log("Form assigned.");
-	if (this != &rhs)
+	log("Form assigned. It dosent do anything because values are const.");
+	/* if (this != &rhs)
 	{
 		this->_name = rhs.getName();
-		this->setGrade(rhs.getGrade());
-	}
+		this->_signed = rhs.getSigned();
+		this->_grade_to_sign = rhs.getSign();
+		this->_grade_to_exe = rhs.getExe();
+	} */
 	return (*this);
-}
-
-Form & Form::operator++()
-{
-	this->_grade = this->getGrade() + 1;
-	this->ft_throw();
-	return (*this);
-}
-
-Form & Form::operator--()
-{
-	this->_grade = this->getGrade() - 1;
-	this->ft_throw();
-	return (*this);
-}
-
-Form Form::operator++(int)
-{
-	Form aux = Form(*this);
-
-	this->_grade = this->getGrade() + 1;
-	this->ft_throw();
-	return (aux);
-}
-
-Form Form::operator--(int)
-{
-	Form aux = Form(*this);
-
-	this->_grade = this->getGrade() - 1;
-	this->ft_throw();
-	return (aux);
 }
 
 std::string Form::getName() const
@@ -124,7 +83,7 @@ std::string Form::getName() const
 	return (this->_name);
 }
 
-int Form::getSigned() const
+bool Form::getSigned() const
 {
 	return (this->_signed);
 }
@@ -139,11 +98,23 @@ int Form::getExe() const
 	return (this->_grade_to_exe);
 }
 
-
-void Form::setGrade(int x)
+void Form::beSigned(Bureaucrat const &buro)
 {
-	this->_grade = x;
-	this->ft_throw();
+	if (this->getSigned())
+	{
+		std::cout << "Form is already signed.\n";
+		return ;
+	}
+	if (buro.getGrade() >= this->getSigned())
+	{
+		this->_signed = 1;
+		buro.signForm(*this);
+	}
+	else
+	{
+		buro.signForm(*this);
+	}
+
 }
 
 

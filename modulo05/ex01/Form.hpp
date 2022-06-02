@@ -13,8 +13,9 @@
 #ifndef FORM_HPP
 #define FORM_HPP
 
-#include <iostream>
-#include <stdexcept>
+#include "Bureaucrat.hpp"
+
+class Bureaucrat;
 
 class Form
 {
@@ -26,24 +27,18 @@ class Form
 		Form(Form const &src);
 		Form & operator=(Form const &rhs);
 
-
-		Form &	operator++();
-		Form &	operator--();
-		Form		operator++(int);
-		Form		operator--(int);
-
 		std::string 	getName() const;
-		int				getSigned() const;
+		bool				getSigned() const;
 		int				getSign() const;
 		int				getExe() const;
 
-		//void			setGrade(int x);
+		void			beSigned(Bureaucrat const &buro);
 
 	private:
-		std::string			_name;
-		bool				_signed; //false == 0 always. while (1) 1 == true
-		int					_grade_to_sign;
-		int					_grade_to_exe;
+		const std::string			_name;
+		bool						_signed; //false == 0 always. while (1) 1 == true
+		const int					_grade_to_sign;
+		const int					_grade_to_exe;
 };
 
 std::ostream & operator<<(std::ostream &stream, Form const &rhs);
