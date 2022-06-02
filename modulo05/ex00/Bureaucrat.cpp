@@ -15,11 +15,22 @@
 
 std::ostream & operator<<(std::ostream &stream, Bureaucrat const &rhs)
 {
-	std::cout << "Bureaucrat with parameters: ";
-	std::cout << rhs.getName();
-	std::cout << " and ";
-	std::cout << rhs.getGrade();
+	stream << "Bureaucrat with parameters: ";
+	stream << rhs.getName();
+	stream << " and ";
+	stream << rhs.getGrade();
 	return (stream);
+}
+
+void Bureaucrat::ft_throw()
+{
+	int grade;
+	
+	grade = this->getGrade();
+	if (grade < 1)
+		throw Bureaucrat::GradeTooHighException();
+	else if (grade > 150)
+		throw Bureaucrat::GradeTooLowException();
 }
 
 static void log(std::string const &str)
@@ -42,8 +53,7 @@ Bureaucrat::Bureaucrat(std::string str)
 Bureaucrat::Bureaucrat(std::string str, int grade)
 	: _name(str), _grade(grade)
 {
-	this->GradeTooHighException();
-	this->GradeTooLowException();
+	this->ft_throw();
 	log("Bureaucrat overload constructed 2.");
 }
 
@@ -65,9 +75,41 @@ Bureaucrat & Bureaucrat::operator=(Bureaucrat const &rhs)
 	if (this != &rhs)
 	{
 		this->_name = rhs.getName();
-		this->_grade = rhs.getGrade();
+		this->setGrade(rhs.getGrade());
 	}
 	return (*this);
+}
+
+Bureaucrat & Bureaucrat::operator++()
+{
+	this->_grade = this->getGrade() + 1;
+	this->ft_throw();
+	return (*this);
+}
+
+Bureaucrat & Bureaucrat::operator--()
+{
+	this->_grade = this->getGrade() - 1;
+	this->ft_throw();
+	return (*this);
+}
+
+Bureaucrat Bureaucrat::operator++(int)
+{
+	Bureaucrat aux = Bureaucrat(*this);
+
+	this->_grade = this->getGrade() + 1;
+	this->ft_throw();
+	return (aux);
+}
+
+Bureaucrat Bureaucrat::operator--(int)
+{
+	Bureaucrat aux = Bureaucrat(*this);
+
+	this->_grade = this->getGrade() - 1;
+	this->ft_throw();
+	return (aux);
 }
 
 std::string Bureaucrat::getName() const
@@ -80,16 +122,43 @@ int Bureaucrat::getGrade() const
 	return (this->_grade);
 }
 
-void Bureaucrat::GradeTooHighException()
+void Bureaucrat::setGrade(int x)
 {
-	if (this->_grade < 1)
-		throw std::exception();
-	return ;
+	this->_grade = x;
+	this->ft_throw();
 }
 
-void Bureaucrat::GradeTooLowException()
+
+/* --------------------------------- SPECIFIC EXCEPTIONS --------------------------------- */
+
+
+/* Usually, a std::exception, which is a class, is the object that is thrown. 
+It is created on the ---throw: throw std::exception--- , and then caught with a catch
+Now, we are throwing the same, an object, that simply inherithed fromt std::exception, so its basically the same, plus an error message
+So if before i had:
+---			throw std::exception;
+---			throw namespace::NAME;
+Now:
+---			throw Bureaucrat::GradeTooHighException; */
+Bureaucrat::GradeTooHighException::GradeTooHighException()
 {
-	if (this->_grade > 150)
-		throw std::exception();
-	return ;
+	std::cout << "--HIGH constructed and ready to be catched.--\n";
+}
+
+/* Explanation of throw() at the end of the function. It means that by no means, this function called what is gonna throw anything.
+If it would be throw(int x), it would mean that it is gonna throw an int.
+The important part, is that what i am gonna throw, is the clase GradeTooHigh, so i know the function just has to print "what" has failed, and definetly not throw anything. */
+const char *Bureaucrat::GradeTooHighException::what() const throw()
+{
+	return ("Grade too high exception thrown.\n"); 
+}
+
+Bureaucrat::GradeTooLowException::GradeTooLowException()
+{ 
+	std::cout << "--LOW constructed and ready to be catched.--\n"; 
+}
+
+const char *Bureaucrat::GradeTooLowException::what() const throw()
+{
+	return ("Grade too low exception thrown.\n"); 
 }
