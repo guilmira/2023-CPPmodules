@@ -22,7 +22,7 @@ class Form
 	public:
 		Form();
 		Form(std::string str, int grade_sign, int grade_exe);
-		~Form();
+		virtual ~Form();
 		Form(Form const &src);
 		Form & operator=(Form const &rhs);
 
@@ -51,7 +51,10 @@ class Form
 				virtual const char *what() const throw();
 		};
 
-	private:
+		virtual void	execute(Bureaucrat const & executor) const = 0;
+		bool			execute_check(Bureaucrat const & executor) const;
+
+	protected:
 		const std::string			_name;
 		bool						_signed;
 		const int					_grade_to_sign;

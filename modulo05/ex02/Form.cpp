@@ -37,7 +37,7 @@ static void log(std::string const &str)
 Form::Form()
 	: _name("default"), _signed(0), _grade_to_sign(150), _grade_to_exe(150)
 {
-	log("Form constructed.");
+	log("Form constructed.				| BASE ABSTRACT CLASS");
 }
 
 Form::Form(std::string str, int grade_sign, int grade_exe)
@@ -45,12 +45,12 @@ Form::Form(std::string str, int grade_sign, int grade_exe)
 {
 	this->ft_throw(this->getSign());
 	this->ft_throw(this->getExe());
-	log("Form overload constructed 1 .");
+	log("Form overload constructed 1.				| BASE ABSTRACT CLASS");
 }
 
 Form::~Form()
 {
-	log("Form destructed.");
+	log("Form destructed.				| BASE ABSTRACT CLASS");
 }
 
 Form::Form(Form const &src)
@@ -58,12 +58,12 @@ Form::Form(Form const &src)
 {
 
 	*this = src;
-	log("Form copy constructed.");
+	log("Form copy constructed.				| BASE ABSTRACT CLASS");
 }
 
 Form & Form::operator=(Form const &rhs)
 {
-	log("Form assigned.");
+	log("Form assigned.				| BASE ABSTRACT CLASS");
 	if (this != &rhs)
 	{
 		this->_signed = rhs.getStatus();

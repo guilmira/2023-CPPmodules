@@ -12,8 +12,12 @@
 
 #include "Bureaucrat.hpp"
 #include "Form.hpp"
+#include "ShrubberyCreationForm.hpp"
+//#include "RobotomyRequestForm.hpp"
+//#include "PresidentialPardonForm.hpp"
 
-	//meterle mas pruebas	
+
+
 int	main(void)
 {
 	{
@@ -21,16 +25,8 @@ int	main(void)
 	try
 	{
 		Bureaucrat	fersea("Lady fersea", 39);
-		Bureaucrat	apprentice("Witch apprentice", 120);
+		ShrubberyCreationForm f1("trgt home");
 
-		Form		council_report("report", 40, 80);
-		//Form		council_report3("report", 40, 151);
-		Form		council_report2(council_report);
-
-		council_report.beSigned(fersea);
-		fersea.signForm(council_report);
-		apprentice.signForm(council_report2);
-		fersea.signForm(council_report2);
 	}
 	catch (Bureaucrat::GradeTooHighException &e)
 	{
