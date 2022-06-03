@@ -22,17 +22,6 @@ std::ostream & operator<<(std::ostream &stream, Bureaucrat const &rhs)
 	return (stream);
 }
 
-void Bureaucrat::ft_throw()
-{
-	int grade;
-	
-	grade = this->getGrade();
-	if (grade < 1)
-		throw Bureaucrat::GradeTooHighException();
-	else if (grade > 150)
-		throw Bureaucrat::GradeTooLowException();
-}
-
 static void log(std::string const &str)
 {
 	std::cout << str << std::endl;
@@ -130,7 +119,16 @@ void Bureaucrat::setGrade(int x)
 
 
 /* --------------------------------- SPECIFIC EXCEPTIONS --------------------------------- */
-
+void Bureaucrat::ft_throw()
+{
+	int grade;
+	
+	grade = this->getGrade();
+	if (grade < 1)
+		throw Bureaucrat::GradeTooHighException();
+	else if (grade > 150)
+		throw Bureaucrat::GradeTooLowException();
+}
 
 /* Usually, a std::exception, which is a class, is the object that is thrown. 
 It is created on the ---throw: throw std::exception--- , and then caught with a catch
@@ -164,10 +162,10 @@ const char *Bureaucrat::GradeTooLowException::what() const throw()
 }
 /* --------------------------------- ADITIONAL FORM FUNCTIONS --------------------------------- */
 
-void Bureaucrat::signForm(Form const &form) const
+/* void Bureaucrat::signForm(Form const &form) const
 {
-	if (form.getSigned())
+	if (form.getStatus())
 		std::cout << this->getName() << " signs " << form;
 	else
 		std::cout << this->getName() << " cannot sign " << form << " because his grade isnt high enough.";
-}
+} */

@@ -21,18 +21,35 @@ class Form
 {
 	public:
 		Form();
-		Form(std::string str);
-		Form(std::string str, int grade);
+		Form(std::string str, int grade_sign, int grade_exe);
 		~Form();
 		Form(Form const &src);
 		Form & operator=(Form const &rhs);
 
 		std::string 	getName() const;
-		bool				getSigned() const;
+		bool			getStatus() const;
 		int				getSign() const;
 		int				getExe() const;
 
 		void			beSigned(Bureaucrat const &buro);
+
+
+		void ft_throw(int grade);
+
+		class GradeTooHighException : public std::exception
+		{
+		
+			public:
+				GradeTooHighException();
+				virtual const char *what() const throw();
+		};
+
+		class GradeTooLowException : public std::exception
+		{
+			public:
+				GradeTooLowException();
+				virtual const char *what() const throw();
+		};
 
 	private:
 		const std::string			_name;

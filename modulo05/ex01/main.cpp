@@ -11,6 +11,8 @@
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
+
 
 
 
@@ -22,6 +24,7 @@ int	main(void)
 	try
 	{
 		Bureaucrat fersea("fersea", 149);
+		Form		concil_report("report", 150, 150);
 		//Bureaucrat fer("fersea", 152);
 		std::cout << ++fersea << std::endl;
 	}
