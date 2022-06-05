@@ -13,19 +13,38 @@
 #include "Bureaucrat.hpp"
 #include "Form.hpp"
 #include "ShrubberyCreationForm.hpp"
-//#include "RobotomyRequestForm.hpp"
-//#include "PresidentialPardonForm.hpp"
-
-
+#include "RobotomyRequestForm.hpp"
+#include "PresidentialPardonForm.hpp"
 
 int	main(void)
 {
 	{
 	std::cout << "----------------------------------------------" << std::endl;
+	
 	try
 	{
-		Bureaucrat	fersea("Lady fersea", 39);
-		ShrubberyCreationForm f1("trgt home");
+		Bureaucrat	fersea("Lady fersea", 2);
+		Bureaucrat	apprentice("Nameless apprentice", 137);
+
+		ShrubberyCreationForm f1(TARGET_NAME);
+		RobotomyRequestForm f2("Marvin");
+		PresidentialPardonForm f3("Marvin");
+
+		std::cout << "----------------------------------------------" << std::endl;
+		f1.beSigned(apprentice);
+		f1.beSigned(fersea);
+		f1.execute(apprentice);
+		f1.execute(fersea);
+		std::cout << "----------------------------------------------" << std::endl;
+		fersea.signForm(f2);
+		f2.beSigned(fersea);
+		f2.execute(fersea);
+		std::cout << "----------------------------------------------" << std::endl;
+		apprentice.signForm(f3);
+		fersea.signForm(f3);
+		f3.execute(fersea);
+		std::cout << "----------------------------------------------" << std::endl;
+
 
 	}
 	catch (Bureaucrat::GradeTooHighException &e)

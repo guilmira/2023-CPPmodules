@@ -27,6 +27,7 @@ int	main(void)
 		//Form		council_report3("report", 40, 151);
 		Form		council_report2(council_report);
 
+		fersea.signForm(council_report);
 		council_report.beSigned(fersea);
 		fersea.signForm(council_report);
 		apprentice.signForm(council_report2);

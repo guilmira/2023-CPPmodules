@@ -18,7 +18,7 @@ static void log(std::string const &str)
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm()
-	: Form("defaultShrubbery", 145, 137)
+	: Form("defaultShrubbery", 145, 137), _target("default target")
 {
 	log("Form constructed.");
 }
@@ -64,6 +64,40 @@ std::string ShrubberyCreationForm::getTarget() const
 
 void	ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 {
+	if (!this->getStatus())
+	{
+		log("Form is not signed, cannot be executed.");
+		return ;
+	}
+	if (this->execute_check(executor))
+		this->form_action();
+	else
+		throw GradeTooLowException();
+	log("Shrubbery form executed.");
+}
+
+bool	ShrubberyCreationForm::execute_check(Bureaucrat const & executor) const
+{
 	int x = executor.getGrade();
-	x = (int) x;
+
+	if (x <= this->getExe())
+		return (true);
+	return (false);
+}
+
+void	ShrubberyCreationForm::form_action() const
+{
+	std::ofstream out_file_object;
+	std::string aux("_shrubbery");
+	std::string file_name(this->_target + aux);
+	std::string tree(TREE);
+
+	out_file_object.open(file_name.c_str(), std::ofstream::out);
+	if (!out_file_object.is_open())
+	{
+		std::cout << "Error on file output" << std::endl;
+		throw GradeTooLowException();
+	}
+	out_file_object << tree << std::endl;
+
 }

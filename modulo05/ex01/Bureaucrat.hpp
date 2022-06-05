@@ -56,7 +56,7 @@ class Bureaucrat
 				virtual const char *what() const throw();
 		};
 
-		void signForm(Form const &form) const;
+		void signForm(Form &form) const;
 
 	private:
 		std::string	_name;

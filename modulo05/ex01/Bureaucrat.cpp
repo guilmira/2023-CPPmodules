@@ -162,7 +162,7 @@ const char *Bureaucrat::GradeTooLowException::what() const throw()
 }
 /* --------------------------------- ADITIONAL FORM FUNCTIONS --------------------------------- */
 
-void Bureaucrat::signForm(Form const &form) const
+void Bureaucrat::signForm(Form &form) const
 {
 	if (form.getStatus())
 	{
@@ -170,7 +170,10 @@ void Bureaucrat::signForm(Form const &form) const
 		return ;
 	}
 	if (this->getGrade() <= form.getSign())
+	{
 		std::cout << this->getName() << " signs " << form << std::endl;
+		form.beSigned(*this);
+	}
 	else
 		std::cout << this->getName() << " cannot sign " << form << " because his grade isnt high enough.\n";
 }

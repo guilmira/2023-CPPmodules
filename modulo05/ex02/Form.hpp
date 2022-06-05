@@ -52,7 +52,8 @@ class Form
 		};
 
 		virtual void	execute(Bureaucrat const & executor) const = 0;
-		bool			execute_check(Bureaucrat const & executor) const;
+		virtual void	form_action() const = 0;
+		virtual bool	execute_check(Bureaucrat const & executor) const = 0;
 
 	protected:
 		const std::string			_name;
