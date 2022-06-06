@@ -12,11 +12,15 @@
 
 #include "Intern.hpp"
 
-//typedef Form *(*new_type_fn)(std::string const &str);
+const std::string Intern::_name[3] = { REQ0, REQ1, REQ2 };
 
-//new_type_fn Intern::_array[0] = &creator0;
 
-Form *(*Intern::_array[3])(std::string) = { &Intern::creator0, &Intern::creator1, &Intern::creator2 };
+//USING OPTION A: TYPEDEF
+typedef Form *(*new_type_fn)(std::string const &str); //typedef is defined again to make my point clear
+new_type_fn Intern::_array[3] = { &Intern::creator0, &Intern::creator1, &Intern::creator2 };
+
+//OPTION B: WRITING THE TYPE
+//Form *(*Intern::_array[3])(std::string const &str) = { &Intern::creator0, &Intern::creator1, &Intern::creator2 };
 
 static void log(std::string const &str)
 {
@@ -26,10 +30,6 @@ static void log(std::string const &str)
 Intern::Intern()
 {
 	log("Intern constructed.");
-
-	this->_name[0] = REQ0;
-	this->_name[1] = REQ1;
-	this->_name[2] = REQ2;
 }
 
 Intern::~Intern()
@@ -47,10 +47,7 @@ Intern::Intern(Intern const &src)
 Intern & Intern::operator=(Intern const &rhs)
 {
 	log("Intern assigned.");
-	if (this != &rhs)
-	{
-		;//this->_signed = rhs.getStatus();
-	}
+	(void) rhs;
 	return (*this);
 }
 
@@ -58,17 +55,17 @@ Intern & Intern::operator=(Intern const &rhs)
 
 /* --------------------------------- FormCreators --------------------------------- */
 
-Form *Intern::creator0(std::string target)
+Form *Intern::creator0(std::string const &target)
 {
 	return (new ShrubberyCreationForm(target));
 }
 
-Form *Intern::creator1(std::string target)
+Form *Intern::creator1(std::string const &target)
 {
 	return (new RobotomyRequestForm(target));
 }
 
-Form *Intern::creator2(std::string target)
+Form *Intern::creator2(std::string const &target)
 {
 	return (new PresidentialPardonForm(target));
 }

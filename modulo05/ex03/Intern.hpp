@@ -41,17 +41,24 @@ class Intern
 				virtual const char *what() const throw();
 		};
 
-		static Form *creator0(std::string target);
-		static Form *creator1(std::string target);
-		static Form *creator2(std::string target);
+		static Form *creator0(std::string const &target);
+		static Form *creator1(std::string const &target);
+		static Form *creator2(std::string const &target);
 	
 	private:
-		//typedef Form *(*new_type_fn)(std::string const &str); funciona como typedef
+		static const std::string _name[3];
+		
+		//OPTION A: TYPEDEF
+		typedef Form *(*new_type_fn)(std::string const &str);
+		static new_type_fn _array[3];
 
-		std::string _name[3];
-		static Form *(*_array[3])(std::string);
+		//OPTION B: WRITING THE TYPE
+		//static Form *(*_array[3])(std::string const &str);
 		
 		
 };
+
+/* Two ways of doing it. By writing the type as it is, or by using the typedef.
+Note how writing the type as it is, you specify the array size on the definition. */
 
 #endif

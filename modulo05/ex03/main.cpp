@@ -59,7 +59,8 @@ int	main(void)
 		f3.execute(fersea);
 		std::cout << "----------------------------------------------" << std::endl;
 
-
+		delete ptr0;
+		delete ptr;
 	}
 	catch (Bureaucrat::GradeTooHighException &e)
 	{
