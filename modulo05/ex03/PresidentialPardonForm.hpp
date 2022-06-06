@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   RobotomyRequestForm.hpp                           :+:      :+:    :+: */
+/*   PresidentialPardonForm.hpp                           :+:      :+:    :+: */
 /*                                                    +:+ +:+         +:+     */
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,20 +10,19 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ROBOTOMYREQUESTFORM_HPP
-#define ROBOTOMYREQUESTFORM_HPP
+#ifndef PRESIDENTIALPARDONFORM_HPP
+#define PRESIDENTIALPARDONFORM_HPP
 
 #include "Form.hpp"
-#include <stdlib.h>
 
-class RobotomyRequestForm : public Form
+class PresidentialPardonForm : public Form
 {
 	public:
-		RobotomyRequestForm();
-		RobotomyRequestForm(std::string target);
-		~RobotomyRequestForm();
-		RobotomyRequestForm(RobotomyRequestForm const &src);
-		RobotomyRequestForm & operator=(RobotomyRequestForm const &rhs);
+		PresidentialPardonForm();
+		PresidentialPardonForm(std::string target);
+		~PresidentialPardonForm();
+		PresidentialPardonForm(PresidentialPardonForm const &src);
+		PresidentialPardonForm & operator=(PresidentialPardonForm const &rhs);
 
 		std::string 	getTarget() const;
 		

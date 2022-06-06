@@ -155,6 +155,8 @@ int		Account::checkAmount(void) const
 	return(this->_amount);
 }
 
+/* --------------------------------- StaticFunctions --------------------------------- */
+
 int	Account::getNbAccounts(void)
 {
 	return(Account::_nbAccounts);
