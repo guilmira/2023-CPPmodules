@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Conver.hpp                                          :+:      :+:    :+: */
 /*                                                    +:+ +:+         +:+     */
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,33 +10,34 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include "Bureaucrat.hpp"
+#ifndef CONVER_HPP
+#define CONVER_HPP
 
 #include <iostream>
-#include "Conver.hpp"
+#include <stdexcept>
 
-static void	log(std::string str)
+class Conver
 {
-	std::cout << str << std::endl;
-}
+	public:
+		Conver();
+		Conver(std::string str);
+		~Conver();
+		Conver(Conver const &src);
+		Conver & operator=(Conver const &rhs);
 
-/* dynamic casting is mainly used for safe downcasting at run time. 
-To work on dynamic_cast there must be one virtual function in the base class. A dynamic_cast works only polymorphic base class 
-because it uses this information to decide safe downcasting. */
-	//mete c+ 11 y modificar el makefile
-int	main(int argc, char **argv)
-{
+		std::string getArg() const;
 
-	if (argc != 2)
-	{
-		log("Execution accepts only one argument.");
-		return (1);
-	}
-	Conver con(argv[1]);
-	con.display();
+		char		conChar() const;
+		int			conInt() const;
+		float		conFloat() const;
+		double		conDouble() const;
 
 
+		void display() const;
 
 
-	return (0);
-}
+	private:
+		std::string	_arg;
+};
+
+#endif
