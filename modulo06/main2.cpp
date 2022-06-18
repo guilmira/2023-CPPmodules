@@ -121,3 +121,41 @@ int	main(void)
 
 	return (0);
 }
+
+//For conver.cpp an example of how to use the function display using pointers to functions.
+//using pointer to functions. create an array that stores a pointer to each function, since each has the same return and input (void).
+typedef void (Conver::*mytypedef)() const;
+void	Conver::display() const
+{
+	
+	/* TEST 1: SINGLE NON MEMBER FUNCTION
+	static void (*ptrFunction)(const std::string &);
+	ptrFunction = &log;
+	ptrFunction("test punteros a funciones"); */
+
+	/* TEST 2: MEMBER FUNCTION. Notice the special syntax and grouping on the call to the function. this-> is needed since its a member ft.
+	void (Conver::*ptrFt)() const;
+	ptrFt = &Conver::conChar;
+	(this->*ptrFt)(); */
+
+	//Test 3: Array created to store the 4 functions and called. Working.
+	/* void (Conver::*array[4])() const;
+	array[0] = &Conver::conChar;
+	array[1] = &Conver::conInt;
+	array[2] = &Conver::conFloat;
+	array[3] = &Conver::conDouble;
+
+	for (int i = 0; i < 4; i++)
+		(this->*array[i])(); */
+
+	//Test 4: using typedef. Array created to store the 4 functions and called. Working.
+/* 	mytypedef array[4];
+
+	array[0] = &Conver::conChar;
+	array[1] = &Conver::conInt;
+	array[2] = &Conver::conFloat;
+	array[3] = &Conver::conDouble;
+
+	for (int i = 0; i < 4; i++)
+		(this->*array[i])(); */
+}

@@ -74,7 +74,7 @@ void Conver::conChar() const
 	if (str.length() == 1)
 	{
 		if (!isdigit(str[0]))
-			std::cout << "char:		" << str[0] << std::endl;
+			std::cout << "char:		" << "'" << str[0] << "'" << std::endl;
 		else
 			std::cout << "char:		" << "Non displayable" << std::endl;
 	}
@@ -84,14 +84,14 @@ void Conver::conChar() const
 		{
 			i = std::stoi(str);
 			z = static_cast<char>(i);
-			if (std::isprint(z))
-				std::cout << "char:		" << z << std::endl;
+			if (std::isprint(z) && i <= 127)
+				std::cout << "char:		" << "'" << z << "'" << std::endl;
 			else
 				std::cout << "char:		" << "Non displayable" << std::endl;
 		}
 		catch(const std::exception& e)
 		{
-			std::cerr << e.what() << " :Wrong argument" << '\n';
+			std::cerr << "char:		" << "Invalid char argument" << '\n';
 		}
 		
 	}
@@ -108,32 +108,44 @@ void Conver::conInt() const
 	}
 	catch (std::exception &e)
 	{
-		std::cout << e.what() << ":Invalid int argument\n";
+		std::cout << "int:		" << "Invalid int argument\n";
 	}
 }
 
 void Conver::conFloat() const
 {
-	int i;
 	float fl;
 
-	i = std::stoi(this->_arg);
-
-	fl = static_cast<float>(i);
-
-	std::cout << "float:	" << fl << std::endl;
-
+	try
+	{
+		fl = std::stof(this->getArg());
+		std::cout << "float:		" <<  fl ;
+		if (fl - static_cast<int>(fl) == 0)
+			std::cout << ".0";
+		std::cout << "f" << std::endl;
+	}
+	catch (std::exception &e)
+	{
+		std::cout << "float:		" << "Invalid float argument\n";
+	}
 }
 
 void Conver::conDouble() const
 {
-	int i;
 	double db;
 
-	i = std::stoi(this->_arg);
+	try
+	{
+		db = std::stod(this->getArg());
+		std::cout << "double:		" << db;
+		if (db - static_cast<int>(db) == 0)
+			std::cout << ".0";
+		std::cout << std::endl;
 
-	db = static_cast<double>(i);
-	std::cout << "double:	" << db << std::endl;
-
+	}
+	catch (std::exception &e)
+	{
+		std::cout << "double:		" << "Invalid double argument\n";
+	}
 }
 
