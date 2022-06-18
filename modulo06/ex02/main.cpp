@@ -17,7 +17,6 @@
 
 #include <stdlib.h>
 
-
 Base *generate(void)
 {
 	int random;
@@ -32,6 +31,8 @@ Base *generate(void)
 		return (new C);
 }
 
+/* Nota: si lo pasases por referencia, tendrias que meter un try catch,
+porque recuerda que no puedes inicializar una referencia a NULL. */
 void identify(Base *p)
 {
 	A *ptr1;
