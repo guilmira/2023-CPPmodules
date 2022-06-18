@@ -34,9 +34,5 @@ int	main(int argc, char **argv)
 	}
 	Conver con(argv[1]);
 	con.display();
-
-
-
-
 	return (0);
 }

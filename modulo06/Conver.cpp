@@ -56,63 +56,84 @@ std::string Conver::getArg() const
 	return (this->_arg);
 }
 
+
 void	Conver::display() const
 {
-	std::cout << "char:		" << this->conChar() << std::endl;
-	std::cout << "int:		" << this->conInt() << std::endl;
-	std::cout << "float:	" << this->conFloat() << std::endl;
-	std::cout << "double:	" << this->conDouble() << std::endl;
+	this->conChar();
+	this->conInt();
+	this->conFloat();
+	this->conDouble();
 }
 
-char Conver::conChar() const
+void Conver::conChar() const
 {
 	int i;
+	std::string str(this->_arg);
 	char z;
 
-	z = 'x';
-	i = this->conInt();
-	if (i > 0)
-		return(static_cast<char>(i));
-	return (z);
+	if (str.length() == 1)
+	{
+		if (!isdigit(str[0]))
+			std::cout << "char:		" << str[0] << std::endl;
+		else
+			std::cout << "char:		" << "Non displayable" << std::endl;
+	}
+	else
+	{
+		try
+		{
+			i = std::stoi(str);
+			z = static_cast<char>(i);
+			if (std::isprint(z))
+				std::cout << "char:		" << z << std::endl;
+			else
+				std::cout << "char:		" << "Non displayable" << std::endl;
+		}
+		catch(const std::exception& e)
+		{
+			std::cerr << e.what() << " :Wrong argument" << '\n';
+		}
+		
+	}
 }
 
-int Conver::conInt() const
+void Conver::conInt() const
 {
 	int i;
 
 	try
 	{
 		i = std::stoi(this->getArg());
+		std::cout << "int:		" << i << std::endl;
 	}
 	catch (std::exception &e)
 	{
-		std::cout << e.what() << ":Invalid argument\n";
+		std::cout << e.what() << ":Invalid int argument\n";
 	}
-
-	return (i);
 }
 
-float Conver::conFloat() const
+void Conver::conFloat() const
 {
 	int i;
 	float fl;
 
-	i = conInt();
+	i = std::stoi(this->_arg);
 
 	fl = static_cast<float>(i);
 
-	return (fl);
+	std::cout << "float:	" << fl << std::endl;
+
 }
 
-double Conver::conDouble() const
+void Conver::conDouble() const
 {
 	int i;
 	double db;
 
-	i = conInt();
+	i = std::stoi(this->_arg);
 
 	db = static_cast<double>(i);
+	std::cout << "double:	" << db << std::endl;
 
-	return (db);
 }
 

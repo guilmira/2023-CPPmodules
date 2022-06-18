@@ -27,14 +27,11 @@ class Conver
 
 		std::string getArg() const;
 
-		char		conChar() const;
-		int			conInt() const;
-		float		conFloat() const;
-		double		conDouble() const;
-
-
-		void display() const;
-
+		void		conChar() const;
+		void		conInt() const;
+		void		conFloat() const;
+		void		conDouble() const;
+		void		display() const;
 
 	private:
 		std::string	_arg;
