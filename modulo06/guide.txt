@@ -1,0 +1,31 @@
+In short:
+
+
+1)
+Use static cast as the previous casts in C.
+Most common, used for everything except classes.
+This is, int to float, float to double, and so on.
+It will have a check at the compilation informing whether it can be done.
+
+It converts the variables as it needs.
+
+int i;
+float fl;
+
+fl = static_cast<int>(i);
+
+2)
+Avoid reinterpret cast, honestly. It does seem like it just useful in very specific
+scenarios with POINTERS.
+It could be use also for classes.
+Again, very specific, very rare.
+
+3) Dynamic cast its allright. Its the one to go for CLASSES.
+Executed in runtime.
+It can give a NULL, so ideal for when you dont know if you are casting to the right class.
+Its the one for class heritage, UPCASTING, DOWNCASTING between classes, and so on.
+
+
+
+Finally, have the concepts clear regarding herarchy and UPCASTING and DOWNCASTING
+You can cast an int *ptr to a void *second_ptr; But not the other way around.

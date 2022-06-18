@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   B.cpp                                          :+:      :+:    :+: */
 /*                                                    +:+ +:+         +:+     */
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,29 +10,36 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include "Bureaucrat.hpp"
+#include "B.hpp"
 
-#include <iostream>
-#include "Conver.hpp"
-
-static void	log(std::string str)
+static void log(std::string const &str)
 {
 	std::cout << str << std::endl;
 }
 
-/* dynamic casting is mainly used for safe downcasting at run time. 
-To work on dynamic_cast there must be one virtual function in the base class. A dynamic_cast works only polymorphic base class 
-because it uses this information to decide safe downcasting. */
-	//mete c+ 11 y modificar el makefile
-int	main(int argc, char **argv)
+B::B()
+{
+	log("B default constructed");;
+}
+
+B::~B()
+{
+	log("B destructed");
+}
+
+B::B(B const &src)
 {
 
-	if (argc != 2)
+	*this = src;
+	log("B copy constructed.");
+}
+
+B & B::operator=(B const &rhs)
+{
+	log("B assigned.");
+	if (this != &rhs)
 	{
-		log("Execution accepts only one argument.");
-		return (1);
+		;
 	}
-	Conver con(argv[1]);
-	con.display();
-	return (0);
+	return (*this);
 }

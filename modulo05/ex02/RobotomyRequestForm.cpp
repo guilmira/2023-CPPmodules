@@ -90,7 +90,7 @@ void	RobotomyRequestForm::form_action() const
 	int random;
 
 	log("*drilling noises*");
-	srand ( time(NULL) );
+	srand( time(NULL) );
 	random = rand() % 10 + 1;
 	if (random <= 5)
 		std::cout << this->_target << " robotimized.\n";

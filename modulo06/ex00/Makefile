@@ -50,7 +50,7 @@ clean:
 	@$(REMOVE) $(OBJS)
 
 fclean: clean
-	@$(REMOVE) $(NAME) random_doc_shrubbery
+	@$(REMOVE) $(NAME)
 
 re: fclean all
 
