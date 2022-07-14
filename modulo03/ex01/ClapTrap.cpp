@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/15 22:04:31 by guilmira          #+#    #+#             */
-/*   Updated: 2022/05/16 00:36:12 by guilmira         ###   ########.fr       */
+/*   Updated: 2022/07/14 15:13:08 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int ClapTrap::getDps(void) const
 	return (this->_dps);
 }
 
-void ClapTrap::setName(std::string const name)
+void ClapTrap::setName(std::string const &name)
 {
 	this->_name = name;
 }
@@ -135,5 +135,4 @@ void ClapTrap::beRepaired(unsigned int amount)
 	setHp(getHp() + amount);
 	std::cout << "Current hp: " << getHp() << std::endl;
 	this->_mp--;
-
 }

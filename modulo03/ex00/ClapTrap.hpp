@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/15 22:04:29 by guilmira          #+#    #+#             */
-/*   Updated: 2022/05/16 01:26:24 by guilmira         ###   ########.fr       */
+/*   Updated: 2022/07/14 12:39:19 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,12 @@ class ClapTrap
 		void setHp(int hp);
 		void setMp(int mp);
 		void setDps(int dps);
-		
-		
+			
 	private:
 		std::string _name;
 		int	_hp;
 		int _mp;
 		int _dps;
-
 };
 
 #endif

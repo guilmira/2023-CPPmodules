@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/15 22:04:31 by guilmira          #+#    #+#             */
-/*   Updated: 2022/07/14 12:27:28 by guilmira         ###   ########.fr       */
+/*   Updated: 2022/07/14 12:30:08 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ ClapTrap::~ClapTrap()
 	log("Detructor called.");
 	return ;
 }
-
 
 /* --------------------------------- GET | SET --------------------------------- */
 std::string ClapTrap::getName(void) const
@@ -90,7 +89,6 @@ ClapTrap::ClapTrap(ClapTrap const &src)
 	log("Copy constructor called.");
 	*this = src;
 }
-
 
 ClapTrap & ClapTrap::operator=(ClapTrap const &rhs)
 {

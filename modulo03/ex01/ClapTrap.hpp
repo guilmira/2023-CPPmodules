@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/15 22:04:29 by guilmira          #+#    #+#             */
-/*   Updated: 2022/05/16 11:27:47 by guilmira         ###   ########.fr       */
+/*   Updated: 2022/07/14 15:10:50 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,18 +35,16 @@ class ClapTrap
 		int getMp(void) const;
 		int getDps(void) const;
 
-		void setName(std::string const name);
+		void setName(std::string const &name);
 		void setHp(int hp);
 		void setMp(int mp);
 		void setDps(int dps);
-		
 		
 	protected:
 		std::string	_name;
 		int			_hp;
 		int			_mp;
 		int			_dps;
-
 };
 
 #endif
