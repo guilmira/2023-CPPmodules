@@ -6,14 +6,14 @@
 #    By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/17 10:57:42 by guilmira          #+#    #+#              #
-#    Updated: 2022/05/16 14:05:10 by guilmira         ###   ########.fr        #
+#    Updated: 2022/07/14 12:20:08 by guilmira         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= casts
 ARG			= 42
 #--------------------------------------------------------------------------------------------------------------COMPILER
-CXX			= g++
+CXX			= clang++
 CXXFLAGS	= -Wall -Wextra -Werror
 #CVERSION	= -std=c++98
 CVERSION	= -std=c++11

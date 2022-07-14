@@ -6,13 +6,13 @@
 #    By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/17 10:57:42 by guilmira          #+#    #+#              #
-#    Updated: 2022/05/16 14:05:10 by guilmira         ###   ########.fr        #
+#    Updated: 2022/07/14 12:19:20 by guilmira         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= animal
 #--------------------------------------------------------------------------------------------------------------COMPILER
-CXX			= g++
+CXX			= clang++
 CXXFLAGS	= -Wall -Wextra -Werror
 CVERSION	= -std=c++98
 CSANITIZE	= -fsanitize=address
