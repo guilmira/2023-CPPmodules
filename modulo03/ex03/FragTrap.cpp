@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 13:34:52 by guilmira          #+#    #+#             */
-/*   Updated: 2022/05/16 14:07:10 by guilmira         ###   ########.fr       */
+/*   Updated: 2022/07/15 16:36:23 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,23 +23,25 @@ static void	msg(std::string const &str)
 }
 
 FragTrap::FragTrap()
+	: _dm_hp(100), _dm_mp(100), _dm_dps(30)
 {
 	log("-Default constructor called for FragTrap.");
 	this->setName("Default");
-	this->setHp(100);
-	this->setMp(100);
-	this->setDps(30);
+	this->setHp(_dm_hp);
+	this->setMp(_dm_mp);
+	this->setDps(_dm_dps);
 	return ;
 }
 
 FragTrap::FragTrap(std::string name)
+	: _dm_hp(100), _dm_mp(100), _dm_dps(30)
 {
 	msg(this->getName());
 	log("-Overload constructor called for FragTrap.");
 	this->setName(name);
-	this->setHp(100);
-	this->setMp(100);
-	this->setDps(30);
+	this->setHp(_dm_hp);
+	this->setMp(_dm_mp);
+	this->setDps(_dm_dps);
 	return ;
 }
 

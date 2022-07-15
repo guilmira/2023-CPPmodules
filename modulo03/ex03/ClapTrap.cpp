@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/15 22:04:31 by guilmira          #+#    #+#             */
-/*   Updated: 2022/05/16 19:28:57 by guilmira         ###   ########.fr       */
+/*   Updated: 2022/07/15 12:06:48 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,8 @@ ClapTrap::~ClapTrap()
 	return ;
 }
 
-
-
 /* --------------------------------- GET | SET --------------------------------- */
-const std::string & ClapTrap::getName(void) const
+const std::string ClapTrap::getName(void) const
 {
 	return (this->_name);
 }
@@ -92,7 +90,6 @@ ClapTrap::ClapTrap(ClapTrap const &src)
 	*this = src;
 }
 
-
 ClapTrap & ClapTrap::operator=(ClapTrap const &rhs)
 {
 	log("Assignation operator called.");
@@ -102,6 +99,7 @@ ClapTrap & ClapTrap::operator=(ClapTrap const &rhs)
 	this->_dps = rhs.getDps();
 	return (*this);
 }
+
 /* --------------------------------- METHODS --------------------------------- */
 void ClapTrap::attack(std::string const & target)
 {

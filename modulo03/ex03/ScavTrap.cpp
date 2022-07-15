@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/15 22:04:31 by guilmira          #+#    #+#             */
-/*   Updated: 2022/05/16 14:07:37 by guilmira         ###   ########.fr       */
+/*   Updated: 2022/07/15 16:36:32 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,23 +24,25 @@ static void	msg(std::string const &str)
 }
 
 ScavTrap::ScavTrap()
+	: _dm_hp(100), _dm_mp(50), _dm_dps(20)
 {
 	log("-Default constructor called FOR SCAV_TRAP.");
 	this->setName("Default");
-	this->setHp(100);
-	this->setMp(50);
-	this->setDps(20);
+	this->setHp(_dm_hp);
+	this->setMp(_dm_mp);
+	this->setDps(_dm_dps);
 	return ;
 }
 
 ScavTrap::ScavTrap(std::string name)
+	: _dm_hp(100), _dm_mp(50), _dm_dps(20)
 {
 	msg(this->getName());
 	log("-Overload constructor called FOR SCAV_TRAP.");
 	this->setName(name);
-	this->setHp(100);
-	this->setMp(50);
-	this->setDps(20);
+	this->setHp(_dm_hp);
+	this->setMp(_dm_mp);
+	this->setDps(_dm_dps);
 	return ;
 }
 

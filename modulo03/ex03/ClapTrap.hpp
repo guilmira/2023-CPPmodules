@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/15 22:04:29 by guilmira          #+#    #+#             */
-/*   Updated: 2022/05/16 19:28:56 by guilmira         ###   ########.fr       */
+/*   Updated: 2022/07/15 13:24:33 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ class ClapTrap
 		void takeDamage(unsigned int amount);
 		void beRepaired(unsigned int amount);
 
-		const std::string & getName(void) const;
+		const std::string getName(void) const;
 		int getHp(void) const;
 		int getMp(void) const;
 		int getDps(void) const;
@@ -41,7 +41,7 @@ class ClapTrap
 		void setDps(int dps);
 		
 	protected:
-		std::string 	_name;
+		std::string	_name;
 		int			_hp;
 		int			_mp;
 		int			_dps;
