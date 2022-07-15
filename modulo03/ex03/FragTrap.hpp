@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 12:34:15 by guilmira          #+#    #+#             */
-/*   Updated: 2022/07/15 16:38:17 by guilmira         ###   ########.fr       */
+/*   Updated: 2022/07/15 17:14:53 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ class FragTrap : virtual public ClapTrap
 	public:
 		FragTrap();
 		FragTrap(std::string name);
-		~FragTrap();
+		virtual ~FragTrap();
 		FragTrap(FragTrap const &src);
 		FragTrap & operator=(FragTrap const &rhs);
 

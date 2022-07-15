@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/15 22:04:29 by guilmira          #+#    #+#             */
-/*   Updated: 2022/07/14 15:10:50 by guilmira         ###   ########.fr       */
+/*   Updated: 2022/07/15 17:18:16 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,20 @@
 #include <iostream>
 #include <string>
 
+/* Using virtual destructors, 
+you can destroy objects without knowing 
+their type — the correct destructor 
+for the object is invoked using the 
+virtual function mechanism. 
+Note that destructors can also be declared as 
+pure virtual functions for abstract classes. */
+
 class ClapTrap
 {
 	public:
 		ClapTrap();
 		ClapTrap(std::string name);
-		~ClapTrap();
+		virtual ~ClapTrap();
 		ClapTrap(ClapTrap const &src);
 		ClapTrap & operator=(ClapTrap const &rhs);
 

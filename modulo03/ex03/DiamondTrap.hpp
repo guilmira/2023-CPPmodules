@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 13:48:21 by guilmira          #+#    #+#             */
-/*   Updated: 2022/07/15 16:40:02 by guilmira         ###   ########.fr       */
+/*   Updated: 2022/07/15 17:15:08 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ class DiamondTrap : public ScavTrap, public FragTrap
 	public:
 		DiamondTrap();
 		DiamondTrap(std::string name);
-		~DiamondTrap(); //needs virtual keyword?
+		~DiamondTrap();
 		DiamondTrap(DiamondTrap const &src);
 		DiamondTrap & operator=(DiamondTrap const &rhs);
 
