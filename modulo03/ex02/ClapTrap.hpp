@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/15 22:04:29 by guilmira          #+#    #+#             */
-/*   Updated: 2022/07/15 17:17:57 by guilmira         ###   ########.fr       */
+/*   Updated: 2022/07/16 16:40:54 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ class ClapTrap
 		ClapTrap(ClapTrap const &src);
 		ClapTrap & operator=(ClapTrap const &rhs);
 
-		void attack(std::string const & target);
+		virtual void attack(std::string const & target);
 		void takeDamage(unsigned int amount);
 		void beRepaired(unsigned int amount);
 

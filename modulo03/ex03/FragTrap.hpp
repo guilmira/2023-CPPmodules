@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 12:34:15 by guilmira          #+#    #+#             */
-/*   Updated: 2022/07/15 17:14:53 by guilmira         ###   ########.fr       */
+/*   Updated: 2022/07/16 16:43:04 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ class FragTrap : virtual public ClapTrap
 		FragTrap(FragTrap const &src);
 		FragTrap & operator=(FragTrap const &rhs);
 
-		void attack(std::string const & target);
+		virtual void attack(std::string const & target);
 		void highFiveGuys(void);
 	
 	protected:

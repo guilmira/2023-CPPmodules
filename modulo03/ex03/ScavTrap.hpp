@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/15 22:04:29 by guilmira          #+#    #+#             */
-/*   Updated: 2022/07/15 17:14:36 by guilmira         ###   ########.fr       */
+/*   Updated: 2022/07/16 16:43:23 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ class ScavTrap : virtual public ClapTrap
 		ScavTrap(ScavTrap const &src);
 		ScavTrap & operator=(ScavTrap const &rhs);
 
-		void attack(std::string const & target);
+		virtual void attack(std::string const & target);
 		void guardGate(void);
 
 		protected:
