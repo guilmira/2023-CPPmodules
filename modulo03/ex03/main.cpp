@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/15 22:04:27 by guilmira          #+#    #+#             */
-/*   Updated: 2022/07/15 17:15:38 by guilmira         ###   ########.fr       */
+/*   Updated: 2022/07/16 16:50:54 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,18 @@ int	main(void)
 	std::cout << "----------------------------------------------" << std::endl;
 	}
 	std::cout << "----------------------------------------------" << std::endl;
+	{
+		FragTrap ft("hulk");
+		std::cout << "----------------------------------------------" << std::endl;
+	std::cout << "Parameters of frag: \n";
+	std::cout << ft.getName() << std::endl;//Name of the atribute _name if diamond.
+	std::cout << ft.ClapTrap::getName() << std::endl;
+	std::cout << ft.getHp() << std::endl;	//Fragtrap: 100
+	std::cout << ft.getMp() << std::endl;	//Scavtrap: 50
+	std::cout << ft.getDps() << std::endl;	//Fragtrap: 30
+	std::cout << "----------------------------------------------" << std::endl;	
+	ft.attack("other");
 
+	}
 	return (0);
 }
