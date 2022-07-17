@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/15 22:04:27 by guilmira          #+#    #+#             */
-/*   Updated: 2022/05/16 14:13:07 by guilmira         ###   ########.fr       */
+/*   Updated: 2022/07/17 08:25:21 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,24 @@
 #include "Cat.hpp"
 #include "Dog.hpp"
 
-//FALTA HACER VARIAS PRUEBAS, Y VER CUANDO DA LEAK Y PETA. PRUEBA HA AHCER UN SHALLOW COPY. 
-//POR LO DEMAS, EL MAIN ESTARIA
+void ft_leaks(void)
+{
+	system("leaks -q animal");
+}
+
 int	main(void)
 {
+	atexit(ft_leaks);
 	//PART 1
 	{
 	const Animal* j = new Dog();
 	const Animal* i = new Cat();
 
+	std::cout << "		DESTRUCTION 1" << std::endl;
 	delete j;//should not create a leak
+	std::cout << "		DESTRUCTION 2" << std::endl;
 	delete i;
+
 	}
 	std::cout << "----------------------------------------------" << std::endl;
 
@@ -36,9 +43,11 @@ int	main(void)
 	Brain *molde = new Brain;
 	molde->setIdeas(1, "hola");
 	miau.setBrain(molde);
-
+	std::cout << "//" << std::endl;
 	std::cout << (miau.getBrain())->getIdeas(1) << std::endl;
 	std::cout << (second_miau.getBrain())->getIdeas(1) << std::endl;
+	std::cout << std::endl;
+	std::cout << std::endl;
 	std::cout << std::endl;
 	}
 	std::cout << "----------------------------------------------" << std::endl;
@@ -61,7 +70,6 @@ int	main(void)
 
 		for (int i = 3; i < 6; i++)
 			delete array[i];
-
 	}
 	return (0);
 }

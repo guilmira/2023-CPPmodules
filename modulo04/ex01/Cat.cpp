@@ -62,3 +62,15 @@ void Cat::makeSound(void) const
 {
 	log("Cat | Mr. good cat.");
 }
+
+const Brain *Cat::getBrain()
+{ 
+	return (this->_pointer);
+}
+
+void Cat::setBrain(Brain *src)
+{ 	
+	if (this->_pointer)
+		delete _pointer;
+	this->_pointer = src; 
+}

@@ -16,11 +16,16 @@
 #include <iostream>
 #include <string>
 
+/* Virtual keyword at Animal is key on destructor.
+If a class such as dog, inherits from animal, but then is 
+treated as Animal pointer, then only the animal destructor
+would be called.  */
+
 class Animal
 {
 	public:
 		Animal();
-		virtual ~Animal(); //si no la preparas para override, aparece un error de compilacion
+		virtual ~Animal();
 		Animal(Animal const &src);
 		Animal & operator=(Animal const &rhs);
 

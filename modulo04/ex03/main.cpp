@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/15 22:04:27 by guilmira          #+#    #+#             */
-/*   Updated: 2022/05/16 14:13:07 by guilmira         ###   ########.fr       */
+/*   Updated: 2022/07/17 09:00:07 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,15 @@
 
 #include "Fighter.hpp"
 
-//FALTA PASAR LEAKS
+void ft_leaks(void)
+{
+	system("leaks -q materia");
+}
+
 int	main(void)
 {
+	atexit(ft_leaks);
+
 	//Test 1
 	{
 
@@ -55,9 +61,10 @@ int	main(void)
 	rinoa->unequip(0);
 	rinoa->equip(c1);
 	rinoa->use(0, *seif);
-	std::cout << "Play vicotry fanfare\n";
+	std::cout << "Play victory fanfare\n";
 	std::cout << "----------------------------------------------" << std::endl;
 	delete squall;
+	delete rinoa;
 	delete seif;
 	delete src;
 	delete c1;

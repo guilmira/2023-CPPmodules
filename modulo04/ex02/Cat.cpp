@@ -52,9 +52,6 @@ Cat & Cat::operator=(Cat const &rhs)
 	new_pointer = new Brain(*rhs._pointer); //con el constructor copia de Brain, creo una replica. Para eso está
 
 	this->_pointer = new_pointer;
-/* 	for (int i = 0; i < N; i++)
-		this->_ideas[i] = out.str(); */
-
 	return(*this);
 }
 

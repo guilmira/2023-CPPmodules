@@ -15,7 +15,6 @@
 #define BLUE "\033[1;34m"
 #define END "\033[0m"
 
-
 static void deep_log(std::string const & type, std::string const & str)
 {
 	if (!type.compare("ice"))
@@ -32,13 +31,13 @@ static void deep_log(std::string const & type, std::string const & str)
 	std::cout << std::endl;
 }
 
-
 AMateria::AMateria()
 	: _type("Default")
 {
 	deep_log(this->_type, "constructed.		| ~ABSTRACT BASE CLASS~");
 	return ;
 }
+
 AMateria::AMateria(std::string const & type)
 	: _type(type)
 {
@@ -51,6 +50,7 @@ AMateria::~AMateria()
 	deep_log(this->_type, "destructed.		| ~ABSTRACT BASE CLASS~");
 	return ;
 }
+
 AMateria::AMateria(AMateria const &src)
 {
 	*this = src;
@@ -82,7 +82,6 @@ void AMateria::use(ICharacter& target)
 		deep_log(this->_type, "is a unestable materia. Try Ice/Cure");
 
 }
-
 
 /* --------------------------------- ICE --------------------------------- */
 Ice::Ice() 

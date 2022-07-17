@@ -38,8 +38,6 @@ class AMateria
 	
 	protected:
 		std::string _type;
-
-
 };
 
 class Ice : public AMateria

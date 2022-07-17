@@ -41,7 +41,7 @@ Fighter::Fighter(std::string const & type)
 Fighter::~Fighter()
 {
 	deep_log(this->_name, "object destructed.");
-	/* for (int i = 0; i < this->getCurrentEq(); i++)
+	/* !!!for (int i = 0; i < this->getCurrentEq(); i++)
 	{
 		if (this->_materia_pointers_array[i])
 			delete this->_materia_pointers_array[i];

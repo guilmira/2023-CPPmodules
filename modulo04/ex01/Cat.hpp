@@ -28,13 +28,9 @@ class Cat : public Animal
 
 		void makeSound(void) const;
 
-//setBrain is not really needed, just a test
-		const Brain *getBrain() { return (this->_pointer); };
-		void setBrain(Brain *src) 
-		{ 	if (this->_pointer)
-				delete _pointer;
-			this->_pointer = src; 
-			};
+//setBrain is not really needed, used for a test
+		void setBrain(Brain *src);
+		const Brain *getBrain();
 	
 	private:
 		Brain *_pointer;
