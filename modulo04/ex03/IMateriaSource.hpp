@@ -37,7 +37,7 @@ class MateriaSource : public IMateriaSource
 		void learnMateria(AMateria *ptr);
 		AMateria* createMateria(std::string const & type);
 		
-		int getCurrentMateria() const { return (this->_current_materia); };
+		int getCurrentMateria() const;
 
 	
 	private:

@@ -91,3 +91,8 @@ AMateria* MateriaSource::createMateria(std::string const & type)
 	std::cout << "Materia not available for creation.\n";
 	return (0);
 }
+
+int MateriaSource::getCurrentMateria() const
+{ 
+	return (this->_current_materia);
+}

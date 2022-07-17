@@ -48,6 +48,7 @@ class Ice : public AMateria
 		Ice(Ice const &src);
 		Ice & operator=(Ice const &rhs);
 
+		void use(ICharacter& target);
 		AMateria* clone() const;
 };
 
@@ -61,6 +62,7 @@ class Cure : public AMateria
 		Cure(Cure const &src);
 		Cure & operator=(Cure const &rhs);
 
+		void use(ICharacter& target);
 		AMateria* clone() const;
 
 };

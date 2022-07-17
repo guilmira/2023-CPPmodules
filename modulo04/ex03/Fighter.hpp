@@ -33,11 +33,12 @@ class Fighter : public ICharacter
 		void unequip(int idx);
 		void use(int idx, ICharacter& target);
 
-		int getCurrentEq() const { return (this->_current_equipment); };
+		int getCurrentEq() const;
+		void arrange(int idx);
 	
 	private:
 		std::string _name;
-		AMateria	*_materia_pointers_array[MAX_MATERIA];
+		AMateria	*_materia_pointers_array[MAX_MATERIA + 1];
 		static int	_max_equipment;
 		int			_current_equipment;
 };

@@ -26,7 +26,6 @@ class Bureaucrat
 		Bureaucrat(Bureaucrat const &src);
 		Bureaucrat & operator=(Bureaucrat const &rhs);
 
-
 		Bureaucrat &	operator++();
 		Bureaucrat &	operator--();
 		Bureaucrat		operator++(int);
@@ -54,8 +53,8 @@ class Bureaucrat
 		};
 
 	private:
-		std::string	_name;
-		int					_grade;
+		const std::string	_name;
+		int			_grade;
 };
 
 std::ostream & operator<<(std::ostream &stream, Bureaucrat const &rhs);

@@ -12,7 +12,7 @@
 
 #include "Fighter.hpp"
 
-int Fighter::_max_equipment = MAX_MATERIA;
+int Fighter::_max_equipment = MAX_MATERIA + 1;
 
 static void deep_log(std::string const & type, std::string const & str)
 {
@@ -41,15 +41,9 @@ Fighter::Fighter(std::string const & type)
 Fighter::~Fighter()
 {
 	deep_log(this->_name, "object destructed.");
-	/* !!!for (int i = 0; i < this->getCurrentEq(); i++)
-	{
-		if (this->_materia_pointers_array[i])
-			delete this->_materia_pointers_array[i];
-	} */
-	/* if (this->_materia_pointers_array[0])
-			delete this->_materia_pointers_array[0]; */
 	return ;
 }
+
 Fighter::Fighter(Fighter const &src)
 {
 	*this = src;
@@ -87,6 +81,14 @@ void Fighter::equip(AMateria* m)
 		deep_log(m->getType(), "faulty. Not equiped");
 		return ;
 	}
+	for (int i = 0; i < MAX_MATERIA; i++)
+	{
+		if (this->_materia_pointers_array[i] == m)
+		{
+			deep_log(m->getType(), "already equiped");
+			return ;
+		}	
+	}
 	if (this->_current_equipment > MAX_MATERIA)
 		deep_log(this->getName(), "reached equip limit.");
 	else
@@ -98,6 +100,16 @@ void Fighter::equip(AMateria* m)
 	}
 }
 
+void Fighter::arrange(int idx)
+{
+	while (this->_materia_pointers_array[idx + 1] != NULL)
+	{
+		this->_materia_pointers_array[idx] = this->_materia_pointers_array[idx + 1];
+		idx++;
+	}
+	this->_materia_pointers_array[idx] = NULL;
+}
+
 void Fighter::unequip(int idx)
 {
 	if ((idx >= MAX_MATERIA || idx < 0) || idx + 1 > getCurrentEq())
@@ -106,6 +118,7 @@ void Fighter::unequip(int idx)
 		return ;
 	}
 	this->_materia_pointers_array[idx] = NULL;
+	this->arrange(idx);
 	this->_current_equipment--;
 	deep_log(this->getName(), "unequiped successfully.");
 }
@@ -122,4 +135,9 @@ void Fighter::use(int idx, ICharacter& target)
 		this->_materia_pointers_array[idx]->use(target);
 	else
 		deep_log(this->getName(), "fails to cast.");
+}
+
+int Fighter::getCurrentEq() const
+{ 
+	return (this->_current_equipment);
 }

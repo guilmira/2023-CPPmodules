@@ -38,13 +38,20 @@ Dog::Dog(Dog const &src)
 	: Animal()
 {
 	log("Dog | Copy constructor called.");
+	this->_pointer = NULL; 
 	*this = src;
 }
 
 Dog & Dog::operator=(Dog const &rhs)
 {
+	Brain *new_pointer;
+
 	log("Dog | Assignation operator called.");
 	setType(rhs.getType());
+	if (this->_pointer)
+		delete this->_pointer;
+	new_pointer = new Brain(*rhs._pointer); //con el constructor copia de Brain, creo una replica. Para eso está
+	this->_pointer = new_pointer;
 	return(*this);
 }
 

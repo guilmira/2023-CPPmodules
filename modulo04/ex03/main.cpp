@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/15 22:04:27 by guilmira          #+#    #+#             */
-/*   Updated: 2022/07/17 09:00:07 by guilmira         ###   ########.fr       */
+/*   Updated: 2022/07/17 13:33:44 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,9 @@ int	main(void)
 	AMateria *c3;
 	
 	c1 = src->createMateria(ICE);
-	c2 = src->createMateria(FIRA);
-	c2 = NULL;
-	c2 = (AMateria *) c2;
-	c3 = src->createMateria(CURE);
+	c2 = src->createMateria(CURE);
+	c3 = src->createMateria(FIRA);
+	c3 = NULL;
 	std::cout << "----------------------------------------------" << std::endl;
 	//Fighter class should only be use through materia created on MateriaSource.
 	//That way, its avoided that user declares the materia on stack and within fighter, we free stack allocated variables.
@@ -50,8 +49,8 @@ int	main(void)
 	std::cout << "----------------------------------------------" << std::endl;
 	std::cout << "Battle theme plays on the background\n";
 	squall->equip(c1);
-	squall->equip(c3);
-	rinoa->equip(c3);
+	squall->equip(c2);
+	rinoa->equip(c2);
 	seif->equip(c1);
 	squall->use(0, *seif);
 	seif->use(0, *squall);
@@ -68,7 +67,7 @@ int	main(void)
 	delete seif;
 	delete src;
 	delete c1;
-	delete c3;
+	delete c2;
 	std::cout << "----------------------------------------------" << std::endl;
 	}
 

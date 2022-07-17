@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/15 22:04:27 by guilmira          #+#    #+#             */
-/*   Updated: 2022/07/17 08:25:21 by guilmira         ###   ########.fr       */
+/*   Updated: 2022/07/17 12:02:11 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	main(void)
 	const Animal* i = new Cat();
 
 	std::cout << "		DESTRUCTION 1" << std::endl;
-	delete j;//should not create a leak
+	delete j;
 	std::cout << "		DESTRUCTION 2" << std::endl;
 	delete i;
 
@@ -45,6 +45,10 @@ int	main(void)
 	miau.setBrain(molde);
 	std::cout << "//" << std::endl;
 	std::cout << (miau.getBrain())->getIdeas(1) << std::endl;
+	std::cout << "----------------------------------------------" << std::endl;
+	std::cout << "----------------------------------------------" << std::endl;
+	std::cout << (second_miau.getBrain())->getIdeas(1) << std::endl;
+	second_miau = miau;
 	std::cout << (second_miau.getBrain())->getIdeas(1) << std::endl;
 	std::cout << std::endl;
 	std::cout << std::endl;

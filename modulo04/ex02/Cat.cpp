@@ -40,17 +40,21 @@ Cat::Cat(Cat const &src)
 	: Animal()
 {
 	log("Cat | Copy constructor called.");
+	this->_pointer = NULL; 
 	*this = src;
 }
+/* This is absolutly necessary as the _pointer could contain trash values,
+ therefore when calling overlad = operator the if conndition would be met. */
 
 Cat & Cat::operator=(Cat const &rhs)
 {
+	Brain *new_pointer;
+	
 	log("Cat | Assignation operator called.");
 	setType(rhs.getType());
-
-	Brain *new_pointer;
+	if (this->_pointer)
+		delete this->_pointer;
 	new_pointer = new Brain(*rhs._pointer); //con el constructor copia de Brain, creo una replica. Para eso está
-
 	this->_pointer = new_pointer;
 	return(*this);
 }

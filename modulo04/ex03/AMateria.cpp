@@ -127,6 +127,11 @@ AMateria* Ice::clone() const
 	return (ice_ptr);
 }
 
+void Ice::use(ICharacter& target)
+{
+	std::cout << BLUE << "* shoots an ice bolt at " << target.getName() << " *" << END << std::endl;
+}
+
 /* --------------------------------- CURE --------------------------------- */
 
 Cure::Cure()
@@ -161,4 +166,9 @@ AMateria* Cure::clone() const
 {
 	deep_log(this->_type, "being cloned. Memory allocated.");
 	return (new Cure(*this)); //compacted version
+}
+
+void Cure::use(ICharacter& target)
+{
+	std::cout << GREEN << "* heals " << target.getName() << " wounds *" << END << std::endl;
 }
