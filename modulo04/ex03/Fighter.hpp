@@ -34,6 +34,7 @@ class Fighter : public ICharacter
 		void use(int idx, ICharacter& target);
 
 		int getCurrentEq() const;
+		int getMaxEq() const;
 		void arrange(int idx);
 	
 	private:

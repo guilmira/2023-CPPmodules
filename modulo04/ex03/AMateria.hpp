@@ -52,7 +52,6 @@ class Ice : public AMateria
 		AMateria* clone() const;
 };
 
-
 class Cure : public AMateria
 {
 	public:

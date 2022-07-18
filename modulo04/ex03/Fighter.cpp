@@ -53,17 +53,20 @@ Fighter::Fighter(Fighter const &src)
 
 Fighter & Fighter::operator=(Fighter const &rhs)
 {
-	
 	deep_log(this->_name, "assgined operator called.");
 	if (this != &rhs)
 	{
 		this->_name = rhs.getName();
 		this->_current_equipment = rhs.getCurrentEq();
-		for (int i = 0; i < rhs.getCurrentEq(); i++)
+		this->_max_equipment = rhs.getMaxEq();
+		for (int i = 0; i < rhs.getMaxEq(); i++)
 		{
 			if (this->_materia_pointers_array[i])
 				delete this->_materia_pointers_array[i];
-			this->_materia_pointers_array[i] = rhs._materia_pointers_array[i]->clone();
+			if (!rhs._materia_pointers_array[i])
+				this->_materia_pointers_array[i] = NULL;
+			else
+				this->_materia_pointers_array[i] = rhs._materia_pointers_array[i];
 		}
 	}
 	return (*this);
@@ -89,25 +92,22 @@ void Fighter::equip(AMateria* m)
 			return ;
 		}	
 	}
-	if (this->_current_equipment > MAX_MATERIA)
+	if (this->_current_equipment > MAX_MATERIA - 1)
+	{
 		deep_log(this->getName(), "reached equip limit.");
-	else
-	{
-		this->_materia_pointers_array[_current_equipment] = m;
-		this->_current_equipment++;
-		std::cout << "Class fighter ";
-		deep_log(this->getName(), "equips materia.");
+		return ;
 	}
-}
-
-void Fighter::arrange(int idx)
-{
-	while (this->_materia_pointers_array[idx + 1] != NULL)
+	for (int i = 0; i < this->_max_equipment; i++)
 	{
-		this->_materia_pointers_array[idx] = this->_materia_pointers_array[idx + 1];
-		idx++;
+		if (this->_materia_pointers_array[i] == NULL)
+		{
+			this->_materia_pointers_array[i] = m;
+			this->_current_equipment++;
+			std::cout << "Class fighter ";
+			deep_log(this->getName(), "equips materia.");
+			return ;
+		}
 	}
-	this->_materia_pointers_array[idx] = NULL;
 }
 
 void Fighter::unequip(int idx)
@@ -118,14 +118,18 @@ void Fighter::unequip(int idx)
 		return ;
 	}
 	this->_materia_pointers_array[idx] = NULL;
-	this->arrange(idx);
 	this->_current_equipment--;
 	deep_log(this->getName(), "unequiped successfully.");
 }
 
 void Fighter::use(int idx, ICharacter& target)
 {
-	if (idx + 1 > this->getCurrentEq())
+	if (idx >= this->_max_equipment - 1)
+	{
+		std::cout << "equipment slots is not that big\n";
+		return ;
+	}
+	if (!this->_materia_pointers_array[idx])
 	{
 		std::cout << "nothing equiped on slot\n";
 		return ;
@@ -140,4 +144,9 @@ void Fighter::use(int idx, ICharacter& target)
 int Fighter::getCurrentEq() const
 { 
 	return (this->_current_equipment);
+}
+
+int Fighter::getMaxEq() const
+{ 
+	return (this->_max_equipment);
 }
