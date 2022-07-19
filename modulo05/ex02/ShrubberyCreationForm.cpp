@@ -47,10 +47,11 @@ ShrubberyCreationForm::ShrubberyCreationForm(ShrubberyCreationForm const &src)
 ShrubberyCreationForm & ShrubberyCreationForm::operator=(ShrubberyCreationForm const &rhs)
 {
 	log("ShrubberyCreationForm assigned.");
-	if (this != &rhs)
+	(void)rhs;
+/* 	if (this != &rhs)
 	{
 		this->_signed = rhs.getStatus();
-	}
+	} */
 	return (*this);
 }
 
@@ -70,10 +71,12 @@ void	ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 		return ;
 	}
 	if (this->execute_check(executor))
+	{
 		this->form_action();
+		log("Shrubbery form executed.");
+	}
 	else
 		throw GradeTooLowException();
-	log("Shrubbery form executed.");
 }
 
 bool	ShrubberyCreationForm::execute_check(Bureaucrat const & executor) const

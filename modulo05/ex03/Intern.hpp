@@ -32,8 +32,6 @@ class Intern
 
 		Form *makeForm(std::string type, std::string target);
 		
-
-
 		class NoFormFound : public std::exception
 		{
 			public:
@@ -46,7 +44,7 @@ class Intern
 		static Form *creator2(std::string const &target);
 	
 	private:
-		static const std::string _name[3];
+		static const std::string _form_name[3];
 		
 		//OPTION A: TYPEDEF
 		typedef Form *(*new_type_fn)(std::string const &str);

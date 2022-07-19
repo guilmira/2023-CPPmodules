@@ -47,10 +47,11 @@ ShrubberyCreationForm::ShrubberyCreationForm(ShrubberyCreationForm const &src)
 ShrubberyCreationForm & ShrubberyCreationForm::operator=(ShrubberyCreationForm const &rhs)
 {
 	log("ShrubberyCreationForm assigned.");
-	if (this != &rhs)
+	(void)rhs;
+/* 	if (this != &rhs)
 	{
 		this->_signed = rhs.getStatus();
-	}
+	} */
 	return (*this);
 }
 

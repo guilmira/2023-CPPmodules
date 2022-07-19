@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/15 22:04:27 by guilmira          #+#    #+#             */
-/*   Updated: 2022/05/16 14:13:07 by guilmira         ###   ########.fr       */
+/*   Updated: 2022/07/19 13:26:03 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,19 +32,25 @@ int	main(void)
 
 		std::cout << "----------------------------------------------" << std::endl;
 		f1.beSigned(apprentice);
+				std::cout << "\n";
 		f1.beSigned(fersea);
-		f1.execute(apprentice);
+				std::cout << "\n";
+		apprentice.executeForm(f1);
+				std::cout << "\n";
 		f1.execute(fersea);
 		std::cout << "----------------------------------------------" << std::endl;
 		fersea.signForm(f2);
+				std::cout << "\n";
 		f2.beSigned(fersea);
+				std::cout << "\n";
 		f2.execute(fersea);
 		std::cout << "----------------------------------------------" << std::endl;
 		apprentice.signForm(f3);
+				std::cout << "\n";
 		fersea.signForm(f3);
+				std::cout << "\n";
 		f3.execute(fersea);
 		std::cout << "----------------------------------------------" << std::endl;
-
 
 	}
 	catch (Bureaucrat::GradeTooHighException &e)

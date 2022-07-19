@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Bureaucrat.hpp                                       :+:      :+:    :+: */
+/*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/15 22:04:27 by guilmira          #+#    #+#             */
-/*   Updated: 2022/05/16 14:13:07 by guilmira         ###   ########.fr       */
+/*   Updated: 2022/07/19 12:19:13 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ Bureaucrat::~Bureaucrat()
 }
 
 Bureaucrat::Bureaucrat(Bureaucrat const &src)
+	: _name(getName())
 {
-
 	*this = src;
 	log("Bureaucrat copy constructed.");
 }
@@ -62,10 +62,7 @@ Bureaucrat & Bureaucrat::operator=(Bureaucrat const &rhs)
 {
 	log("Bureaucrat assigned.");
 	if (this != &rhs)
-	{
-		this->_name = rhs.getName();
 		this->setGrade(rhs.getGrade());
-	}
 	return (*this);
 }
 

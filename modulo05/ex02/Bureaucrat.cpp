@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Bureaucrat.hpp                                       :+:      :+:    :+: */
+/*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/15 22:04:27 by guilmira          #+#    #+#             */
-/*   Updated: 2022/05/16 14:13:07 by guilmira         ###   ########.fr       */
+/*   Updated: 2022/07/19 13:18:29 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ Bureaucrat::~Bureaucrat()
 }
 
 Bureaucrat::Bureaucrat(Bureaucrat const &src)
+	: _name(getName())
 {
-
 	*this = src;
 	log("Bureaucrat copy constructed.");
 }
@@ -62,10 +62,7 @@ Bureaucrat & Bureaucrat::operator=(Bureaucrat const &rhs)
 {
 	log("Bureaucrat assigned.");
 	if (this != &rhs)
-	{
-		this->_name = rhs.getName();
 		this->setGrade(rhs.getGrade());
-	}
 	return (*this);
 }
 
@@ -176,4 +173,9 @@ void Bureaucrat::signForm(Form &form) const
 	}
 	else
 		std::cout << this->getName() << " cannot sign " << form << " because his grade isnt high enough.\n";
+}
+
+void Bureaucrat::executeForm(Form const & form)
+{
+	form.execute(*this);
 }

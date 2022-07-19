@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/15 22:04:27 by guilmira          #+#    #+#             */
-/*   Updated: 2022/07/17 10:36:05 by guilmira         ###   ########.fr       */
+/*   Updated: 2022/07/19 12:41:09 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int	main(void)
 	{
 		ptr = new Bureaucrat("fersea", 150);
 		std::cout << ++(*ptr) << std::endl;
+		std::cout << "skips this message\n";
 		Bureaucrat conci("fersea", 120); //skips it all together; this is because the exception has been thrown
 	}
 	catch (Bureaucrat::GradeTooHighException &e)
@@ -44,8 +45,8 @@ int	main(void)
 	}
 	catch (Bureaucrat::GradeTooLowException &e)
 	{
-		delete ptr;
 		std::cout << e.what();
+		delete ptr;
 	}
 	std::cout << "----------------------------------------------" << std::endl;
 	try

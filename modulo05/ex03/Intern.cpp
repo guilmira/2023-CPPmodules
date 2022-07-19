@@ -12,7 +12,7 @@
 
 #include "Intern.hpp"
 
-const std::string Intern::_name[3] = { REQ0, REQ1, REQ2 };
+const std::string Intern::_form_name[3] = { REQ0, REQ1, REQ2 };
 
 
 //USING OPTION A: TYPEDEF
@@ -39,7 +39,6 @@ Intern::~Intern()
 
 Intern::Intern(Intern const &src)
 {
-
 	*this = src;
 	log("Intern copy constructed.");
 }
@@ -73,12 +72,9 @@ Form *Intern::creator2(std::string const &target)
 
 Form *Intern::makeForm(std::string type, std::string target)
 {
-
-	std::string array[3];
-
 	for (int i = 0; i < 3; i++)
 	{
-		if (!type.compare(this->_name[i]))
+		if (!type.compare(this->_form_name[i]))
 		{
 			std::cout << "Intern creates " << type << std::endl;
 			return (this->_array[i](target));

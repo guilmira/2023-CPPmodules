@@ -57,6 +57,7 @@ class Bureaucrat
 		};
 
 		void signForm(Form &form) const;
+		void executeForm(Form const & form);
 
 	private:
 		std::string	_name;

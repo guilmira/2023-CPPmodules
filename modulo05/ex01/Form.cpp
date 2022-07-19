@@ -15,7 +15,7 @@
 
 std::ostream & operator<<(std::ostream &stream, Form const &rhs)
 {
-	stream << "Form named ";
+	stream << "||-- Form named ";
 	stream << rhs.getName();
 	if (rhs.getStatus())
 		stream << "(signed)";
@@ -25,7 +25,7 @@ std::ostream & operator<<(std::ostream &stream, Form const &rhs)
 	stream << rhs.getSign();
 	stream << " and ";
 	stream << rhs.getExe();
-	stream << "//";
+	stream << "// --||";
 	return (stream);
 }
 

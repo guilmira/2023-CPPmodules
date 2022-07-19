@@ -39,7 +39,6 @@ RobotomyRequestForm::~RobotomyRequestForm()
 RobotomyRequestForm::RobotomyRequestForm(RobotomyRequestForm const &src)
 	: Form("defaultrobotomy", 72, 45), _target(src.getTarget())
 {
-
 	*this = src;
 	log("RobotomyRequestForm copy constructed.");
 }
@@ -47,10 +46,11 @@ RobotomyRequestForm::RobotomyRequestForm(RobotomyRequestForm const &src)
 RobotomyRequestForm & RobotomyRequestForm::operator=(RobotomyRequestForm const &rhs)
 {
 	log("RobotomyRequestForm assigned.");
-	if (this != &rhs)
+	(void)rhs;
+/* 	if (this != &rhs)
 	{
 		this->_signed = rhs.getStatus();
-	}
+	} */
 	return (*this);
 }
 

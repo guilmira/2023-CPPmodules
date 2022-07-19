@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PresidentialPardonForm.cpp                           :+:      :+:    :+: */
+/*   PresidentialPardonForm.cpp                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/15 22:04:27 by guilmira          #+#    #+#             */
-/*   Updated: 2022/05/16 14:13:07 by guilmira         ###   ########.fr       */
+/*   Updated: 2022/07/19 13:12:05 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,11 @@ PresidentialPardonForm::PresidentialPardonForm(PresidentialPardonForm const &src
 PresidentialPardonForm & PresidentialPardonForm::operator=(PresidentialPardonForm const &rhs)
 {
 	log("PresidentialPardonForm assigned.");
-	if (this != &rhs)
+	(void)rhs;
+/* 	if (this != &rhs)
 	{
 		this->_signed = rhs.getStatus();
-	}
+	} */
 	return (*this);
 }
 

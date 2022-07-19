@@ -31,15 +31,14 @@ class Bureaucrat
 		Bureaucrat		operator++(int);
 		Bureaucrat		operator--(int);
 
-		std::string 	getName() const;
-		int				getGrade() const;
-		void			setGrade(int x);
+		std::string 		getName() const;
+		int					getGrade() const;
+		void				setGrade(int x);
 
 		void ft_throw();
 		
 		class GradeTooHighException : public std::exception
 		{
-		
 			public:
 				GradeTooHighException();
 				virtual const char *what() const throw();
