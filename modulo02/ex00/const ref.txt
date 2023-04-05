@@ -1,0 +1,40 @@
+Pasar por const reference. Explicacion.
+
+
+struct Vector
+{
+
+	Vector(float a, float b)
+		: x(a), y(b) { return ;}
+
+	float x;
+	float y;
+
+	Vector add(const Vector & rhs) const
+	{
+		//rhs.x++;
+		return Vector(x + rhs.x, y + rhs.y);
+	}
+};
+
+Basicamente, planteate pasar por const reference cada vez que tengas que pasar una clase como input.
+La idea es ahorrar memoria evitando tener que hacer una copia de una clase que puede ser pesada.
+
+De primeras, el prototipo podria ser:
+Vector add(Vector & rhs) //Vale, aqui ya vemos que al pasarlo por referencia, evitamos la copia.
+Sin embargo, entonces en la funcion, podriamos hacer algo como esto:
+
+Vector add(Vector & rhs)
+	{
+		//rhs.x++; //HERE
+		return Vector(x + rhs.x, y + rhs.y);
+	}
+
+Esto se soluciona, marcando la referencai como constante. Así, el compilador, no me deja modificar la clase que paso por referencia.
+Vector add(const Vector & rhs)
+Finalmente, el const, del final, lo ponemos para que la clase a la que aplica el metodo, QUE NO ES RHS, no modifique sus valores. Es decir,
+que this-> (lo que sea), no quede asignado a NADA.
+
+Vector add(const Vector & rhs) const
+
+Tengo un vector con cordenadas, y voy a metere un metodo para añadirle vectores.

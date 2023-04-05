@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/15 22:04:31 by guilmira          #+#    #+#             */
-/*   Updated: 2022/07/14 13:48:57 by guilmira         ###   ########.fr       */
+/*   Updated: 2023/04/05 14:34:14 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void ScavTrap::attack(std::string const & target)
 	msg(" attacked ");
 	msg(target);
 	msg(", causing ");
-	std::cout << getDps() << " points of damage!" << std::endl;
+	std::cout << getDps() << " points of damage!!" << std::endl;
 }
 
 void ScavTrap::guardGate(void)
