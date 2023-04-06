@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/24 20:18:22 by guilmira          #+#    #+#             */
-/*   Updated: 2022/04/24 21:22:47 by guilmira         ###   ########.fr       */
+/*   Updated: 2023/04/05 18:07:33 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,24 @@ HumanB::~HumanB()
 {
 	return ;
 }
+
+
+/* 
+EXPLICACION: dereference a NULL pointer and you will get undefined behaviour.
+en el constructor, los punteros se inicialian a NULL.
+Si luego intentas dereferenciar con:
+std::cout << this->_weapon_assigned->getType();
+(fijate en la flecha), puedes pillar un puntero NULL y al suelo.
+
+if (!this->_weapon_assigned)
+	{
+		std::cout << this->_name;
+		std::cout << " cannot attack; no weapon equiped";
+		std::cout << std::endl;
+		return ;
+	}
+
+ */
 
 void	HumanB::attack(void) const
 {

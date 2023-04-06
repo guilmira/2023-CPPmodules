@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utiles.cpp                                         :+:      :+:    :+:   */
+/*   CanonicalGenUtiles.cpp                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 14:30:02 by guilmira          #+#    #+#             */
-/*   Updated: 2023/04/05 15:13:16 by guilmira         ###   ########.fr       */
+/*   Updated: 2023/04/05 15:50:59 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main.hpp"
+#include "CanonicalGen.hpp"
 
 std::string toUpperString(std::string & str)
 {

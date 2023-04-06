@@ -6,72 +6,56 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 13:05:40 by guilmira          #+#    #+#             */
-/*   Updated: 2023/04/04 13:33:43 by guilmira         ###   ########.fr       */
+/*   Updated: 2023/04/05 15:58:34 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "Canonical.hpp"
 
-/* CLASS DEFINITION. 
-	Index:
-	defines
-	constructor and destructor
-	copy and asign operation
-	logs
-	overload
-*/
+/* CLASS DEFINITION. */
 
-//[Class]Fighter - [Instance]_instance_name	| msg
-
-/* static void log(const std::string & msg)
+/* ilog = instance log */
+static void ilog(const std::string & name, const std::string & msg)
 {
-	std::cout << msg << std::endl;
-} */
-
-static void deep_log(const std::string & name, const std::string & msg)
-{
-	std::cout << name << msg << std::endl;
+	
+	std::cout << "[Class]Canonical - [Instance]" << name << " |	"\
+	<< msg << std::endl;
 }
-
-/* --------------------------------- CONSTRUCTOR --------------------------------- */
-
+/* --------------------------------- CONSTRUCTORS --------------------------------- */
 Canonical::Canonical()
-	: _instance_name("Default instance")
+	: _instance_name("Default")
 {
-	deep_log(getName(), "constructed.");
+	ilog(getName(), "Constructed⚪");
 	return ;
 }
 
 Canonical::Canonical(std::string const & instance_name)
 	: _instance_name(instance_name)
 {
-	deep_log(getName(), "overload constructed.");
+	ilog(getName(), "Overload constructed⚪");
 	return ;
 }
 /* --------------------------------- DESTRUCTOR --------------------------------- */
-
 Canonical::~Canonical()
 {
-	deep_log(getName(), "object destructed.");
+	ilog(getName(), "-Destructed⭕");
 	return ;
 }
+/* White and red dots means default constructed or destructed */
 /* ------------------COPY CONSTRUCTOR AND ASSIGN OVERLOAD OPERATOR------------------ */
-
 Canonical::Canonical(Canonical const &src)
 {
 	*this = src;
-	deep_log(getName(), "copy constructed.");
+	ilog(getName(), "Copy constructed");
 	return ;
 }
 /* Overload actually is previous to copy constructor, since cc uses the assign operator. */
 Canonical & Canonical::operator=(Canonical const &rhs)
 {
-	deep_log(getName(), "assgined operator called.");
+	ilog(getName(), "[=] Assignation operator called");
 	if (this != &rhs)
-	{
 		this->_instance_name = rhs.getName();
-	}
 	return (*this);
 }
 /* --------------------------------- GET | SET --------------------------------- */

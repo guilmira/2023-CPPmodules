@@ -6,11 +6,11 @@
 #    By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/17 10:57:42 by guilmira          #+#    #+#              #
-#    Updated: 2023/04/05 15:18:08 by guilmira         ###   ########.fr        #
+#    Updated: 2023/04/05 15:51:18 by guilmira         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= classGenerator
+NAME		= CanonicalGenerator
 #--------------------------------------------------------------------------------------------------------------COMPILER
 CXX			= clang++
 CXXFLAGS	= -Wall -Wextra -Werror
@@ -20,7 +20,7 @@ CSANITIZE	= -fsanitize=address
 #INCLUDES	= -I ./0includes
 #--------------------------------------------------------------------------------------------------------------SOURCES
 CLASS		= 
-SRCS		= main.cpp utiles.cpp $(CLASS)
+SRCS		= CanonicalGen.cpp CanonicalGenUtiles.cpp $(CLASS)
 OBJS		= $(SRCS:.cpp=.o)
 #--------------------------------------------------------------------------------------------------------------COMMANDS
 REMOVE		= rm -rf
@@ -40,9 +40,9 @@ san: $(OBJS)
 
 exe: san
 	./$(NAME)
-	@rm *.o
-	@rm classGenerator
-#tirar solo el ejecutable
+	@$(REMOVE) *.o
+	@$(REMOVE) $(NAME)
+#mover solo el ejecutable
 leaks: re
 	./$(NAME)
 
