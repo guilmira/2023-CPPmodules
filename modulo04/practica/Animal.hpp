@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.hpp                                           :+:      :+:    :+:   */
+/*   Animal.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/15 22:04:27 by guilmira          #+#    #+#             */
-/*   Updated: 2022/05/16 14:13:07 by guilmira         ###   ########.fr       */
+/*   Created: 2023/04/04 13:05:49 by guilmira          #+#    #+#             */
+/*   Updated: 2023/04/05 12:47:05 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,31 +16,27 @@
 #include <iostream>
 #include <string>
 
-/* Virtual keyword at Animal is key on destructor.
-If a class such as dog, inherits from animal, but then is 
-treated as Animal pointer, then only the animal destructor
-would be called.  */
-
+/* CLASS DECLARATION. */
 class Animal
 {
 	public:
 		Animal();
-		virtual ~Animal();
+		Animal(std::string const & name);
+		~Animal();
 		Animal(Animal const &src);
 		Animal & operator=(Animal const &rhs);
 
-		std::string const &	getType(void) const;
-		void				setType(const std::string src);
+		std::string const &	getName() const;
+		void				setName(std::string name);
 
-		virtual void makeSound(void) const;
+		virtual void makeSound() const
+		{
+			std::cout << "Animal sound\n";
+		}
 
+	
 	protected:
-		std::string _type;
+		std::string _instance_name;
 };
-
-/* Virtual. In the base class, declare function as virtual.
-That makes all of its forms virtual, (including the makeSound in the
-derived classes. So in cat and dog, its not neccessary to make it virtual
-It could be useful for readability.) */
 
 #endif
