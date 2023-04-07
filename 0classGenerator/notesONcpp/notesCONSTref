@@ -1,0 +1,21 @@
+/* --------------------------------- GET | SET --------------------------------- */
+std::string const & Canonical::getName() const
+{
+	return (this->_name);
+}
+
+void Canonical::setName(std::string const &name)
+{ 
+	this->_name = name;
+}
+
+/* Getter can return a const ref, because in main function, the moment that is assigned,
+ the value is what is copied, and NOT the pointer itself. 
+ Also, if user would try to modify it, since its const, it will not compile. */
+
+ /* Setter recieves a CONST ref as a parameter. That means that if u try something like:
+ src[0] = 'd'; it will not compile. 
+ When doing this->_name = name; , its just copying the value of name, and not the refernce.
+ So no problem, the parameter and this->_name will still be two differente sections of memory,
+ and therfore will have two different addresses.*/
+ 

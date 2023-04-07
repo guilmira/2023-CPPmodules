@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Brain.cpp                                      :+:      :+:    :+:   */
+/*   Esuna.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 13:05:40 by guilmira          #+#    #+#             */
-/*   Updated: 2023/04/05 15:58:34 by guilmira         ###   ########.fr       */
+/*   Updated: 2023/04/07 12:46:00 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
-#include "Brain.hpp"
+#include "Esuna.hpp"
 
 /* CLASS DEFINITION. */
 
@@ -19,63 +19,54 @@
 static void ilog(const std::string & name, const std::string & msg)
 {
 	
-	std::cout << "[Class]Brain - [Instance]" << name << " |	"\
+	std::cout << "[Class]Esuna - [Instance]" << name << " |	"\
 	<< msg << std::endl;
 }
-
-
 /* --------------------------------- CONSTRUCTORS --------------------------------- */
-Brain::Brain()
+Esuna::Esuna()
+	: _name("Default")
 {
-	ilog(getIdea(0), "Constructed⚪");
-	for (int i = 0; i < 100; i++)
-	{	
-		setIdea(i, "TheIdea");
-	}
+	ilog(getName(), "Constructed⚪");
 	return ;
 }
 
-
-/* --------------------------------- DESTRUCTOR --------------------------------- */
-Brain::~Brain()
+Esuna::Esuna(std::string const & instance_name)
+	: _name(instance_name)
 {
-	ilog(getIdea(0), "-Destructed⭕");
+	ilog(getName(), "Overload constructed⚪");
+	return ;
+}
+/* --------------------------------- DESTRUCTOR --------------------------------- */
+Esuna::~Esuna()
+{
+	ilog(getName(), "-Destructed⭕");
 	return ;
 }
 /* White and red dots means default constructed or destructed */
 /* ------------------COPY CONSTRUCTOR AND ASSIGN OVERLOAD OPERATOR------------------ */
-Brain::Brain(Brain const &src)
+Esuna::Esuna(Esuna const &src)
 {
 	*this = src;
-	ilog(getIdea(0), "Copy constructed");
+	ilog(getName(), "Copy constructed");
 	return ;
 }
 /* Overload actually is previous to copy constructor, since cc uses the assign operator. */
-Brain & Brain::operator=(Brain const &rhs)
+Esuna & Esuna::operator=(Esuna const &rhs)
 {
-	int i;
-
-	i = -1;
-	ilog(getIdea(0), "[=] Assignation operator called");
+	ilog(getName(), "[=] Assignation operator called");
 	if (this != &rhs)
-	{
-		while (++i < 100)
-		{
-			this->_ideas[i] = rhs.getIdea(i);
-		}
-	}
+		this->_name = rhs.getName();
 	return (*this);
 }
 /* --------------------------------- GET | SET --------------------------------- */
-std::string const & Brain::getIdea(int index) const
+std::string const & Esuna::getName() const
 {
-	return (this->_ideas[index]);
+	return (this->_name);
 }
 
-void Brain::setIdea(int index, std::string idea)
-{
-	if (index < 100)
-		this->_ideas[index] = idea;
+void Esuna::setName(std::string const &name)
+{ 
+	this->_name = name;
 }
 /* --------------------------------- METHODS --------------------------------- */
 

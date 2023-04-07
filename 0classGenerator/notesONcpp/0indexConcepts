@@ -1,0 +1,37 @@
+
+BASIC CONCEPTS
+Class
+Object = Instance
+
+--------------------------------------------------------------
+
+CLASS ARQUITECTURE
+Constructor
+Constructor overload - (takes parameters);
+Destructor;
+Constructor copy		  
+Operator overload
+
+Member functions.
+
+Member attributes
+
+2 concepts. Constructor overload (also called adhoc-Polymorphysm) and operator overload
+
+Constructor copy and overload = share the same input. (Canonical const &src);
+The class passed as a const reference.
+
+--------------------------------------------------------------
+
+VISIBILITY
+private (classes) vs public (structs) vs protected (for inheretance)
+
+
+--------------------------------------------------------------
+HERITAGE
+Base class vs derived/child class
+Polymorphysm. Derived class can be treated as itself or base class.
+Pure virtual functions void function() = 0;
+Abstract classes. (Mix of pure virtual and normal member functions) AMateria
+Interfaces. Classes with just abstract member functions; ICharacter
+

@@ -38,3 +38,34 @@ que this-> (lo que sea), no quede asignado a NADA.
 Vector add(const Vector & rhs) const
 
 Tengo un vector con cordenadas, y voy a metere un metodo para añadirle vectores.
+
+
+
+
+#include "Animal.hpp"
+
+int	main(void)
+{
+	std::string str("string ORIGEN");
+	std::cout << "puntero de string origen	" << &str << std::endl;
+std::cout << "-------------" << std::endl;
+
+	Animal a("zzz");
+	std::cout << "puntero de string clase   	" << &a._type << std::endl;
+	std::cout << "valor de string clase   	" << a.getType() << std::endl;
+	a.setType(str);
+	std::cout << "valor de string clase   	" << a.getType() << std::endl;
+	std::cout << "puntero de string clase   	" << &a._type << std::endl;
+	std::cout << "-------------" << std::endl;
+	a._type = "cambiamos el string";
+	std::cout << a.getType() << std::endl;
+	std::cout << "valor de string clase   	" << a.getType() << std::endl;
+
+	std::cout << "puntero de string clase   	" << &a._type << std::endl;
+	std::cout << "valor de string origen" << a.getType() << std::endl;
+
+	std::cout << str << std::endl;
+
+}
+
+Mas notas de const ref en 0classGenerator

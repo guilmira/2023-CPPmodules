@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.cpp                                      :+:      :+:    :+:   */
+/*   AMateria.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 
-#include "Animal.hpp"
+#include "AMateria.hpp"
 
 /* CLASS DEFINITION. */
 
@@ -19,54 +19,62 @@
 static void ilog(const std::string & name, const std::string & msg)
 {
 	
-	std::cout << "[Class]Animal - [Instance]" << name << " |	"\
+	std::cout << "[Class]AMateria - [Instance]" << name << " |	"\
 	<< msg << std::endl;
 }
 /* --------------------------------- CONSTRUCTORS --------------------------------- */
-Animal::Animal()
+/* AMateria::AMateria()
 	: _instance_name("Default")
 {
 	ilog(getName(), "Constructed⚪");
 	return ;
-}
+} */
 
-Animal::Animal(std::string const & instance_name)
-	: _instance_name(instance_name)
+/* AMateria::AMateria(std::string const & name)
+	: _name(name)
 {
 	ilog(getName(), "Overload constructed⚪");
 	return ;
-}
+} */
 /* --------------------------------- DESTRUCTOR --------------------------------- */
-Animal::~Animal()
+AMateria::~AMateria()
 {
 	ilog(getName(), "-Destructed⭕");
 	return ;
 }
 /* White and red dots means default constructed or destructed */
 /* ------------------COPY CONSTRUCTOR AND ASSIGN OVERLOAD OPERATOR------------------ */
-Animal::Animal(Animal const &src)
+/* AMateria::AMateria(AMateria const &src)
 {
 	*this = src;
 	ilog(getName(), "Copy constructed");
 	return ;
-}
+} */
 /* Overload actually is previous to copy constructor, since cc uses the assign operator. */
-Animal & Animal::operator=(Animal const &rhs)
+AMateria & AMateria::operator=(AMateria const &rhs)
 {
 	ilog(getName(), "[=] Assignation operator called");
 	if (this != &rhs)
-		this->_instance_name = rhs.getName();
+		this->_name = rhs.getName();
 	return (*this);
 }
 /* --------------------------------- GET | SET --------------------------------- */
-std::string const & Animal::getName() const
+std::string const & AMateria::getName() const
 {
-	return (this->_instance_name);
+	return (this->_name);
 }
 
-void Animal::setName(std::string name)
+void AMateria::setName(std::string &name)
 { 
-	this->_instance_name = name;
+	this->_name = name;
 }
 /* --------------------------------- METHODS --------------------------------- */
-
+void AMateria::use(ICharacter & target)
+{
+	if (getName().compare("firaga"))
+		std::cout << getName() << " casted! A firey torando advances towads " << target.getName() << std::endl;
+	else if(getName().compare("esuna"))
+		std::cout << getName() << " casted! Healte blindness of " << target.getName() << std::endl;
+	else
+		std::cout << getName() << "not casted! Does not exist." << target.getName() << std::endl;
+}

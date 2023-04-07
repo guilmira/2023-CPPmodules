@@ -6,11 +6,11 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 12:55:06 by guilmira          #+#    #+#             */
-/*   Updated: 2023/04/05 15:46:14 by guilmira         ###   ########.fr       */
+/*   Updated: 2023/04/07 14:15:11 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "CanonicalGen.hpp"
+#include "canonicalGen.hpp"
 
 /* Size_t es literal un typdef para unsigned long en c++. Ayuda con la portabilidad. Usado en todos los prototipos de funciones
 que usan contandor, que no será menos que 0. std::string::npos, es la N-position que alcanza cuando no se ha encontrado lo buscado.
@@ -75,6 +75,8 @@ int main(void)
 	std::ifstream	inlet_file;
 	std::ofstream	outlet_file;
 	
+	while (1)
+	{
 	define_class_names(old_class_name, new_class_name);
 	open_files(old_class_name[1], new_class_name[1], inlet_file, outlet_file);
 	ft_replace(inlet_file, outlet_file, old_class_name, new_class_name);
@@ -82,6 +84,9 @@ int main(void)
 	outlet_file.close();
 	open_files(old_class_name[2], new_class_name[2], inlet_file, outlet_file);
 	ft_replace(inlet_file, outlet_file, old_class_name, new_class_name);
+	inlet_file.close();
+	outlet_file.close();
+	}
 	return (0);
 }
 

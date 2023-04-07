@@ -1,37 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Canonical.hpp                                      :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/04 13:05:49 by guilmira          #+#    #+#             */
-/*   Updated: 2023/04/07 12:32:42 by guilmira         ###   ########.fr       */
+/*   Created: 2023/04/07 09:53:23 by guilmira          #+#    #+#             */
+/*   Updated: 2023/04/07 10:54:56 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CANONICAL_HPP
-#define	CANONICAL_HPP
-
 #include <iostream>
-#include <string>
 
-/* CLASS DECLARATION. */
-class Canonical
+template<typename T>
+class Warrior
 {
 	public:
-		Canonical();
-		Canonical(std::string const & name);
-		~Canonical();
-		Canonical(Canonical const &src);
-		Canonical & operator=(Canonical const &rhs);
-
-		std::string const &	getName() const;
-		void				setName(std::string const &name);
-
-	
-	private:
-		std::string _name;
+		T _array[4];
 };
 
-#endif
+int main(void)
+{
+	Warrior<int> w;
+	std::cout << w._array[0] << std::endl;
+
+	
+	
+	return (0);
+}

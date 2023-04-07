@@ -5,33 +5,27 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/06 11:36:28 by guilmira          #+#    #+#             */
-/*   Updated: 2023/04/06 15:14:42 by guilmira         ###   ########.fr       */
+/*   Created: 2022/05/15 22:04:27 by guilmira          #+#    #+#             */
+/*   Updated: 2023/04/07 13:41:12 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Animal.hpp"
-#include "Dog.hpp"
-#include "Brain.hpp"
 
-int main(void)
+#include <string>
+
+int	main(void)
 {
+	
+	Animal cow("Big cow");
+	std::string *ptr_str;
 
-	//Animal a;
-	Dog doggo("hdp");
+	std::cout << "valor de atributo string: " << cow.getType() << std::endl;
+	ptr_str = (std::string *) & cow.getType();
+	ptr_str->append("CAMBIO");
+	std::cout << "valor de atributo string: " << cow.getType() << std::endl;
 
-	//Brain();
+}
 
-}	
-
-
-	/* Dog mastin("mastin");
-	Dog doggo("doggo");
-	mastin.makeSound();
-
-	mastin = doggo;
-	mastin.makeSound();
-	return (0);
-} */
 
 

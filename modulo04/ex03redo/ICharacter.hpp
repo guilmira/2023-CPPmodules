@@ -1,42 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Dog.hpp                                      :+:      :+:    :+:   */
+/*   ICharacter.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 13:05:49 by guilmira          #+#    #+#             */
-/*   Updated: 2023/04/05 12:47:05 by guilmira         ###   ########.fr       */
+/*   Updated: 2023/04/07 12:32:42 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DOG_HPP
-#define	DOG_HPP
+#ifndef ICHARACTER_HPP
+#define	ICHARACTER_HPP
 
 #include <iostream>
 #include <string>
-
-#include "Animal.hpp"
-#include "Brain.hpp"
+#include "AMateria.hpp"
 
 /* CLASS DECLARATION. */
-class Dog : public Animal
+class ICharacter
 {
 	public:
-		Dog();
-		Dog(std::string const & name);
-		~Dog();
-		Dog(Dog const &src);
-		Dog & operator=(Dog const &rhs);
+		public:
+			virtual ~ICharacter() {}
+			virtual std::string const & getName() const = 0;
+			//virtual void equip(AMateria *m) = 0;
+			virtual void unequip(int idx) = 0;
+			virtual void use(int idx, ICharacter& target) = 0;
 
-		void makeSound() const
-		{
-			std::cout << "DOG BARKING:  " << getName() << std::endl;
-		}
-
+	
 	private:
-		Brain *brain_ptr;
-
+		std::string _name;
 };
 
 #endif

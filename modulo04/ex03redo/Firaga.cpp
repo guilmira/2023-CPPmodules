@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Canonical.cpp                                      :+:      :+:    :+:   */
+/*   Firaga.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 
-#include "Canonical.hpp"
+#include "Firaga.hpp"
 
 /* CLASS DEFINITION. */
 
@@ -19,39 +19,39 @@
 static void ilog(const std::string & name, const std::string & msg)
 {
 	
-	std::cout << "[Class]Canonical - [Instance]" << name << " |	"\
+	std::cout << "[Class]Firaga - [Instance]" << name << " |	"\
 	<< msg << std::endl;
 }
 /* --------------------------------- CONSTRUCTORS --------------------------------- */
-Canonical::Canonical()
+Firaga::Firaga()
 	: _name("Default")
 {
 	ilog(getName(), "Constructed⚪");
 	return ;
 }
 
-Canonical::Canonical(std::string const & instance_name)
+Firaga::Firaga(std::string const & instance_name)
 	: _name(instance_name)
 {
 	ilog(getName(), "Overload constructed⚪");
 	return ;
 }
 /* --------------------------------- DESTRUCTOR --------------------------------- */
-Canonical::~Canonical()
+Firaga::~Firaga()
 {
 	ilog(getName(), "-Destructed⭕");
 	return ;
 }
 /* White and red dots means default constructed or destructed */
 /* ------------------COPY CONSTRUCTOR AND ASSIGN OVERLOAD OPERATOR------------------ */
-Canonical::Canonical(Canonical const &src)
+Firaga::Firaga(Firaga const &src)
 {
 	*this = src;
 	ilog(getName(), "Copy constructed");
 	return ;
 }
 /* Overload actually is previous to copy constructor, since cc uses the assign operator. */
-Canonical & Canonical::operator=(Canonical const &rhs)
+Firaga & Firaga::operator=(Firaga const &rhs)
 {
 	ilog(getName(), "[=] Assignation operator called");
 	if (this != &rhs)
@@ -59,12 +59,12 @@ Canonical & Canonical::operator=(Canonical const &rhs)
 	return (*this);
 }
 /* --------------------------------- GET | SET --------------------------------- */
-std::string const & Canonical::getName() const
+std::string const & Firaga::getName() const
 {
 	return (this->_name);
 }
 
-void Canonical::setName(std::string const &name)
+void Firaga::setName(std::string const &name)
 { 
 	this->_name = name;
 }

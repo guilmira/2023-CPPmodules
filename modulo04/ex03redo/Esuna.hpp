@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Canonical.hpp                                      :+:      :+:    :+:   */
+/*   Esuna.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,21 +10,21 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CANONICAL_HPP
-#define	CANONICAL_HPP
+#ifndef ESUNA_HPP
+#define	ESUNA_HPP
 
 #include <iostream>
 #include <string>
 
 /* CLASS DECLARATION. */
-class Canonical
+class Esuna
 {
 	public:
-		Canonical();
-		Canonical(std::string const & name);
-		~Canonical();
-		Canonical(Canonical const &src);
-		Canonical & operator=(Canonical const &rhs);
+		Esuna();
+		Esuna(std::string const & name);
+		~Esuna();
+		Esuna(Esuna const &src);
+		Esuna & operator=(Esuna const &rhs);
 
 		std::string const &	getName() const;
 		void				setName(std::string const &name);

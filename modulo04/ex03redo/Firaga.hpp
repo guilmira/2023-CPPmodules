@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Canonical.hpp                                      :+:      :+:    :+:   */
+/*   Firaga.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,21 +10,21 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CANONICAL_HPP
-#define	CANONICAL_HPP
+#ifndef FIRAGA_HPP
+#define	FIRAGA_HPP
 
 #include <iostream>
 #include <string>
 
 /* CLASS DECLARATION. */
-class Canonical
+class Firaga
 {
 	public:
-		Canonical();
-		Canonical(std::string const & name);
-		~Canonical();
-		Canonical(Canonical const &src);
-		Canonical & operator=(Canonical const &rhs);
+		Firaga();
+		Firaga(std::string const & name);
+		~Firaga();
+		Firaga(Firaga const &src);
+		Firaga & operator=(Firaga const &rhs);
 
 		std::string const &	getName() const;
 		void				setName(std::string const &name);

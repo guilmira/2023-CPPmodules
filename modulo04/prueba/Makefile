@@ -6,11 +6,11 @@
 #    By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/17 10:57:42 by guilmira          #+#    #+#              #
-#    Updated: 2023/04/06 15:12:40 by guilmira         ###   ########.fr        #
+#    Updated: 2023/04/07 11:59:53 by guilmira         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= test
+NAME		= animal
 #--------------------------------------------------------------------------------------------------------------COMPILER
 CXX			= clang++
 CXXFLAGS	= -Wall -Wextra -Werror
@@ -19,7 +19,7 @@ CSANITIZE	= -fsanitize=address
 #--------------------------------------------------------------------------------------------------------------LIBS
 #INCLUDES	= -I ./0includes
 #--------------------------------------------------------------------------------------------------------------SOURCES
-CLASS		= Animal.cpp Dog.cpp Brain.cpp
+CLASS		= Animal.cpp
 SRCS		= main.cpp $(CLASS)
 OBJS		= $(SRCS:.cpp=.o)
 #--------------------------------------------------------------------------------------------------------------COMMANDS
@@ -38,11 +38,9 @@ san: $(OBJS)
 	$(CXX) $(CXXFLAGS) $(CSANITIZE) $(OBJS) -o $(NAME)
 	@echo $(GREEN) "$(NAME) compiled with santitize" $(NONE)
 
-exe: san
+exe: re
 	./$(NAME)
-	@$(REMOVE) *.o
-	@$(REMOVE) $(NAME)
-#mover solo el ejecutable
+
 leaks: re
 	./$(NAME)
 

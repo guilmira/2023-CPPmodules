@@ -6,11 +6,11 @@
 #    By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/17 10:57:42 by guilmira          #+#    #+#              #
-#    Updated: 2023/04/07 14:14:07 by guilmira         ###   ########.fr        #
+#    Updated: 2023/04/07 14:18:49 by guilmira         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= CanonicalGenerator
+NAME		= materia
 #--------------------------------------------------------------------------------------------------------------COMPILER
 CXX			= clang++
 CXXFLAGS	= -Wall -Wextra -Werror
@@ -19,8 +19,8 @@ CSANITIZE	= -fsanitize=address
 #--------------------------------------------------------------------------------------------------------------LIBS
 #INCLUDES	= -I ./0includes
 #--------------------------------------------------------------------------------------------------------------SOURCES
-CLASS		= 
-SRCS		= canonicalGen.cpp canonicalGenUtiles.cpp $(CLASS)
+CLASS		= AMateria.cpp Thief.cpp Firaga.cpp Esuna.cpp
+SRCS		= main.cpp $(CLASS)
 OBJS		= $(SRCS:.cpp=.o)
 #--------------------------------------------------------------------------------------------------------------COMMANDS
 REMOVE		= rm -rf
@@ -38,11 +38,9 @@ san: $(OBJS)
 	$(CXX) $(CXXFLAGS) $(CSANITIZE) $(OBJS) -o $(NAME)
 	@echo $(GREEN) "$(NAME) compiled with santitize" $(NONE)
 
-exe: san
+exe: re
 	./$(NAME)
-	@$(REMOVE) *.o
-	@$(REMOVE) $(NAME)
-#mover solo el ejecutable
+
 leaks: re
 	./$(NAME)
 
