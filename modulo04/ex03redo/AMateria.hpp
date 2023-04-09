@@ -21,10 +21,10 @@
 class AMateria
 {
 	public:
-		//AMateria();
-		//AMateria(std::string const & name);
+		AMateria();
+		AMateria(std::string const & name);
 		virtual ~AMateria();
-		//AMateria(AMateria const &src);
+		AMateria(AMateria const &src);
 		AMateria & operator=(AMateria const &rhs);
 
 		std::string const &	getName() const;

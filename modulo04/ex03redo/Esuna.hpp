@@ -15,9 +15,10 @@
 
 #include <iostream>
 #include <string>
+#include "AMateria.hpp"
 
 /* CLASS DECLARATION. */
-class Esuna
+class Esuna : public AMateria
 {
 	public:
 		Esuna();
@@ -26,12 +27,8 @@ class Esuna
 		Esuna(Esuna const &src);
 		Esuna & operator=(Esuna const &rhs);
 
-		std::string const &	getName() const;
-		void				setName(std::string const &name);
-
-	
-	private:
-		std::string _name;
+		AMateria *clone() const;
+		void use(ICharacter & target);
 };
 
 #endif

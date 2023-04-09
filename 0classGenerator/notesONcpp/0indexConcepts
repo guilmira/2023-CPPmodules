@@ -6,7 +6,7 @@ Object = Instance
 --------------------------------------------------------------
 
 CLASS ARQUITECTURE
-Constructor
+Constructor (Each class has an implict construtor if not specified)
 Constructor overload - (takes parameters);
 Destructor;
 Constructor copy		  
@@ -20,6 +20,11 @@ Member attributes
 
 Constructor copy and overload = share the same input. (Canonical const &src);
 The class passed as a const reference.
+
+DEEPCOPY
+for assgin operator (used in copy construtor). if the class only has an attributes member lika a string, its enough to just copy it.
+But if it has lets say, an inventory, or array of five materias that were allocated with new, we should not jus
+copy the pointer. Its neccessary a deep copy that allocates on all of those new materias for the inventory.
 
 --------------------------------------------------------------
 
@@ -35,3 +40,26 @@ Pure virtual functions void function() = 0;
 Abstract classes. (Mix of pure virtual and normal member functions) AMateria
 Interfaces. Classes with just abstract member functions; ICharacter
 
+CONST reference
+check all the notes in the exercies for constant reference.
+
+New and delete
+Deleting a null pointer has no effect. It's not good coding style necessarily because it's not needed, but it's not bad either.
+
+If you are searching for good coding practices consider using smart pointers instead so then you don't need to delete at all.
+
+
+
+FILES
+#include <fstream>
+
+std::ifstream inlet;
+ifstream y ofstream para ficheros de input y output.
+si vas a pasarlos como parametros de funcion, recuerda que tienen que ser por referencia o da error de compilacion.
+Tambien recuerda que lanzan excepciones. pero para ello hay que activarlas con funciones.
+
+
+
+TRY-CATCH    Y throw
+Explicado en un main. Se puede lanzar lo que sea que sea. Un objeto, un int, lo que quieras. Y el catch lo recoje y ahi ya gestionas.
+Es muy sencillo, aunque consume recursos, al menos mas que gestionar con booleanos.

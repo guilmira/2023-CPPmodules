@@ -19,19 +19,19 @@
 static void ilog(const std::string & name, const std::string & msg)
 {
 	
-	std::cout << "[Class]Firaga - [Instance]" << name << " |	"\
+	std::cout << "[Class]Firaga	- [Instance]" << name << "	|	"\
 	<< msg << std::endl;
 }
 /* --------------------------------- CONSTRUCTORS --------------------------------- */
 Firaga::Firaga()
-	: _name("Default")
+	: AMateria()
 {
 	ilog(getName(), "Constructed⚪");
 	return ;
 }
 
 Firaga::Firaga(std::string const & instance_name)
-	: _name(instance_name)
+	: AMateria(instance_name)
 {
 	ilog(getName(), "Overload constructed⚪");
 	return ;
@@ -59,14 +59,15 @@ Firaga & Firaga::operator=(Firaga const &rhs)
 	return (*this);
 }
 /* --------------------------------- GET | SET --------------------------------- */
-std::string const & Firaga::getName() const
-{
-	return (this->_name);
-}
 
-void Firaga::setName(std::string const &name)
-{ 
-	this->_name = name;
-}
 /* --------------------------------- METHODS --------------------------------- */
+AMateria *Firaga::clone() const
+{
+	std::cout << "Cloning materia " << getName() << std::endl;
+	return (new Firaga(*this));
+}
 
+void Firaga::use(ICharacter & target)
+{
+	std::cout << getName() << " casted! A firey tornado flies towards " << target.getName() << std::endl;
+}

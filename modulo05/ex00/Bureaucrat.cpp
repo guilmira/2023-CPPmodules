@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/15 22:04:27 by guilmira          #+#    #+#             */
-/*   Updated: 2022/07/19 12:19:17 by guilmira         ###   ########.fr       */
+/*   Updated: 2023/04/09 02:07:19 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,8 @@ void Bureaucrat::setGrade(int x)
 	this->_grade = x;
 	this->ft_throw();
 }
+
+
 
 
 /* --------------------------------- SPECIFIC EXCEPTIONS --------------------------------- */

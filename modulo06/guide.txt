@@ -29,3 +29,7 @@ Its the one for class heritage, UPCASTING, DOWNCASTING between classes, and so o
 
 Finally, have the concepts clear regarding herarchy and UPCASTING and DOWNCASTING
 You can cast an int *ptr to a void *second_ptr; But not the other way around.
+
+You can cast a child to its parent class, but you should not do that the other way round.
+
+There is a warning for the compiler in c to prevent implicit cast (conversion type, when you loose accuracy (from double to int for examplo))

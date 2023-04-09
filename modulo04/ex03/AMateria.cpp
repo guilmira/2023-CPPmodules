@@ -127,6 +127,10 @@ AMateria* Ice::clone() const
 	return (ice_ptr);
 }
 
+/* Una forma que deduje solo sería:
+return (new Firaga(*this));
+Se deja la antigua por readability */
+
 void Ice::use(ICharacter& target)
 {
 	std::cout << BLUE << "* shoots an ice bolt at " << target.getName() << " *" << END << std::endl;

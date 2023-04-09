@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 09:53:23 by guilmira          #+#    #+#             */
-/*   Updated: 2023/04/09 18:24:16 by guilmira         ###   ########.fr       */
+/*   Updated: 2023/04/09 03:27:39 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,48 +39,35 @@ struct Entity
 
 };
 
-class Parent {};
-class Derived : public Parent {};
-class None {
-	 virtual void ft_what(void)
-	 {
-		std::cout << "⭕OUTPUT⭕" << std::endl;
-	 }
-};
 int main(void)
 {
-	
-	None z;
-	(void)z;
-	try
-	{
-	Parent &ref = dynamic_cast<Parent &>(z);
-		/* code */
-	std::cout << &ref << std::endl;
-	std::cout << "⭕OUTPUT⭕" << std::endl;
-	}
-	catch (std::bad_cast &e)
-	{
-		std::cout << e.what() << std::endl;
-	}
+	Entity entity = {5, 42};
 
 
-	int a = 42;
+	long *d = (long *) &entity;
 
-	double b;
+	int *array = (int *) &entity;
 
-	b = static_cast<double>(a);
+	int new_y = *(((char *) &entity) + 4);
 
-	int c;
-	c = static_cast<double>(b);
-	std::cout << b << std::endl;
-	std::cout << c << std::endl;
+	std::cout << entity.x << std::endl;	
+	std::cout << entity.y << std::endl;	
+	std::cout << &entity.x << std::endl;	
+	std::cout << &entity.y << std::endl;
 
+	std::cout << *d << std::endl;
+	std::cout << array[1] << std::endl;
+	std::cout << new_y << std::endl;
 
+	int *ptr_array;
+	ptr_array = entity.get_array();
+	std::cout << ptr_array[0] << std::endl;
+	std::cout << ptr_array[1] << std::endl;
 
-
-
-	
+	int *ptr_array2;
+	ptr_array2 = entity.get_array2();
+	std::cout << ptr_array2[0] << std::endl;
+	std::cout << ptr_array2[1] << std::endl;
 
 	return (0);
 }

@@ -18,24 +18,24 @@
 /* ilog = instance log */
 static void ilog(const std::string & name, const std::string & msg)
 {
+	std::cout << "[Class]AMateria	- [Instance]" << name << "	|	"\
 	
-	std::cout << "[Class]AMateria - [Instance]" << name << " |	"\
 	<< msg << std::endl;
 }
 /* --------------------------------- CONSTRUCTORS --------------------------------- */
-/* AMateria::AMateria()
-	: _instance_name("Default")
+AMateria::AMateria()
+	: _name("Default")
 {
 	ilog(getName(), "Constructed⚪");
 	return ;
-} */
+}
 
-/* AMateria::AMateria(std::string const & name)
+AMateria::AMateria(std::string const & name)
 	: _name(name)
 {
 	ilog(getName(), "Overload constructed⚪");
 	return ;
-} */
+}
 /* --------------------------------- DESTRUCTOR --------------------------------- */
 AMateria::~AMateria()
 {
@@ -44,12 +44,12 @@ AMateria::~AMateria()
 }
 /* White and red dots means default constructed or destructed */
 /* ------------------COPY CONSTRUCTOR AND ASSIGN OVERLOAD OPERATOR------------------ */
-/* AMateria::AMateria(AMateria const &src)
+AMateria::AMateria(AMateria const &src)
 {
 	*this = src;
 	ilog(getName(), "Copy constructed");
 	return ;
-} */
+}
 /* Overload actually is previous to copy constructor, since cc uses the assign operator. */
 AMateria & AMateria::operator=(AMateria const &rhs)
 {
@@ -71,10 +71,5 @@ void AMateria::setName(std::string &name)
 /* --------------------------------- METHODS --------------------------------- */
 void AMateria::use(ICharacter & target)
 {
-	if (getName().compare("firaga"))
-		std::cout << getName() << " casted! A firey torando advances towads " << target.getName() << std::endl;
-	else if(getName().compare("esuna"))
-		std::cout << getName() << " casted! Healte blindness of " << target.getName() << std::endl;
-	else
-		std::cout << getName() << "not casted! Does not exist." << target.getName() << std::endl;
+	std::cout << getName() << "not casted! Does not exist." << target.getName() << std::endl;
 }

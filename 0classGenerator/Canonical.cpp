@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 13:05:40 by guilmira          #+#    #+#             */
-/*   Updated: 2023/04/07 12:46:00 by guilmira         ###   ########.fr       */
+/*   Updated: 2023/04/09 00:30:56 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 static void ilog(const std::string & name, const std::string & msg)
 {
 	
-	std::cout << "[Class]Canonical - [Instance]" << name << " |	"\
+	std::cout << "[Class]Canonical	- [Instance]" << name << "	|	"\
 	<< msg << std::endl;
 }
 /* --------------------------------- CONSTRUCTORS --------------------------------- */

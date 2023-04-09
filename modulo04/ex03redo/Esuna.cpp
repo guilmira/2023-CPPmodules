@@ -18,20 +18,20 @@
 /* ilog = instance log */
 static void ilog(const std::string & name, const std::string & msg)
 {
+	std::cout << "[Class]Esuna	- [Instance]" << name << "	|	"\
 	
-	std::cout << "[Class]Esuna - [Instance]" << name << " |	"\
 	<< msg << std::endl;
 }
 /* --------------------------------- CONSTRUCTORS --------------------------------- */
 Esuna::Esuna()
-	: _name("Default")
+	: AMateria()
 {
 	ilog(getName(), "Constructed⚪");
 	return ;
 }
 
 Esuna::Esuna(std::string const & instance_name)
-	: _name(instance_name)
+	: AMateria(instance_name)
 {
 	ilog(getName(), "Overload constructed⚪");
 	return ;
@@ -59,14 +59,15 @@ Esuna & Esuna::operator=(Esuna const &rhs)
 	return (*this);
 }
 /* --------------------------------- GET | SET --------------------------------- */
-std::string const & Esuna::getName() const
-{
-	return (this->_name);
-}
 
-void Esuna::setName(std::string const &name)
-{ 
-	this->_name = name;
-}
 /* --------------------------------- METHODS --------------------------------- */
+AMateria *Esuna::clone() const
+{
+	std::cout << "Cloning materia " << getName() << std::endl;
+	return (new Esuna(*this));
+}
 
+void Esuna::use(ICharacter & target)
+{
+	std::cout << getName() << " casted! Healed blindness of " << target.getName() << std::endl;
+}

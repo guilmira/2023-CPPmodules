@@ -19,7 +19,7 @@
 static void ilog(const std::string & name, const std::string & msg)
 {
 	
-	std::cout << "[Class]Thief - [Instance]" << name << " |	"\
+	std::cout << "[Class]Thief	- [Instance]" << name << "	|	"\
 	<< msg << std::endl;
 }
 /* --------------------------------- CONSTRUCTORS --------------------------------- */
@@ -61,9 +61,15 @@ Thief & Thief::operator=(Thief const &rhs)
 	if (this != &rhs)
 	{
 		this->_name = rhs.getName();
-/* 	for (int i = 0; i < MAX_MATERIA; i++)
-		inventory[i] = rhs.inventory[i]->clone(); */
-
+		for (size_t i = 0; i < MAX_MATERIA; i++)
+		{
+			if (inventory[i])
+				delete inventory[i];
+			if (rhs.inventory[i])
+				inventory[i] = rhs.inventory[i]->clone();
+			else
+				inventory[i] = NULL;
+		}
 	}
 	return (*this);
 }
@@ -81,21 +87,48 @@ void Thief::setName(std::string const &name)
 
 void Thief::equip(AMateria *m)
 {
-	for (size_t i = 0; i < MAX_MATERIA; i++)
-	{		
-		if (inventory[i])
-			inventory[i] = m;
-	}
+	int i;
 
+	i = -1;
+	for (size_t j = 0; j < MAX_MATERIA; j++)
+	{
+		if (m == inventory[j])
+		{
+		std::cout << "Materia already equiped" << std::endl;
+		return ;
+		}
+	}
+	while (++i < MAX_MATERIA)
+	{
+		if (!inventory[i])
+		{
+			inventory[i] = m;
+			std::cout << "Materia equiped" << std::endl;
+			return ;
+		}
+	}
+	if (i == MAX_MATERIA)
+	{
+		std::cout << "Materia not equiped. No slots left" << std::endl;
+	}
 }
 void Thief::unequip(int idx)
 {
-	inventory[idx] = NULL;
+	if (inventory[idx])
+		inventory[idx] = NULL;
+	else
+		std::cout << "Nothing to unequip at index " << idx << std::endl;
 }
 void Thief::use(int idx, ICharacter& target)
 {
-	std::cout << getName() << "concentrates... ";
+	if (inventory[idx])
+	{
+	std::cout << getName() << " concentrates... ";
 	inventory[idx]->use(target);
+	}
+	else
+		std::cout << "Nothing to use at that slot." << std::endl;
+
 }
 
 

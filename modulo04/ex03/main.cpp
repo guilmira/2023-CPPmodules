@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/15 22:04:27 by guilmira          #+#    #+#             */
-/*   Updated: 2022/07/18 09:48:53 by guilmira         ###   ########.fr       */
+/*   Updated: 2023/04/09 00:24:26 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	main(void)
 	
 	c1 = src->createMateria(ICE);
 	c2 = src->createMateria(CURE);
-	c3 = src->createMateria(FIRA);
+	c3 = src->createMateria("ultra gravity");
 	c3 = NULL;
 	std::cout << "----------------------------------------------" << std::endl;
 	ICharacter *squall = new Fighter("Squall");
@@ -65,10 +65,15 @@ int	main(void)
 	delete squall;
 	delete rinoa;
 	delete seif;
-	delete src;
 	delete c1;
 	delete c2;
+	/* delete c3;
+	c3 is meant not to be available for creation;
+	hacer un delete de c3 no tiene efecto, porque un delte sobre un NULL pointer no tiene efecto, es valido
+	createMateria devuelve NULL si no matchea, asi que no problem. */
 	std::cout << "----------------------------------------------" << std::endl;
+	std::cout << "----------------------------------------------" << std::endl;
+	delete src;
 	}
 	return (0);
 }

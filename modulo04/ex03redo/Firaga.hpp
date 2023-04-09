@@ -15,9 +15,10 @@
 
 #include <iostream>
 #include <string>
+#include "AMateria.hpp"
 
 /* CLASS DECLARATION. */
-class Firaga
+class Firaga : public AMateria
 {
 	public:
 		Firaga();
@@ -26,12 +27,8 @@ class Firaga
 		Firaga(Firaga const &src);
 		Firaga & operator=(Firaga const &rhs);
 
-		std::string const &	getName() const;
-		void				setName(std::string const &name);
-
-	
-	private:
-		std::string _name;
+		AMateria *clone() const;
+		void use(ICharacter & target);
 };
 
 #endif

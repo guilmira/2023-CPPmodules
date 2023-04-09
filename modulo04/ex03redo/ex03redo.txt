@@ -1,0 +1,3 @@
+Exercise is remade from scratch without looking at first code.
+Some memory related issues are handed differently.
+Using the ame 

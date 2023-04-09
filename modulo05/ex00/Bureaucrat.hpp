@@ -50,7 +50,7 @@ class Bureaucrat
 				GradeTooLowException();
 				virtual const char *what() const throw();
 		};
-
+		
 	private:
 		const std::string	_name;
 		int			_grade;
