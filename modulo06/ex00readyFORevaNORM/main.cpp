@@ -1,40 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Conver.hpp                                          :+:      :+:    :+: */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/15 22:04:27 by guilmira          #+#    #+#             */
-/*   Updated: 2022/05/16 14:13:07 by guilmira         ###   ########.fr       */
+/*   Updated: 2023/04/16 17:15:15 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CONVER_HPP
-#define CONVER_HPP
-
 #include <iostream>
-#include <stdexcept>
+#include "Caster.hpp"
 
-class Conver
+/* Main fit for evaluation */
+int	main(int argc, char **argv)
 {
-	public:
-		Conver();
-		Conver(std::string str);
-		~Conver();
-		Conver(Conver const &src);
-		Conver & operator=(Conver const &rhs);
+	Caster caster(argv[1]);
+	
+	if (argc != 2)
+	{
+		std::cout << "2 arguments allowed." << std::endl;
+		return (0);
+	}
+	caster.InputtoChar();
+	caster.displayAll();
+	return (0);
+}
 
-		std::string getArg() const;
-
-		void		conChar() const;
-		void		conInt() const;
-		void		conFloat() const;
-		void		conDouble() const;
-		void		display() const;
-
-	private:
-		std::string	_arg;
-};
-
-#endif
+/* Main fit for testing */
+#include <fstream>
+/* int	main(void)
+{
+	std::ifstream input("test.txt");
+	std::string line;
+	Caster *c;
+	
+	while (std::getline(input, line))
+	{
+		std::cout << "----------------------------" << std::endl;
+		c = new Caster(line);
+		c->InputtoChar();
+		c->displayAll();
+		delete c;
+	}
+	return (0);
+} */

@@ -15,8 +15,7 @@
 
 /* CLASS DEFINITION. */
 
-#define MIN_CHAR ' '
-#define MAX_CHAR '~'
+
 
 /* ilog = instance log */
 static void ilog(const std::string & name, const std::string & msg)
@@ -27,14 +26,14 @@ static void ilog(const std::string & name, const std::string & msg)
 }
 /* --------------------------------- CONSTRUCTORS --------------------------------- */
 Caster::Caster()
-	: _name("Default"), _x(0), _nb(0)
+	: flag(0), _name("Default"), _x(0), _nb(0)
 {
 	ilog(getName(), "Constructed⚪");
 	return ;
 }
 
 Caster::Caster(std::string const & instance_name)
-	: _name(instance_name), _x(0), _nb(0)
+	: flag(0), _name(instance_name), _x(0), _nb(0)
 {
 	ilog(getName(), "Overload constructed⚪");
 	return ;
@@ -100,14 +99,14 @@ void Caster::InputtoDouble()
 	try
 	{
 		_nb = std::stod(getName(), 0);
-		
 	}
 	catch(const std::exception& e)
 	{
-		flag = 1;
-		std::cerr << e.what() << '\n';
+		flag++;
 		_x = 0;
 	}
+	if (_nb != _nb)
+		flag--;
 }
 
 
@@ -116,7 +115,7 @@ void	Caster::InputtoChar()
 	char z;
 	std::string name(getName());
 
-	if (name.size() == 1)
+	if (name.size() == 1 && name[0] != '0')
 	{
 		z = name[0];
 		if (MIN_CHAR <= z && z <= MAX_CHAR )
@@ -127,6 +126,8 @@ void	Caster::InputtoChar()
 	if (!_x)
 		InputtoDouble();
 }
+/* --------------------------------- Display --------------------------------- */
+
 
 void	Caster::displayChar() const
 {
@@ -136,13 +137,20 @@ void	Caster::displayChar() const
 	x = getX();
 	if (x)
 		std::cout << "'" << x << "'";
-	else if (MIN_CHAR <= x && x <= MAX_CHAR )
+	else if (MIN_CHAR <= x && x <= MAX_CHAR)
 		std::cout << "Non displayable.";
 	else if (static_cast<int>(_nb))
 	{
 		x = static_cast<int>(_nb);
 		if (MIN_CHAR <= x && x <= MAX_CHAR )
 			std::cout << "'" << x << "'";
+		else
+			std::cout << "Impossible.";
+	}
+	else
+	{
+		if (getName()[0] == '0')
+			std::cout << "Non displayable.";
 		else
 			std::cout << "Impossible.";
 	}
@@ -171,6 +179,33 @@ void	Caster::displayInt() const
 	std::cout << std::endl;
 }
 
+static int is_inf(std::string const &str)
+{
+	if (str[0] == '+' || str[0] == '-' || str[0] == 'i')
+		return (1);
+	return (0);
+}
+
+static void solve_float(double db, std::string const & str)
+{
+	if (!db)
+		std::cout << "0.0f";
+	else if (std::numeric_limits<float>::min() < db && db < std::numeric_limits<float>::max())
+	{
+		std::cout << static_cast<float>(db);
+		if (static_cast<long>(db) == static_cast<float>(db))
+			std::cout << ".0";
+		std::cout << "f";
+	}
+	else
+	{
+		if (is_inf(str))
+			std::cout << str << "f";
+		else
+			std::cout << "Beyond limits.";	
+	}
+}
+
 void	Caster::displayFloat() const
 {
 	char	x;
@@ -181,21 +216,12 @@ void	Caster::displayFloat() const
 	db = getNb();
 	if (x)
 		std::cout << static_cast<float>(x) << ".0f";
-	else if (flag)
+	else if (flag > 0)
 		std::cout << "Impossible.";
+	else if (flag < 0)
+		std::cout << getName() << "f";
 	else
-	{
-		if (std::numeric_limits<float>::min() < _nb && _nb < std::numeric_limits<float>::max())
-			std::cout << static_cast<float>(db);
-		else
-		{
-			std::cout << "Beyond limits." << std::endl;
-			return ;
-		}
-		if (static_cast<int>(db) == static_cast<float>(db))
-			std::cout << ".0";
-		std::cout << "f";
-	}
+		solve_float(db, getName());
 	std::cout << std::endl;
 }
 
@@ -209,14 +235,22 @@ void	Caster::displayDouble() const
 	db = getNb();
 	if (x)
 		std::cout << static_cast<double>(x) << ".0";
-	else if (flag)
+	else if (flag > 0)
 		std::cout << "Impossible.";
+	else if (flag < 0)
+		std::cout << getName();
 	else
 	{
-		if (std::numeric_limits<double>::min() < _nb && _nb < std::numeric_limits<double>::max())
+		if (!db)
+			std::cout << "0.0";
+		else if (std::numeric_limits<double>::min() < _nb && _nb < std::numeric_limits<double>::max())
+		{
 			std::cout << db;
-		if (static_cast<int>(db) == db)
-			std::cout << ".0";
+			if (static_cast<int>(db) == db)
+				std::cout << ".0";
+		}
+		else
+			std::cout << getName();
 	}
 	std::cout << std::endl;
 }
@@ -228,25 +262,3 @@ void	Caster::displayAll() const
 	displayFloat();
 	displayDouble();
 }
-
-/* esto se puede pero no es necesario, porque todo lo vas a gestionar igual
-try
-	{
-		i = std::stoi(getName());
-	}
-	catch(const std::invalid_argument& e)
-	{
-		std::cerr << e.what() << '\n';
-		return (-1);
-	}
-	catch(const std::out_of_range & e)
-	{
-		std::cerr << e.what() << '\n';
-		return (-1);
-	}
-	catch(const std::exception& e)
-	{
-		std::cout << "⭕OUTPUT⭕" << std::endl;
-		std::cerr << e.what() << '\n';
-		return (-1);
-	} */

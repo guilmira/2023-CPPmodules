@@ -63,3 +63,5 @@ Tambien recuerda que lanzan excepciones. pero para ello hay que activarlas con f
 TRY-CATCH    Y throw
 Explicado en un main. Se puede lanzar lo que sea que sea. Un objeto, un int, lo que quieras. Y el catch lo recoje y ahi ya gestionas.
 Es muy sencillo, aunque consume recursos, al menos mas que gestionar con booleanos.
+
+catch (...) significa catch all. captura todo, pero puede ser dificil de depurar.

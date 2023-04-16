@@ -15,9 +15,11 @@
 
 #include <iostream>
 #include <string>
-#include <iomanip> //to manipulate output, setting precision etc.
-#include <limits> //para los limites de ints etc
+#include <limits>
+/* For int, float and double limits std::numeric_limits<int>::min() (MIN INT*/
 
+#define MIN_CHAR ' '
+#define MAX_CHAR '~'
 /* CLASS DECLARATION. */
 class Caster
 {
