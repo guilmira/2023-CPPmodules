@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/15 22:04:27 by guilmira          #+#    #+#             */
-/*   Updated: 2022/05/16 14:13:07 by guilmira         ###   ########.fr       */
+/*   Updated: 2023/04/16 17:41:41 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,63 +19,44 @@ If the bit pattern doesn't match what would be expected
 for that type, the result will differ from the conversion 
 performed by static_cast<unsigned>. */
 
-struct Data
-{
-	int x;
-
-	Data(int i) : x(i) {};
-	~Data() {};
-
-	private:
-		Data() {};
-
-};
-
-
 
 /* Reinterpret cast: it will reinterpret any address, (pointer to int to float), to any other.
 The complier does not check. So that means, i could cast int * to void *, which is ok, or float * to double*, not ok. */
 //same with pointers to different classes.
-uintptr_t serialize(Data *ptr)
-{
-	uintptr_t id;
-
-	id = reinterpret_cast<uintptr_t>(ptr);
-	return (id);
-}
-
-Data *deserialize(uintptr_t raw)
-{
-	Data *ptr;
-
-	ptr = NULL;
-	ptr = reinterpret_cast<Data *>(raw);
-	return (ptr);
-}
-
 //https://stackoverflow.com/questions/37187060/why-is-this-an-error-static-castunsignedi
 
-
-
-int	main(void)
+struct Data
 {
-	uintptr_t 		id;
-	Data			*first_address;
-	Data			*second_address;
-	Data			test(1);
+	int a;
+};
 
 
-	first_address = &test;
-	id = serialize(first_address);
-	std::cout << first_address << std::endl;
-	std::cout << id << std::endl;
-	second_address = deserialize(id);
+uintptr_t serialize(Data *ptr)
+{
+	return (reinterpret_cast<uintptr_t>(ptr));
+}
+Data *deserialize(uintptr_t raw)
+{
+	return (reinterpret_cast<Data *>(raw));
+}
 
-	if (first_address == second_address)
-		std::cout << "functions are working\n";
-	else
-		std::cout << "functions are NOT working\n";
-	return (0);
+int main(void)
+{
+	Data d;
+	Data *ptr_d;
+	uintptr_t pointer_as_an_int;
+	
+	d.a = 42;
+	ptr_d = &d;
+	pointer_as_an_int = serialize(ptr_d);
+
+	std::cout << "⭕OUTPUT⭕" << std::endl;
+	std::cout << ptr_d << std::endl;
+	std::cout << pointer_as_an_int << std::endl;
+	std::cout << deserialize(pointer_as_an_int) << std::endl;
+	
+	if (ptr_d == deserialize(pointer_as_an_int))
+		std::cout << "Just as expected" << std::endl;
 }
 
 
