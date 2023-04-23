@@ -15,8 +15,6 @@
 
 /* CLASS DEFINITION. */
 
-
-
 /* ilog = instance log */
 static void ilog(const std::string & name, const std::string & msg)
 {
@@ -35,13 +33,11 @@ Caster::Caster()
 Caster::Caster(std::string const & instance_name)
 	: flag(0), _name(instance_name), _x(0), _nb(0)
 {
-	ilog(getName(), "Overload constructed⚪");
 	return ;
 }
 /* --------------------------------- DESTRUCTOR --------------------------------- */
 Caster::~Caster()
 {
-	ilog(getName(), "-Destructed⭕");
 	return ;
 }
 /* White and red dots means default constructed or destructed */

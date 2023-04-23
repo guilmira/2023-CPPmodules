@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/15 22:04:27 by guilmira          #+#    #+#             */
-/*   Updated: 2023/04/16 18:17:01 by guilmira         ###   ########.fr       */
+/*   Updated: 2023/04/23 16:18:29 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,21 +48,6 @@ Base *generate(void)
 		return (new C);
 }
 
-/* Gives back a ref. Its not const cause the dynamic cast cannot handle it. */
-Base &generate_by_ref(void)
-{
-	int random;
-
-	srand( time(NULL) );
-	random = rand() % 9 + 1;
-	if (random < 3)
-		return (* new A);
-	else if ( random < 6)
-		return (* new B);
-	else
-		return (* new C);
-}
-
 /* Instances of A, B, or C have been created. What we have,
 is a pointer to BASE class. Using dynamic cast, (that uses v-table, running time info
 we can determine what instance is it) */
@@ -101,20 +86,24 @@ void identify_by_reference(Base &p)
 	
 }
 
+void ft_leaks(void)
+{
+	system("leaks -q casts");
+}
+
 /* Interestingly enough, since the seed is based on time, it seems to 
 randomly generate always the same 2 types of instances. */
 int	main(void)
 {
-	Base *ptr;
+	Base	*ptr;
 	
 	ptr = generate();
 	identify(ptr);
 	delete ptr;
 	/* --------------- */
-	Base &reference = generate_by_ref();
-
+	ptr = generate();
+	Base &reference = *ptr;
 	identify_by_reference(reference);
-
-	
+	delete ptr;
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/15 22:04:27 by guilmira          #+#    #+#             */
-/*   Updated: 2023/04/16 18:22:24 by guilmira         ###   ########.fr       */
+/*   Updated: 2023/04/23 16:10:06 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ The complier does not check. So that means, i could cast int * to void *, which 
 struct Data
 {
 	int a;
+	int	b;
 };
 
 
@@ -42,22 +43,40 @@ Data *deserialize(uintptr_t raw)
 
 int main(void)
 {
-	Data d;
-	Data *ptr_d;
-	uintptr_t pointer_as_an_int;
+	Data		d;
+	Data		*ptr_d;
+	uintptr_t	pointer_as_an_int;
 	
 	d.a = 42;
+	d.b = 5;
 	ptr_d = &d;
-	pointer_as_an_int = serialize(ptr_d);
-
-	std::cout << "⭕OUTPUT⭕" << std::endl;
+	std::cout << "Original pointer" << std::endl;
 	std::cout << ptr_d << std::endl;
+	std::cout << "Type punning the pointer to data:" << std::endl;
+	std::cout << *reinterpret_cast<int *>(ptr_d) << std::endl;
+	std::cout << "How about if we use pointer arithmetic:" << std::endl;
+	std::cout << *(reinterpret_cast<int *>(ptr_d) + 1) << std::endl;
+	std::cout << "Yet, could we reinterpret to char?:" << std::endl;
+	std::cout << *(reinterpret_cast<char *>(ptr_d)) << std::endl;
+	std::cout << "Now feel the full strength of c++" << std::endl;
+	std::cout << *reinterpret_cast<int *>((reinterpret_cast<char *>(ptr_d) + 4)) << std::endl;
+	std::cout << "All right, back to bussiness//pointer serialized" << std::endl;
+	pointer_as_an_int = serialize(ptr_d);
 	std::cout << pointer_as_an_int << std::endl;
+	std::cout << "Value of the pointer deseriaized:" << std::endl;
 	std::cout << deserialize(pointer_as_an_int) << std::endl;
-	
+	std::cout << "Value is equal to original pointer" << std::endl;
 	if (ptr_d == deserialize(pointer_as_an_int))
 		std::cout << "Just as expected" << std::endl;
 }
+
+/* Check this who lines */
+/* std::cout << *ptr_d << std::endl;
+std::cout << *reinterpret_cast<int *>(ptr_d) << std::endl; */
+/* The first one will not compile. We cant read a dereferenced data struct
+because << is not overloaded for that. Yet, in the struct, there is nothing more
+than 2 ints, back to back. Thats what it is in memory. So i can type pun it and there we go, we
+can read the 42 and treat it just as if it were an int.*/
 
 
 /* What reinterpret cast does, its take whatever space in memory, 

@@ -6,32 +6,39 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/15 22:04:27 by guilmira          #+#    #+#             */
-/*   Updated: 2023/04/16 17:17:19 by guilmira         ###   ########.fr       */
+/*   Updated: 2023/04/23 16:18:24 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include "Caster.hpp"
+void ft_leaks(void)
+{
+	system("leaks -q casts");
+}
 
-/* Main fit for evaluation */
+/* Main for evaluation */
 int	main(int argc, char **argv)
 {
-	Caster caster(argv[1]);
-	
+	Caster *caster;
 	if (argc != 2)
 	{
 		std::cout << "2 arguments allowed." << std::endl;
 		return (0);
 	}
-	caster.InputtoChar();
-	caster.displayAll();
+	caster = new Caster(argv[1]);
+	caster->InputtoChar();
+	caster->displayAll();
+	delete caster;
 	return (0);
 }
 
 /* Main fit for testing */
-#include <fstream>
-/* int	main(void)
+/* #include <fstream>
+int	main(void)
 {
+	atexit(ft_leaks);
+
 	std::ifstream input("test.txt");
 	std::string line;
 	Caster *c;
@@ -44,5 +51,6 @@ int	main(int argc, char **argv)
 		c->displayAll();
 		delete c;
 	}
+	std::cout << "----------------------------" << std::endl;
 	return (0);
 } */
