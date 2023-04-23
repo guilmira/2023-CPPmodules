@@ -17,21 +17,32 @@
 #include <string>
 
 /* CLASS DECLARATION. */
+template<typename T>
 class Array
 {
 	public:
 		Array();
-		Array(std::string const & name);
+		Array(unsigned int N);
+		//Array(T const & ptr);
 		~Array();
-		Array(Array const &src);
-		Array & operator=(Array const &rhs);
+	/* 	Array(Array const &src);
+		Array & operator=(Array const &rhs); */
 
-		std::string const &	getName() const;
-		void				setName(std::string const &name);
+		T const &		getPtr() const;
+		void			setPtr(T const &ptr);
 
+		int const &		getSize() const;
+		void			setSize(int const &size);
+
+		void ilog(const std::string & msg)
+		{
 	
+			std::cout << "[Class]Array" << msg << std::endl;
+		}
+
 	private:
-		std::string _name;
+		T	*_ptr;
+		int	_size;
 };
 
 #endif

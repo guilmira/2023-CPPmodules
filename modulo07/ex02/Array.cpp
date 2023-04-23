@@ -16,57 +16,76 @@
 /* CLASS DEFINITION. */
 
 /* ilog = instance log */
-static void ilog(const std::string & name, const std::string & msg)
+/* static void ilog(const std::string & msg)
 {
 	
-	std::cout << "[Class]Array	- [Instance]" << name << "	|	"\
-	<< msg << std::endl;
-}
+	std::cout << "[Class]Array" << msg << std::endl;
+} */
 /* --------------------------------- CONSTRUCTORS --------------------------------- */
-Array::Array()
-	: _name("Default")
+template<typename T>
+Array<T>::Array()
+	: _ptr(new T), _size(1)
 {
-	ilog(getName(), "Constructed⚪");
+	ilog("Constructed⚪");
 	return ;
 }
 
-Array::Array(std::string const & instance_name)
-	: _name(instance_name)
+template<typename T>
+Array<T>::Array(unsigned int N)
+	: _ptr(new T[N]), _size(N)
 {
-	ilog(getName(), "Overload constructed⚪");
+	ilog("Overload constructed⚪");
 	return ;
 }
+
 /* --------------------------------- DESTRUCTOR --------------------------------- */
-Array::~Array()
+template<typename T>
+Array<T>::~Array()
 {
-	ilog(getName(), "-Destructed⭕");
+	ilog("-Destructed⭕");
 	return ;
 }
 /* White and red dots means default constructed or destructed */
 /* ------------------COPY CONSTRUCTOR AND ASSIGN OVERLOAD OPERATOR------------------ */
-Array::Array(Array const &src)
+/* template<typename T>
+Array<T>::Array(Array const &src)
 {
 	*this = src;
-	ilog(getName(), "Copy constructed");
+	ilog("Copy constructed");
 	return ;
-}
+} */
 /* Overload actually is previous to copy constructor, since cc uses the assign operator. */
-Array & Array::operator=(Array const &rhs)
+/* template<typename T>
+Array & Array<T>::operator=(Array const &rhs)
 {
-	ilog(getName(), "[=] Assignation operator called");
+	ilog("[=] Assignation operator called");
 	if (this != &rhs)
-		this->_name = rhs.getName();
+		this->_ptr = rhs.getPtr();
 	return (*this);
-}
+} */
 /* --------------------------------- GET | SET --------------------------------- */
-std::string const & Array::getName() const
+template<typename T>
+T const & Array<T>::getPtr() const
 {
-	return (this->_name);
+	return (this->_ptr);
 }
 
-void Array::setName(std::string const &name)
+template<typename T>
+void Array<T>::setPtr(T const &ptr)
 { 
-	this->_name = name;
+	this->_ptr = ptr;
+}
+
+template<typename T>
+int const & Array<T>::getSize() const
+{
+	return (this->_size);
+}
+
+template<typename T>
+void Array<T>::setSize(int const &size)
+{ 
+	this->_ptr = size;
 }
 /* --------------------------------- METHODS --------------------------------- */
 

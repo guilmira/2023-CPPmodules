@@ -72,7 +72,6 @@ de cada una de esas clases. */
 template<typename T>
 void	Tester<T>::ft_test()
 {
-			
 	Tester::_nbExamples++;
 	T x;
 	T y;

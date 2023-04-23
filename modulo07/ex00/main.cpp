@@ -6,13 +6,13 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/15 22:04:27 by guilmira          #+#    #+#             */
-/*   Updated: 2023/04/22 23:06:52 by guilmira         ###   ########.fr       */
+/*   Updated: 2023/04/23 17:00:36 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "whatever.hpp"
 
-int	main(void)
+/* int	main(void)
 {
 	Tester<int> testint1(1, 42);
 	Tester<int> testint2(11, 422);
@@ -25,9 +25,10 @@ int	main(void)
 	test2.ft_test();
 	testint3.ft_test();
 	test3.ft_test();
-}
+} */
 
-/* int main(void)
+/* For evaluation purposes */
+int main(void)
 {
 	int a = 2;
 	int b = 3;
@@ -44,4 +45,4 @@ int	main(void)
 	std::cout << "c = " << c << ", d = " << d << std::endl;
 	std::cout << "min( c, d ) = " << ::min( c, d ) << std::endl;
 	std::cout << "max( c, d ) = " << ::max( c, d ) << std::endl;
-} */
+}

@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 19:21:21 by guilmira          #+#    #+#             */
-/*   Updated: 2023/04/22 22:38:02 by guilmira         ###   ########.fr       */
+/*   Updated: 2023/04/23 17:04:46 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ void	template_add(T &x)
 
 /* std::cout << "si le metes un string llamo a la especialización y aqui no ha pasado nada. Si no la tuviese, te salta el compilador." << std::endl;
  */
+/* Hay especializaciones totales y especializaciones parciales.
+Funciona a través del nombre de la funcion o de la clase. Es una especie de overload. */
 template<>
 void	template_add(std::string &x)
 {
