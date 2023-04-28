@@ -51,7 +51,6 @@ class Array
 			T *ptr;
 
 			ptr = getPtr();
-			/* ilog("[ ] Square bracket operator called"); */
 			if (iterator >= getSize())
 			{
 				throw Array::Bounds();
@@ -59,7 +58,6 @@ class Array
 			else
 				return (*(ptr + iterator));
 		}
-
 
 		T *				getPtr() const				 { return (this->_ptr); }
 		void			setPtr(T *ptr) 				 { _ptr = ptr; }
@@ -91,14 +89,11 @@ class Array
 			array->_size = array_size;
 			for (size_t i = 0; i < rhs.getSize(); i++)
 				*ptr_dest++ = *ptr_source++;
-		}
-
-		
+		}	
 };
 
 /* Remember than what is a pure virtual function in the std::exception class.
 Therefore, u have to instanciate with the same exact prototype or the compiler will complain */
-
 
 /* Overloading << */
 template <typename T>
