@@ -1,0 +1,12 @@
+EXPLANATION. 
+si uno quiere usar templates con el .cpp,
+para poder compilar,
+tendras que poner un #include "Array.cpp" en el main (lo cual es mas sucio)
+por que? por que si no no te compila. va a buscar la funcion al PRECOMPILAR,
+porque es en este momento (en el momento en el que meteria los defines en c)
+en el que va a coger la template, y va a hacer el trabajo que haria un programador
+va a coger el typename T y lo va a sustituir por T, o sea, va a poner int, y entonces
+ya esta programada esa funcion.
+es decir, un template te ahorra escribir el codigo, pero ese codigo EXISTE.
+simplemente, lo hara el compilador en tiempo de PREcompilacion..
+por tanto, para tener un solo include, es necesario definir todo en el .hpp

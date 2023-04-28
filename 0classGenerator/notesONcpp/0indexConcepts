@@ -21,6 +21,11 @@ Member attributes
 Constructor copy and overload = share the same input. (Canonical const &src);
 The class passed as a const reference.
 
+
+/* To overload into std::ostream */
+/* std::ostream & operator<<(std::ostream &stream, Canonical const &rhs) */
+
+
 DEEPCOPY
 for assgin operator (used in copy construtor). if the class only has an attributes member lika a string, its enough to just copy it.
 But if it has lets say, an inventory, or array of five materias that were allocated with new, we should not jus

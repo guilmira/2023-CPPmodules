@@ -1,5 +1,5 @@
 #include "Fighter.hpp"
-//clang++ tester.cpp Fighter.cpp
+//clang++ cTester.cpp Fighter.cpp
 int main(void)
 {
 	{

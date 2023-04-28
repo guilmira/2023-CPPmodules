@@ -1,91 +1,70 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Array.cpp                                      :+:      :+:    :+:   */
+/*   Fighter.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 13:05:40 by guilmira          #+#    #+#             */
-/*   Updated: 2023/04/09 00:30:56 by guilmira         ###   ########.fr       */
+/*   Updated: 2023/04/28 22:18:42 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
-#include "Array.hpp"
+#include "Fighter.hpp"
 
 /* CLASS DEFINITION. */
-
-/* ilog = instance log */
-/* static void ilog(const std::string & msg)
-{
-	
-	std::cout << "[Class]Array" << msg << std::endl;
-} */
 /* --------------------------------- CONSTRUCTORS --------------------------------- */
-template<typename T>
-Array<T>::Array()
-	: _ptr(new T), _size(1)
+Fighter::Fighter()
+	: _name("Default")
 {
-	ilog("Constructed⚪");
+	ilog(getName(), "Constructed⚪");
 	return ;
 }
 
-template<typename T>
-Array<T>::Array(unsigned int N)
-	: _ptr(new T[N]), _size(N)
+Fighter::Fighter(std::string const & instance_name)
+	: _name(instance_name)
 {
-	ilog("Overload constructed⚪");
+	ilog(getName(), "Overload constructed⚪");
 	return ;
 }
-
 /* --------------------------------- DESTRUCTOR --------------------------------- */
-template<typename T>
-Array<T>::~Array()
+Fighter::~Fighter()
 {
-	ilog("-Destructed⭕");
+	ilog(getName(), "-Destructed⭕");
 	return ;
 }
 /* White and red dots means default constructed or destructed */
 /* ------------------COPY CONSTRUCTOR AND ASSIGN OVERLOAD OPERATOR------------------ */
-/* template<typename T>
-Array<T>::Array(Array const &src)
+Fighter::Fighter(Fighter const &src)
 {
 	*this = src;
-	ilog("Copy constructed");
+	ilog(getName(), "Copy constructed");
 	return ;
-} */
+}
 /* Overload actually is previous to copy constructor, since cc uses the assign operator. */
-/* template<typename T>
-Array & Array<T>::operator=(Array const &rhs)
+Fighter & Fighter::operator=(Fighter const &rhs)
 {
-	ilog("[=] Assignation operator called");
+	ilog(getName(), "[=] Assignation operator called");
 	if (this != &rhs)
-		this->_ptr = rhs.getPtr();
+		this->setName(rhs.getName());
 	return (*this);
-} */
+}
 /* --------------------------------- GET | SET --------------------------------- */
-template<typename T>
-T const & Array<T>::getPtr() const
+std::string const & Fighter::getName() const
 {
-	return (this->_ptr);
+	return (this->_name);
 }
 
-template<typename T>
-void Array<T>::setPtr(T const &ptr)
+void Fighter::setName(std::string const &name)
 { 
-	this->_ptr = ptr;
-}
-
-template<typename T>
-int const & Array<T>::getSize() const
-{
-	return (this->_size);
-}
-
-template<typename T>
-void Array<T>::setSize(int const &size)
-{ 
-	this->_ptr = size;
+	this->_name = name;
 }
 /* --------------------------------- METHODS --------------------------------- */
-
+/* ilog = instance log */
+void Fighter::ilog(const std::string & name, const std::string & msg) const
+{
+	
+	std::cout << "[Class]Fighter	- [Instance]" << name << "	|	"\
+	<< msg << std::endl;
+}
