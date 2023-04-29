@@ -6,13 +6,11 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/15 22:04:27 by guilmira          #+#    #+#             */
-/*   Updated: 2023/04/28 19:22:36 by guilmira         ###   ########.fr       */
+/*   Updated: 2023/04/29 11:50:56 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "iter.hpp"
-
-
 
 /* Typedef of how it would be done without templates
 Is just applying functions in a forloop. */

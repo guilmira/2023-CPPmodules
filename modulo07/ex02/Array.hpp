@@ -24,12 +24,7 @@ class Array
 		Array() : _ptr(new T[0]), _size(0) 					{ ilog("Constructed⚪"); } /* Notes ** */
 		Array(unsigned int N) : _ptr(new T[N]), _size(N) 	{ ilog("Overload constructed⚪"); }
 		~Array()  											{ ilog("-Destructed⭕"); delete [] _ptr; }
-
-		Array(Array const &src) : _ptr(NULL), _size(0)
-		{
-			*this = src;
-			ilog("Copy constructed");
-		}
+		Array(Array const &src) : _ptr(NULL), _size(0) 		{ ilog("Copy constructed"); *this = src; }
 
 		Array & operator=(Array const &rhs)
 		{

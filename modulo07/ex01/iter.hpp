@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 19:21:21 by guilmira          #+#    #+#             */
-/*   Updated: 2023/04/23 17:04:46 by guilmira         ###   ########.fr       */
+/*   Updated: 2023/04/29 11:46:30 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,5 @@ template<typename T>
 void iter(T *array, int size, void (*function)(T & ))
 {
 	for (int i = 0; i < size; i++)
-	{
 		function(array[i]);
-	}
 }

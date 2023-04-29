@@ -67,7 +67,7 @@ template<typename T>
 int	Tester<T>::_nbExamples = 0;
 
 /* se comprueba que la template genera codigo para cada tipo, y por tanto, habria 
-3 clases, int, float y char, y por tanto 3 variables estaicas, que can computando el neto
+3 clases, int, float y char, y por tanto 3 variables estaticas, que han computando el neto
 de cada una de esas clases. */
 template<typename T>
 void	Tester<T>::ft_test()
