@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Fighter.cpp                                      :+:      :+:    :+:   */
+/*   Span.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,61 +10,77 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
-#include "Fighter.hpp"
+#include "Span.hpp"
 
 /* CLASS DEFINITION. */
 /* --------------------------------- CONSTRUCTORS --------------------------------- */
-Fighter::Fighter()
-	: _name("Default")
+Span::Span()
 {
-	ilog(getName(), "Constructed⚪");
+	ilog("Constructed⚪");
 	return ;
 }
 
-Fighter::Fighter(std::string const & instance_name)
-	: _name(instance_name)
+Span::Span(unsigned int N)
+	: _v(N, 0)
 {
-	ilog(getName(), "Overload constructed⚪");
+	ilog("Overload constructed⚪");
 	return ;
 }
 /* --------------------------------- DESTRUCTOR --------------------------------- */
-Fighter::~Fighter()
+Span::~Span()
 {
-	ilog(getName(), "-Destructed⭕");
+	ilog("-Destructed⭕");
 	return ;
 }
 /* White and red dots means default constructed or destructed */
 /* ------------------COPY CONSTRUCTOR AND ASSIGN OVERLOAD OPERATOR------------------ */
-Fighter::Fighter(Fighter const &src)
+
+/* Usually i do not init in the copy constructor, and instead call assignation by means of *this = src; But in this case is abit more efficient like that and plus i want to ilustrate how the assignation operator = is overloaded for the class vector, making things really easy */
+Span::Span(Span const &src)
+	: _v(src.getVector())
 {
-	*this = src;
-	ilog(getName(), "Copy constructed");
+	ilog("Copy constructed");
 	return ;
 }
-/* Overload actually is previous to copy constructor, since cc uses the assign operator. */
-Fighter & Fighter::operator=(Fighter const &rhs)
+/* Easy assignation by using the overload of the class/template vector. */
+Span & Span::operator=(Span const &rhs)
 {
-	ilog(getName(), "[=] Assignation operator called");
+	ilog("[=] Assignation operator called");
 	if (this != &rhs)
-		this->setName(rhs.getName());
+	{
+		this->_v = rhs.getVector();
+	}
 	return (*this);
 }
 /* --------------------------------- GET | SET --------------------------------- */
-std::string const & Fighter::getName() const
+std::vector<int> const &	Span::getVector() const
 {
-	return (this->_name);
+	return (this->_v);
 }
 
-void Fighter::setName(std::string const &name)
+void						Span::setVector(std::vector<int> const &v)
 { 
-	this->_name = name;
+	this->_v = v;
 }
 /* --------------------------------- METHODS --------------------------------- */
 /* ilog = instance log */
-void Fighter::ilog(const std::string & name, const std::string & msg) const
+void Span::ilog(const std::string & msg) const
 {
 	
-	std::cout << "[Class]Fighter	- [Instance]" << name << "	|	"\
-	<< msg << std::endl;
+	std::cout << "[Class]Span " << "	|	" << msg << std::endl;
+}
+
+void	Span::addNumber(int i)
+{
+	_v.push_back(i);
+}
+
+int	Span::shortestSpan()
+{
+	return 1;
+}
+
+int	Span::longestSpan()
+{
+	return 10000;
 }

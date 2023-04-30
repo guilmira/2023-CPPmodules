@@ -1,40 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Fighter.hpp                                      :+:      :+:    :+:   */
+/*   Span.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 13:05:49 by guilmira          #+#    #+#             */
-/*   Updated: 2023/04/28 22:19:24 by guilmira         ###   ########.fr       */
+/*   Updated: 2023/04/28 23:11:31 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FIGHTER_HPP
-#define	FIGHTER_HPP
+#ifndef SPAN_HPP
+#define	SPAN_HPP
 
 #include <iostream>
 #include <string>
+#include <vector>
 
 /* CLASS DECLARATION. */
-class Fighter
+class Span
 {
 	public:
-		Fighter();
-		Fighter(std::string const & name);
-		~Fighter();
-		Fighter(Fighter const &src);
-		Fighter & operator=(Fighter const &rhs);
+		Span(unsigned int N);
+		~Span();
+		Span(Span const &src);
+		Span & operator=(Span const &rhs);
 
-		std::string const &	getName() const;
-		void				setName(std::string const &name);
+		std::vector<int> const &	getVector() const;
+		void						setVector(std::vector<int> const &v);
 
+		void						addNumber(int i);
+		int							shortestSpan();
+		int							longestSpan();
 
-	
 	private:
-		std::string _name;
+		std::vector<int>	_v;
 
-		void	ilog(const std::string & name, const std::string & msg) const;
+		Span();
+		void	ilog(const std::string & msg) const;
 
 };
 

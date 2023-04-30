@@ -21,11 +21,12 @@ template<typename T>
 class Array
 {
 	public:
+		/* ------CONSTR/DESTR----------------------------------------------- */
 		Array() : _ptr(new T[0]), _size(0) 					{ ilog("Constructed⚪"); } /* Notes ** */
 		Array(unsigned int N) : _ptr(new T[N]), _size(N) 	{ ilog("Overload constructed⚪"); }
 		~Array()  											{ ilog("-Destructed⭕"); delete [] _ptr; }
 		Array(Array const &src) : _ptr(NULL), _size(0) 		{ ilog("Copy constructed"); *this = src; }
-
+		/* ------OPERATOR OVERLOADS----------------------------------------------- */
 		Array & operator=(Array const &rhs)
 		{
 			ilog("[=] Assignation operator called");
@@ -53,14 +54,17 @@ class Array
 			else
 				return (*(ptr + iterator));
 		}
+		/* ------------------------------------------------------------ */
+		/* ------GET-SET----------------------------------------------- */
 
 		T *				getPtr() const				 { return (this->_ptr); }
 		void			setPtr(T *ptr) 				 { _ptr = ptr; }
 		size_t const &	getSize() const				 { return (this->_size); }
 		void			setSize(size_t const &size)  { if (size >= 0) {this->_size = size;} }
+		/* ------METHODS----------------------------------------------- */
 		void			ilog(const std::string & msg) const { std::cout << "[Class]Array  || " << msg << std::endl; }
 		size_t const &	size() const				 { return (this->_size); }
-
+		/* ------EXCEPTION----------------------------------------------- */
 		class Bounds : public std::exception
 		{
 			public:

@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 11:17:32 by guilmira          #+#    #+#             */
-/*   Updated: 2023/04/30 15:00:24 by guilmira         ###   ########.fr       */
+/*   Updated: 2023/04/30 15:54:34 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 #include <array>
 #include <list>
 #define MAX_SIZE 10
-
 
 template<typename T>
 void ft_test(T const &container, typename T::const_iterator iterator_searched)
@@ -44,7 +43,6 @@ void ft_test_int(T const & container, int value_searched)
 	std::cout << std::distance(container.cbegin(), result_iterator) << std::endl;
 	std::cout << "----------" << std::endl;
 }
-
 
 int main(void)
 {

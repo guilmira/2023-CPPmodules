@@ -6,12 +6,11 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 11:17:34 by guilmira          #+#    #+#             */
-/*   Updated: 2023/04/30 14:59:23 by guilmira         ###   ########.fr       */
+/*   Updated: 2023/04/30 16:20:24 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
-//#include <algorithm>
 
 /* Funtion 1 to iterate and compare each element.
 Using for loop and iterators */
