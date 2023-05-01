@@ -6,12 +6,12 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 11:17:32 by guilmira          #+#    #+#             */
-/*   Updated: 2023/05/01 16:50:31 by guilmira         ###   ########.fr       */
+/*   Updated: 2023/05/01 18:14:06 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Span.hpp"
-#define NB 1000	
+#include "span.hpp"
+#define NB 10	
 int main(void)
 {
 

@@ -133,3 +133,9 @@ REMINDER, how to debug
  5. poner flag -g
  
  a debugear*/
+
+#include <deque>
+#include <stack>
+ Deque and stack
+
+quedate simplemente con que son buenas trabajando en los extremos.
