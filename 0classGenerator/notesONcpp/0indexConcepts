@@ -122,3 +122,14 @@ los iterators pueden ser normales o const_iterators. Ojo la notacion.
 
 la movida, es que los tratas como punteros, porque tienen sobrecargado el operador * y la aritmetica de punteros, con ++, el operador binario +, - etc...
 y ya esta. no tiene mucho mas. con la clase y los metodos que tiene cargados, vector.begin(), end, std::distance(), recorres los containers. end of the story.
+
+
+REMINDER, how to debug
+
+/* 1. create json dandole al play en el debuger
+ 2. add configuration - launch version
+ 3.  poner path
+ 4. argumentos
+ 5. poner flag -g
+ 
+ a debugear*/

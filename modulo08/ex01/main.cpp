@@ -6,47 +6,57 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 11:17:32 by guilmira          #+#    #+#             */
-/*   Updated: 2023/04/30 17:49:30 by guilmira         ###   ########.fr       */
+/*   Updated: 2023/05/01 16:50:31 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Span.hpp"
-
-
-void printVector( std::vector<int> const & vec) {
-    for (std::vector<int>::const_iterator it = vec.begin(); it != vec.end(); ++it) {
-        std::cout << *it << " ";
-    }
-    std::cout << std::endl;
-}
-
+#define NB 1000	
 int main(void)
 {
-	Span s(4);
 
+	Span big(NB);
 
+	big.fillSpan(1, 1983725972, NB);
+	big.printSpan();
+	std::cout << "shortest: " << big.shortestSpan() << std::endl;
+	std::cout << "longest: " << big.longestSpan() << std::endl;
+
+	Span s(7);
+
+	s.addNumber(49);
+	s.addNumber(33);
 	s.addNumber(3);
 	s.addNumber(42);
-	s.addNumber(33);
+	s.addNumber(39);
+	s.addNumber(22);
+	s.addNumber(0);
+	try
+	{
+		s.addNumber(33);
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
 
-	printVector(s.getVector());
-//now they were added to position 4, 5 and 6. Capacity has been probably doubled.
-
-	Span f(s);
-	printVector(f.getVector());
-	
-	std::vector<int> v(f.getVector());
-	std::cout << v[5] << std::endl;
+	s.printSpan();
+	std::cout << "shortest: " << s.shortestSpan() << std::endl;
+	std::cout << "longest: " << s.longestSpan() << std::endl;
 
 	return (0);
 }
 
-/* Note 0: trying to use iterators beyond container limits will cause undefined behaviour */
-
-/* Note: why do i use cbegin in std::distance?
-because it changes the overload of the function.
-
-I had to use constant iterators, cause im passing to easyfind a container by const ref.
-since there is the "promess" that i will not modify the content of the reference" the compailer enforces me to make the iterator const_iterators. Therfore, my return value is a const iterator. Knwoing this, std::distance has to work with const_iterators. and the overload for that, requires that cbegin() gives back a const iterator. So i can use begin(), that gives me a normal iterator.
-The "soution" or second option to avoid all of this, is just passing the container by reference and avoiding working with constant things.
-In general, is advise to work with constant iterators, but c++ libraries often work with normal iterators. */
+/* Main of the evaluation */
+/* int main()
+{
+	Span sp = Span(5);
+	
+	sp.addNumber(5);
+	sp.addNumber(3);
+	sp.addNumber(17);
+	sp.addNumber(9);
+	sp.addNumber(11);
+	std::cout << sp.shortestSpan() << std::endl;
+	std::cout << sp.longestSpan() << std::endl;
+} */

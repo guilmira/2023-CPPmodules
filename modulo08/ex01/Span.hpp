@@ -28,13 +28,29 @@ class Span
 
 		std::vector<int> const &	getVector() const;
 		void						setVector(std::vector<int> const &v);
+		unsigned int				getSize() const;
+		void						setSize(unsigned int size);
+		unsigned int				getCounter() const;
+		void						setCounter(unsigned int counter);
 
-		void						addNumber(int i);
+		void						addNumber(int value);
+		void						fillSpan(int min, int max, unsigned int n);
 		int							shortestSpan();
 		int							longestSpan();
 
+		void						printSpan() const;
+		void						printVector() const;
+
+		class SpanException : public std::exception
+		{
+			public:
+				virtual const char *what() const throw() { return ("Exception -> Index out of bouds"); }
+		};
+
 	private:
 		std::vector<int>	_v;
+		unsigned int		_size;
+		unsigned int		_counter;
 
 		Span();
 		void	ilog(const std::string & msg) const;
