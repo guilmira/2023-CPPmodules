@@ -6,14 +6,14 @@
 #    By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/17 10:57:42 by guilmira          #+#    #+#              #
-#    Updated: 2023/05/01 18:12:48 by guilmira         ###   ########.fr        #
+#    Updated: 2023/05/02 11:54:46 by guilmira         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= span
 #--------------------------------------------------------------------------------------------------------------COMPILER
 CXX			= clang++
-CXXFLAGS	= -Wall -Wextra -Werror
+CXXFLAGS	= -Wall -Wextra -Werror -g
 CVERSION	= -std=c++98
 CSANITIZE	= -fsanitize=address
 #--------------------------------------------------------------------------------------------------------------LIBS
@@ -39,7 +39,7 @@ san: $(OBJS)
 	@echo $(GREEN) "$(NAME) compiled with santitize" $(NONE)
 
 exe: re
-	./$(NAME)
+	time ./$(NAME)
 
 leaks: re
 	./$(NAME)

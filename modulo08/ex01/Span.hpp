@@ -51,9 +51,11 @@ class Span
 		std::vector<int>	_v;
 		unsigned int		_size;
 		unsigned int		_counter;
+		unsigned int		_flag;
 
 		Span();
 		void	ilog(const std::string & msg) const;
+		void						fast_sorting();
 
 };
 

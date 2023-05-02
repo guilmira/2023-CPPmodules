@@ -11,18 +11,19 @@
 /* ************************************************************************** */
 
 #include "span.hpp"
+#include <algorithm>
 
 /* CLASS DEFINITION. */
 /* --------------------------------- CONSTRUCTORS --------------------------------- */
 Span::Span()
-	: _v(1, 0), _size(1), _counter(0)
+	: _v(1, 0), _size(1), _counter(0), _flag(0)
 {
 	ilog("Constructed⚪");
 	return ;
 }
 
 Span::Span(unsigned int N)
-	: _v(N, 0), _size(N), _counter(0)
+	: _v(N, 0), _size(N), _counter(0), _flag(0)
 {
 	ilog("Overload constructed⚪");
 	return ;
@@ -106,11 +107,14 @@ void						Span::printVector() const
 		std::cout << *it << "  "; 
 	std::cout << std::endl;
 }
+/* --------------------------------- 2 ways of solving the exercise --------------------------------- */
 
 /* Complexity of algorithm: O(n)
 Complexity of insert for a vector: O(n) 
-Complexity of n^2 */
-static void smart_insert(std::vector<int> &v, int value, unsigned int size)
+Complexity of n^2 
+Insertion on the beginning makes operation as costly as possible. 
+7 seconds of my insert vs 0.2 of sorting algorithm of STD. */
+void slow_insert(std::vector<int> &v, int value, unsigned int size)
 {
 	for (unsigned int i = 0; i < size; i++)
 	{
@@ -123,33 +127,41 @@ static void smart_insert(std::vector<int> &v, int value, unsigned int size)
 	v[size - 1] = value;
 }
 
+/* Complexity nlog(n). The one used for default. */
+void	Span::fast_sorting()
+{
+	if (_flag)
+		std::sort(_v.begin(), _v.end(), std::greater<int>());
+	_flag = 0;
+}
+
+/* slow_insert(const_cast<std::vector<int> &>(getVector()), value, getSize()); */
 /* I do not use the function insert, cause that would enlarge the vector (is not a replace afterall, its an insert) */
 void	Span::addNumber(int value)
 {
 	if (getCounter() >= getSize())
 		throw ( Span::SpanException() );
-	else
-	{
-		smart_insert(const_cast<std::vector<int> &>(getVector()), value, getSize());
-		_counter++;
-	}
+	_v[_counter] = value;
+	_counter++;
+	if (!_flag)
+		_flag++;
 }
 
-/*  result = v[0] bigger number that i ll have, that simple */
+/*  result = v[0] bigger number that i ll have, that simple.
+Complexity O(n) */
 int	Span::shortestSpan()
 {
-
-	std::vector<int> v(getVector());
 	int difference;
 	int result;
 
 	if (getSize() < 1)
 		throw (Span::SpanException());
-	result = v[0];
+	fast_sorting();
+	result = _v[0];
 	difference = 0;
 	for (unsigned int i = 0; i < getCounter() - 1; i++)
 	{
-		difference = v[i] - v[i + 1];
+		difference = _v[i] - _v[i + 1];
 		if (difference < result)
 			result = difference;
 	}
@@ -162,8 +174,8 @@ int	Span::longestSpan()
 {
 	if (getSize() < 1)
 		throw (Span::SpanException());
-	else
-		return (getVector()[0] - getVector()[getCounter() - 1]);
+	fast_sorting();
+	return (getVector()[0] - getVector()[getCounter() - 1]);
 }
 
 /* Random number by rand. Divided by the range, i get a number from

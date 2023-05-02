@@ -15,24 +15,51 @@
 
 #include <iostream>
 #include <string>
+#include <stack>
+#include <deque>
+#include <list>
 
 /* CLASS DECLARATION. */
-class Mutantstack
+template<typename T>
+class MutantStack : public std::stack<T>
 {
 	public:
-		Mutantstack();
-		Mutantstack(std::string const & name);
-		~Mutantstack();
-		Mutantstack(Mutantstack const &src);
-		Mutantstack & operator=(Mutantstack const &rhs);
+		MutantStack() {};
+		~MutantStack() {};
+		MutantStack(MutantStack const &src)
+			: std::stack<T>::container_type::c(src.c)
+		{
+			return ;
+		}
+		MutantStack & operator=(MutantStack const &rhs)
+		{
+			if (this != &rhs)
+				std::stack<T>::container_type::c = rhs.c;
+		}
 
-		std::string const &	getName() const;
-		void				setName(std::string const &name);
+		/* From the stack definition. Inside_container is called container_type */
+		/* Using typdefs for syntactic sugar */
+		/* cant call it my_iterator, not allowed by subject main */
+		typedef typename std::stack<T>::container_type								container_type;
+		typedef typename std::stack<T>::container_type::iterator					iterator;
+		typedef typename std::stack<T>::container_type::const_iterator				const_iterator;
+		typedef typename std::stack<T>::container_type::reverse_iterator			reverse_iterator;
+		typedef typename std::stack<T>::container_type::const_reverse_iterator		const_reverse_iterator;
+		
+		
+		iterator begin(void) 					 { return (this->c.begin()); }
+		iterator end(void) 						 { return (this->c.end()); }
+		
+		const_iterator cbegin(void) 			 { return (this->c.cbegin()); }
+		const_iterator cend(void) 				 { return (this->c.cend()); }
+
+		reverse_iterator rbegin(void) 	 	     { return (this->c.rbegin()); }
+		reverse_iterator rend(void) 			 { return (this->c.rend()); }
+
+		const_reverse_iterator crbegin(void) 	 { return (this->c.crbegin()); }
+		const_reverse_iterator crend(void) 		 { return (this->c.crend()); }
 
 	private:
-		std::string _name;
-
-		void	ilog(const std::string & name, const std::string & msg) const;
 
 };
 

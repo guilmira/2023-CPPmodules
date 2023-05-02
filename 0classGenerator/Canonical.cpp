@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 13:05:40 by guilmira          #+#    #+#             */
-/*   Updated: 2023/04/30 16:47:38 by guilmira         ###   ########.fr       */
+/*   Updated: 2023/05/02 12:36:24 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ Canonical::Canonical()
 	return ;
 }
 
-Canonical::Canonical(std::string const & instance_name)
-	: _name(instance_name)
+Canonical::Canonical(std::string const & name)
+	: _name(name)
 {
 	ilog(getName(), "Overload constructed⚪");
 	return ;

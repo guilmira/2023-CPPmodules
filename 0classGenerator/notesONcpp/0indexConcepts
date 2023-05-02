@@ -139,3 +139,18 @@ REMINDER, how to debug
  Deque and stack
 
 quedate simplemente con que son buenas trabajando en los extremos.
+
+COMPLEJIDAD Y ESTRUTURAS DE DATOS
+Vector == INSERT. Es estructura que tengo que usar para cuando voy a inssertar mucho, especialmente si no voy a modificar el tamaño.
+Ejemplo: un vector en matematicas o física, en el que no voy a modificar las dimensiones, ahi quiero tener un vetor, o mas bien un array.
+Su insert es O(1) y para añadir, si es al final, tambien va bien, probablemente con O(1). Cuando son vmucha cantidad de dats, ahi es preferible evitar vector (diria qu emillones) y cuando tengo que insertar al principio, pues inserta al principio es O(n)
+
+Linked list
+linked list == EXTREMOS. quedate con eso. para ir añadiendo al final, o al inicio. Su insert es O(1), simplemente una operacion, modificar un puntero. Pero ojo, aqui la ocnfusion. El buscar, que hay que hacerlo casi siempre porque no tiene acceso aleatorio dierecto, eso es O(n) ya que hay que recorrer la lista entera.
+
+Si voy a tener que hacer random access, olvidate de la lista. Si es una pila de datos, donde voy añadiendo, ahi quiza me rente. O un container mas restringido como un double ended queque o un stack.
+Como regla general, vector outperforms linked list.
+
+Sobre algoritmos de ordenacion, un insertion sort implementado por mi tiene un O(n2) en su peor caso (O(n) en el mejor), mientras 	que sort, de la STL algorithms, me da un nlog(n)
+
+Nota. por ejemplo, no uses insertion sort en un vector, si vas a poner los elementos al inicio (de menor a mayor). Ahi, tendras que copiar todo el vector cada vez, dandote la mayor complexity posible O(n2). En ese caso, insertion sort es preferible para una lista enlazada, donde vas a iterar por la lista si o si, pero guarandote el primer puntero, la insercion te cuesta O(n) (esto tendria que preguntarlo)
