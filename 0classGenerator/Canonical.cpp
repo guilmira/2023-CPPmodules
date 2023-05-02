@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 13:05:40 by guilmira          #+#    #+#             */
-/*   Updated: 2023/05/02 12:36:24 by guilmira         ###   ########.fr       */
+/*   Updated: 2023/05/02 16:10:56 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ Canonical::Canonical(std::string const & name)
 /* --------------------------------- DESTRUCTOR --------------------------------- */
 Canonical::~Canonical()
 {
-	ilog(getName(), "-Destructed⭕");
+	ilog(getName(), "-Destroyed⭕");
 	return ;
 }
 /* White and red dots means default constructed or destructed */

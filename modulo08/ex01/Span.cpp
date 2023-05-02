@@ -31,7 +31,7 @@ Span::Span(unsigned int N)
 /* --------------------------------- DESTRUCTOR --------------------------------- */
 Span::~Span()
 {
-	ilog("-Destructed⭕");
+	ilog("-Destroyed⭕");
 	return ;
 }
 /* White and red dots means default constructed or destructed */

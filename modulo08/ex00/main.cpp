@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 11:17:32 by guilmira          #+#    #+#             */
-/*   Updated: 2023/04/30 15:54:34 by guilmira         ###   ########.fr       */
+/*   Updated: 2023/05/02 16:09:28 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int main(void)
 		std::cout << *it << " ";
 	std::cout << std::endl;
 	
-	std::vector<int>::const_iterator	iterator_searched = v.end() - 3; 
+	std::vector<int>::const_iterator	iterator_searched = v.end() - 3;
 	int									value_searched = 0;
 	std::cout << "TESTS-------------------------------------------------" << std::endl;
 	try
