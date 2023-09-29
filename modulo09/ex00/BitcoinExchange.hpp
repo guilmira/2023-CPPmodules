@@ -22,11 +22,13 @@
 
 #include <stdexcept>
 
+typedef std::map<std::string, float>	myMap;
+typedef myMap::iterator					mapIter;
+
 /* CLASS DECLARATION. */
 class BitcoinExchange
 {
-	typedef std::map<std::string, float>	myMap;
-	typedef myMap::iterator					mapIter;
+	
 	
 	public:
 		BitcoinExchange();
@@ -38,15 +40,15 @@ class BitcoinExchange
 		std::string const &	getName() const;
 		void				setName(std::string const &name);
 
-		void				buildRates();
-		void				printRates();
+		myMap				buildMap(std::ifstream &file, char delimiter);
+		void				printRates(myMap m);
+		void				outputResult();
+
+		myMap							_rates;
+		myMap							_fileData;
 
 	private:
 		std::string						_name;
-		std::ifstream					_database;
-		std::ifstream					_file;
-		myMap							_rates;
-		
 
 		void	ilog(const std::string & name, const std::string & msg) const;
 

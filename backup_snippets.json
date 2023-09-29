@@ -40,6 +40,19 @@
 			"description": "Creates a for loop"
 		},
 
+		"forc++": 
+		{
+			"prefix": "forc++",
+			"body": 
+			[
+				"for ($1 = $2.begin(); it != $2.end() ; it++)",
+				"{",
+					"$3",
+				"}"
+			],
+			"description": "Creates a for loop for c++ iterators"
+		},
+
 		"array": 
 		{
 			"prefix": "array",

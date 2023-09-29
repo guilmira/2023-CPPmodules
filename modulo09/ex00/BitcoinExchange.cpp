@@ -21,19 +21,32 @@ BitcoinExchange::BitcoinExchange()
 	return ;
 }
 
-void	BitcoinExchange::buildRates()
+static void		trimSpaces(std::string &str)
+{
+	size_t init;
+	size_t end;
+
+	init = str.find_first_not_of(' ');
+	end = str.find_last_not_of(' ');
+
+	str = str.substr(init, end - init + 1);
+}
+
+myMap	BitcoinExchange::buildMap(std::ifstream &file, char delimiter)
 {
 	std::string		line;
 	std::string		date;
 	float			value;
 	size_t			position;
+	myMap			newMap;
 	
-	while (std::getline(this->_database, line))
+	while (std::getline(file, line))
 	{
-		position = line.find(',');
+		position = line.find(delimiter);
 		if (position == std::string::npos || !line[position + 1])
 			continue;
 		date = line.substr(0, position);
+		trimSpaces(date);
 		try
 		{
 			value = std::stof(line.substr(position + 1));
@@ -42,14 +55,17 @@ void	BitcoinExchange::buildRates()
 		{
 			continue;
 		}
-		_rates.insert(std::make_pair(date ,value));
+		newMap.insert(std::make_pair(date, value));
 	}
-	printRates();
+	return newMap;
 }
 
 BitcoinExchange::BitcoinExchange(std::string const & name, std::string const & database, std::string const & file)
 	: _name(name)
 {
+
+	std::ifstream					_database;
+	std::ifstream					_file;
 
 	_database.exceptions(std::ifstream::failbit);
 	_file.exceptions(std::ifstream::failbit);
@@ -60,15 +76,17 @@ BitcoinExchange::BitcoinExchange(std::string const & name, std::string const & d
 	_database.exceptions(std::ifstream::goodbit);
 	_file.exceptions(std::ifstream::goodbit);
 
-	this->buildRates();
+	this->_rates = buildMap(_database, ',');
+	this->_fileData = buildMap(_file, '|');
+
+	_database.close();
+	_file.close();
 	ilog(getName(), "Overload constructed⚪");
 	return ;
 }
 /* --------------------------------- DESTRUCTOR --------------------------------- */
 BitcoinExchange::~BitcoinExchange()
 {
-	_database.close();
-	_file.close();
 	ilog(getName(), "-Destroyed⭕");
 	return ;
 }
@@ -107,8 +125,20 @@ void BitcoinExchange::ilog(const std::string & name, const std::string & msg) co
 	<< msg << std::endl;
 }
 
-void			BitcoinExchange::printRates()
+void			BitcoinExchange::printRates(myMap m)
 {
-	for (mapIter it = this->_rates.begin(); it != this->_rates.end(); it++)
+	for (mapIter it = m.begin(); it != m.end(); it++)
 		std::cout << it->first << " " << it->second << std::endl;
 }
+
+void			BitcoinExchange::outputResult()
+{
+	for (mapIter it = this->_fileData.begin(); it != this->_fileData.end() ; it++)
+	{
+		std::cout << it->first << " => " << it->second << std::endl;
+	}
+
+	// std::cout << exchanger._rates["2022-03-25"] << std::endl;
+	std::cout << "⭕OUTPUT⭕" << std::endl;
+}
+
