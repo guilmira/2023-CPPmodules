@@ -17,10 +17,10 @@
 #include <string>
 #include <map>
 #include <fstream>
+#include <stdexcept>
+#include <limits>
 
 #define DATABASE "./CSVdatabase/data.csv"
-
-#include <stdexcept>
 
 typedef std::map<std::string, float>	myMap;
 typedef myMap::iterator					mapIter;
@@ -42,7 +42,7 @@ class BitcoinExchange
 
 		myMap				buildMap(std::ifstream &file, char delimiter);
 		void				printRates(myMap m);
-		void				outputResult();
+		void				outputResult(std::string const & file);
 
 		myMap							_rates;
 		myMap							_fileData;
@@ -50,7 +50,10 @@ class BitcoinExchange
 	private:
 		std::string						_name;
 
-		void	ilog(const std::string & name, const std::string & msg) const;
+		bool			parserDate(std::string const &date);
+		bool			parserNumber(double value, double value2);
+		double			findExchangeRate(std::string const &date);
+		void			ilog(const std::string & name, const std::string & msg) const;
 
 };
 

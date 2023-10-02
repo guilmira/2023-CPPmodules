@@ -15,13 +15,20 @@
 
 #include <iostream>
 #include <string>
+#include <stack>
+
+
+#define ADDITION '+'
+#define SUBSTRACTION '-'
+#define MULTIPLICATION '*'
+#define DIVISION '/'
 
 /* CLASS DECLARATION. */
 class RPN
 {
 	public:
 		RPN();
-		RPN(std::string const & name);
+		RPN(std::string const & name, std::string const & line);
 		~RPN();
 		RPN(RPN const &src);
 		RPN & operator=(RPN const &rhs);
@@ -29,8 +36,13 @@ class RPN
 		std::string const &	getName() const;
 		void				setName(std::string const &name);
 
+		void				buildStack();
+
+
 	private:
-		std::string _name;
+		std::string			_name;
+		std::stack<int>		_stack;
+		std::string			_line;
 
 		void	ilog(const std::string & name, const std::string & msg) const;
 

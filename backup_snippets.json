@@ -53,13 +53,13 @@
 			"description": "Creates a for loop for c++ iterators"
 		},
 
-		"array": 
+		"strconstref": 
 		{
-			"prefix": "array",
+			"prefix": "strconstref",
 			"body": 
 			[
-				"${1:array_name}[${2:4}];"
+				"std::string const &"
 			],
-			"description": "Print to console"
+			"description": "Creates a string const ref"
 		}
 	}

@@ -21,9 +21,32 @@ RPN::RPN()
 	return ;
 }
 
-RPN::RPN(std::string const & name)
-	: _name(name)
+
+
+
+void				RPN::buildStack()
 {
+	for (size_t i = 0; i < this->_line.length(); i++)
+	{
+		if (isdigit(_line[i]))
+			this->_stack.push(std::stoi(std::string(&this->_line[i], 1)));
+	}	
+}
+
+
+RPN::RPN(std::string const & name, std::string const & line)
+	: _name(name), _line(line)
+{
+	buildStack();
+	std::cout << _stack.top() << std::endl;
+	_stack.pop();
+	std::cout << _stack.top() << std::endl;
+	_stack.pop();
+
+	std::cout << _stack.top() << std::endl;
+	_stack.pop();
+	
+	std::cout << _stack.top() << std::endl;
 	ilog(getName(), "Overload constructed⚪");
 	return ;
 }

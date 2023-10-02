@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 13:05:49 by guilmira          #+#    #+#             */
-/*   Updated: 2023/09/29 10:41:14 by guilmira         ###   ########.fr       */
+/*   Updated: 2023/09/30 10:31:18 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ class Canonical
 	private:
 		std::string					_name;
 
-		void	ilog(const std::string & name, const std::string & msg) const;
+		void						ilog(const std::string & name, const std::string & msg) const;
 
 };
 

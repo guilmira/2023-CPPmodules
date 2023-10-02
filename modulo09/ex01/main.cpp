@@ -6,26 +6,63 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 13:28:42 by guilmira          #+#    #+#             */
-/*   Updated: 2023/09/30 10:14:31 by guilmira         ###   ########.fr       */
+/*   Updated: 2023/10/02 12:28:24 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "BitcoinExchange.hpp"
+#include "RPN.hpp"
 
-/* __probar el constructor copia con la copia de map */
+static bool			isMathOperand(char z)
+{
+	if (z == ADDITION)
+		return true;
+	if (z == SUBSTRACTION)
+		return true;
+	if (z == MULTIPLICATION)
+		return true;
+	if (z == DIVISION)
+		return true;
+	return false;
+}
+
+static bool		parserCorrect(std::string const &line)
+{
+	int		digits = 0;
+	int		operators = 0;
+
+	for (size_t i = 0; i < line.length(); i++)
+	{
+		if (isdigit(line[i]))
+			digits++;
+		if (isMathOperand(line[i]))
+			operators++;
+		if ((isdigit(line[i]) || isMathOperand(line[i])) && (i + 1) != line.length())
+			if (!isspace(line[i + 1]))
+				return false;		
+	}
+	if (digits == operators + 1)
+		return true;
+	return false;
+
+}
 
 int main(int argc, char **argv)
 {
 	if (argc != 2)
 	{
-		std::cout << "Error: could not open file." << std::endl;
+		std::cout << "Error: worng argumen number. Exected: 1 arg" << std::endl;
+		exit(1);
+	}
+	std::string line(argv[1]);
+	if (!parserCorrect(line))
+	{
+		std::cout << "Error" << std::endl;
 		exit(1);
 	}
 	try
 	{
-		BitcoinExchange exchanger("exchanger", std::string(DATABASE), std::string(argv[1]));
-		exchanger.outputResult(std::string(argv[1]));	
-	
+		(void) argv;
+		RPN notation("exchanger", line);
 	}
 	catch (const std::exception & e)
 	{

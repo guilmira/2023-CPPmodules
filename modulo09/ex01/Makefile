@@ -6,13 +6,12 @@
 #    By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/17 10:57:42 by guilmira          #+#    #+#              #
-#    Updated: 2023/09/30 10:47:31 by guilmira         ###   ########.fr        #
+#    Updated: 2023/10/02 12:13:45 by guilmira         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= btc
-ARGS		= btcTest.txt
-ARGS2		= CSVdatabase/evaTest.csv
+NAME		= RPN
+ARGS		= "2 2 + 4 + 4 +"
 #--------------------------------------------------------------------------------------------------------------COMPILER
 CXX			= clang++
 CXXFLAGS	= -Wall -Wextra -Werror
@@ -21,7 +20,7 @@ CSANITIZE	= -fsanitize=address
 #--------------------------------------------------------------------------------------------------------------LIBS
 #INCLUDES	= -I ./0includes
 #--------------------------------------------------------------------------------------------------------------SOURCES
-CLASS		= BitcoinExchange.cpp
+CLASS		= RPN.cpp
 SRCS		= main.cpp $(CLASS)
 OBJS		= $(SRCS:.cpp=.o)
 #--------------------------------------------------------------------------------------------------------------COMMANDS
@@ -42,9 +41,6 @@ san: $(OBJS)
 
 exe: re
 	./$(NAME) $(ARGS)
-
-exe2: re
-	./$(NAME) $(ARGS2)
 
 leaks: re
 	./$(NAME) $(ARGS)
