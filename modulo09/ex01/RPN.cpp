@@ -21,16 +21,60 @@ RPN::RPN()
 	return ;
 }
 
+static bool			isMathOperand(char z)
+{
+	if (z == ADDITION)
+		return true;
+	if (z == SUBSTRACTION)
+		return true;
+	if (z == MULTIPLICATION)
+		return true;
+	if (z == DIVISION)
+		return true;
+	return false;
+}
 
+long int	solveOperator(long int first, long int second, char z)
+{
+	if (z == ADDITION)
+		return first + second;
+
+	if (z == SUBSTRACTION)
+		return first - second;
+
+	if (z == MULTIPLICATION)
+		return first * second;
+
+	if (z == DIVISION)
+		return first / second;
+	
+	return 0;
+}
 
 
 void				RPN::buildStack()
 {
+	long int					first;
+	long int					second;
+	long int					result;
+	std::stack<long int>		stack;
+
+
 	for (size_t i = 0; i < this->_line.length(); i++)
 	{
 		if (isdigit(_line[i]))
-			this->_stack.push(std::stoi(std::string(&this->_line[i], 1)));
-	}	
+			stack.push(std::stol(std::string(&this->_line[i], 1)));
+		if (isMathOperand(_line[i]))
+		{
+			second = stack.top();
+			stack.pop();
+			first = stack.top();
+			stack.pop();
+			result = solveOperator(first, second, _line[i]);
+			stack.push(result);
+		}
+	}
+	std::cout << stack.top() << std::endl;
 }
 
 
@@ -38,15 +82,6 @@ RPN::RPN(std::string const & name, std::string const & line)
 	: _name(name), _line(line)
 {
 	buildStack();
-	std::cout << _stack.top() << std::endl;
-	_stack.pop();
-	std::cout << _stack.top() << std::endl;
-	_stack.pop();
-
-	std::cout << _stack.top() << std::endl;
-	_stack.pop();
-	
-	std::cout << _stack.top() << std::endl;
 	ilog(getName(), "Overload constructed⚪");
 	return ;
 }

@@ -40,9 +40,8 @@ class RPN
 
 
 	private:
-		std::string			_name;
-		std::stack<int>		_stack;
-		std::string			_line;
+		std::string					_name;
+		std::string					_line;
 
 		void	ilog(const std::string & name, const std::string & msg) const;
 
