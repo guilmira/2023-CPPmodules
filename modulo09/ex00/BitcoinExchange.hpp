@@ -28,11 +28,9 @@ typedef myMap::iterator					mapIter;
 /* CLASS DECLARATION. */
 class BitcoinExchange
 {
-	
-	
 	public:
 		BitcoinExchange();
-		BitcoinExchange(std::string const & name, std::string const & database, std::string const & file);
+		BitcoinExchange(std::string const & name, std::string const & database);
 		~BitcoinExchange();
 		BitcoinExchange(BitcoinExchange const &src);
 		BitcoinExchange & operator=(BitcoinExchange const &rhs);
@@ -45,7 +43,6 @@ class BitcoinExchange
 		void				outputResult(std::string const & file);
 
 		myMap							_rates;
-		myMap							_fileData;
 
 	private:
 		std::string						_name;

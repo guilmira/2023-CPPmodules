@@ -21,27 +21,16 @@ BitcoinExchange::BitcoinExchange()
 	return ;
 }
 
-BitcoinExchange::BitcoinExchange(std::string const & name, std::string const & database, std::string const & file)
+BitcoinExchange::BitcoinExchange(std::string const & name, std::string const & database)
 	: _name(name)
 {
-
 	std::ifstream					_database;
-	std::ifstream					_file;
 
 	_database.exceptions(std::ifstream::failbit);
-	_file.exceptions(std::ifstream::failbit);
-
 	_database.open(database, std::ifstream::in);
-	_file.open(file, std::ifstream::in);
-
 	_database.exceptions(std::ifstream::goodbit);
-	_file.exceptions(std::ifstream::goodbit);
-
 	this->_rates = buildMap(_database, ',');
-	this->_fileData = buildMap(_file, '|');
-
 	_database.close();
-	_file.close();
 	ilog(getName(), "Overload constructed⚪");
 	
 	return ;
@@ -179,35 +168,41 @@ double			BitcoinExchange::findExchangeRate(std::string const &date)
 	result = 1;
 	iterator = this->_rates.find(date);
 	if (iterator != _rates.end())
+		return (iterator->second);
+	iterator = this->_rates.lower_bound(date);
+	if (iterator != _rates.end())
 	{
+		if (iterator != _rates.begin())
+			iterator--;
 		return (iterator->second);
 	}
-	else
-		return (result);
+	iterator = this->_rates.end();
+	iterator--;
+	return (iterator->second);
 }
 
-static std::string		getDate(std::string const &line)
+static bool	getParam(std::string const &line, std::string &date, float &nb)
 {
-	std::string		date;
 	size_t			position;
 
 	date.clear();
+	nb = 0;
 	position = line.find_first_of('|');
 	if (position == std::string::npos || !line[position + 1] || !position)
-		return date;
+		return false;
 	if (line[position - 1] != ' ' || line[position + 1] != ' ' )
-		return date;
+		return false;
+	date = line.substr(0, position);
+	trimSpaces(date);
 	try
 	{
-		std::stod(line.substr(position + 1));
+		nb = std::stod(line.substr(position + 1));
 	}
 	catch(const std::exception& e)
 	{
-		return date;
+		return false;
 	}
-	date = line.substr(0, position);
-	trimSpaces(date);
-	return date;
+	return true;
 }
 
 void			BitcoinExchange::outputResult(std::string const & file)
@@ -217,28 +212,28 @@ void			BitcoinExchange::outputResult(std::string const & file)
 	std::ifstream	_file;
 	mapIter 		it;
 	std::string		date;
+	float			nb;
 
 	_file.open(file, std::ifstream::in);
 	exchangeRate = 1;
 	while (std::getline(_file, line))
 	{
-		date = getDate(line);
-		if (date.empty())
-			continue;
-		it = this->_fileData.find(date);
-		exchangeRate = findExchangeRate(it->first);
-		if (parserDate(it->first))
-			std::cout << "Error: bad input " << " => " << it->first << std::endl;
-		else if	(it->second < 0)
+		if (!getParam(line, date, nb))
+		{
+			date = line;
+			std::cout << "Error: bad input " << " => " << date << std::endl;
+			continue ;
+		}
+		exchangeRate = findExchangeRate(date);
+		if (parserDate(date))
+			std::cout << "Error: bad input " << " => " << date << std::endl;
+		else if	(nb < 0)
 			std::cout << "Error: not a positive number." << std::endl;
-		else if (parserNumber(exchangeRate, it->second))
+		else if (parserNumber(exchangeRate, nb))
 			std::cout << "Error: too large a number." << std::endl;
 		else
-			std::cout << it->first << " => " << exchangeRate << " = " << ( it->second * exchangeRate ) << std::endl;
-
+			std::cout << date << " => " << nb << " = " << ( nb * exchangeRate ) << std::endl;
 	}
 	_file.close();
 
 }
-
-
