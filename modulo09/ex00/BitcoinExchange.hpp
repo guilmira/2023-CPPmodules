@@ -21,6 +21,7 @@
 #include <limits>
 
 #define DATABASE "./CSVdatabase/data.csv"
+#define HEADERLINE "date | value"
 
 typedef std::map<std::string, float>	myMap;
 typedef myMap::iterator					mapIter;
@@ -47,10 +48,10 @@ class BitcoinExchange
 	private:
 		std::string						_name;
 
-		bool			parserDate(std::string const &date);
-		bool			parserNumber(double value, double value2);
-		double			findExchangeRate(std::string const &date);
-		void			ilog(const std::string & name, const std::string & msg) const;
+		bool				parserDate(std::string const &date);
+		bool				parserNumber(double value, double value2);
+		double				findExchangeRate(std::string const &date);
+		void				ilog(const std::string & name, const std::string & msg) const;
 
 };
 

@@ -54,7 +54,10 @@ BitcoinExchange & BitcoinExchange::operator=(BitcoinExchange const &rhs)
 {
 	ilog(getName(), "[=] Assignation operator called");
 	if (this != &rhs)
+	{
 		this->setName(rhs.getName());
+		this->_rates = rhs._rates;
+	}
 	return (*this);
 }
 /* --------------------------------- GET | SET --------------------------------- */
@@ -218,6 +221,8 @@ void			BitcoinExchange::outputResult(std::string const & file)
 	exchangeRate = 1;
 	while (std::getline(_file, line))
 	{
+		if (!line.compare(HEADERLINE))
+			continue;
 		if (!getParam(line, date, nb))
 		{
 			date = line;

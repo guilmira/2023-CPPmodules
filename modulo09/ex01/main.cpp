@@ -6,14 +6,11 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 13:28:42 by guilmira          #+#    #+#             */
-/*   Updated: 2023/10/02 15:49:12 by guilmira         ###   ########.fr       */
+/*   Updated: 2023/10/05 15:05:15 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RPN.hpp"
-
-/* _GUILLE doble comillas. constructores copia */
-
 
 static bool			isMathOperand(char z)
 {
@@ -64,7 +61,7 @@ int main(int argc, char **argv)
 	}
 	try
 	{
-		RPN notation("exchanger", line);
+		RPN notation(line);
 	}
 	catch (const std::exception & e)
 	{

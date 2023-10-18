@@ -16,6 +16,7 @@
 #include <iostream>
 #include <string>
 #include <stack>
+#include <cfloat>
 
 
 #define ADDITION '+'
@@ -28,19 +29,16 @@ class RPN
 {
 	public:
 		RPN();
-		RPN(std::string const & name, std::string const & line);
+		RPN(std::string const & line);
 		~RPN();
 		RPN(RPN const &src);
 		RPN & operator=(RPN const &rhs);
 
-		std::string const &	getName() const;
-		void				setName(std::string const &name);
-
+		std::string const &	getLine() const;
+		void 				setLine(std::string const &line);
 		void				buildStack();
 
-
 	private:
-		std::string					_name;
 		std::string					_line;
 
 		void	ilog(const std::string & name, const std::string & msg) const;

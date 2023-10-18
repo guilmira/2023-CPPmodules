@@ -15,22 +15,37 @@
 
 #include <iostream>
 #include <string>
+#include <vector>
 
+typedef std::vector<int> myVector;
 /* CLASS DECLARATION. */
 class PmergeMe
 {
 	public:
 		PmergeMe();
-		PmergeMe(std::string const & name);
+		PmergeMe(char **argv, std::string const & line, int totalElements);
 		~PmergeMe();
 		PmergeMe(PmergeMe const &src);
 		PmergeMe & operator=(PmergeMe const &rhs);
 
-		std::string const &	getName() const;
-		void				setName(std::string const &name);
+		std::string const &	getLine() const;
+		void				setLine(std::string const &line);
+
+		void	displayAfter();
+		void	displayBefore();
+		void	displayEnd();
+
+	
+		void	mergeInsertionSort();
+
+
+		void	printVec(myVector const & vector) const;
+		std::vector<int>	_before;
+		std::vector<int>	_after;
 
 	private:
-		std::string _name;
+		std::string			_line;
+		int					_totalElements;
 
 		void	ilog(const std::string & name, const std::string & msg) const;
 

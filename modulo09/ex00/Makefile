@@ -6,7 +6,7 @@
 #    By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/17 10:57:42 by guilmira          #+#    #+#              #
-#    Updated: 2023/10/03 15:08:54 by guilmira         ###   ########.fr        #
+#    Updated: 2023/10/05 15:23:27 by guilmira         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ ARGS		= btcTest.txt
 ARGS2		= CSVdatabase/evaTest.csv
 ARGS		= input.txt
 #--------------------------------------------------------------------------------------------------------------COMPILER
-CXX			= clang++
+CXX			= c++
 CXXFLAGS	= -Wall -Wextra -Werror
 CVERSION	= -std=c++98
 CSANITIZE	= -fsanitize=address

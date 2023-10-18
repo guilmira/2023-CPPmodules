@@ -15,9 +15,9 @@
 /* CLASS DEFINITION. */
 /* --------------------------------- CONSTRUCTORS --------------------------------- */
 RPN::RPN()
-	: _name("Default")
+	: _line("Default")
 {
-	ilog(getName(), "Constructed⚪");
+	ilog(getLine(), "Constructed⚪");
 	return ;
 }
 
@@ -34,36 +34,39 @@ static bool			isMathOperand(char z)
 	return false;
 }
 
-long int	solveOperator(long int first, long int second, char z)
+double	solveOperator(double first, double second, char z)
 {
+	long double result;
+
+	result = 0;
 	if (z == ADDITION)
-		return first + second;
-
+		result = first + second;
 	if (z == SUBSTRACTION)
-		return first - second;
-
+		result = first - second;
 	if (z == MULTIPLICATION)
-		return first * second;
-
+		result = first * second;
 	if (z == DIVISION)
-		return first / second;
-	
-	return 0;
+		result = first / second;
+	if (result > DBL_MAX || result < DBL_MIN)
+	{
+		std::cout << "Oveflowing RPN limit" << std::endl;
+		throw	std::exception();
+	}
+	return result;
 }
-
 
 void				RPN::buildStack()
 {
-	long int					first;
-	long int					second;
-	long int					result;
-	std::stack<long int>		stack;
+	double					first;
+	double					second;
+	double					result;
+	std::stack<double>		stack;
 
 
 	for (size_t i = 0; i < this->_line.length(); i++)
 	{
 		if (isdigit(_line[i]))
-			stack.push(std::stol(std::string(&this->_line[i], 1)));
+			stack.push(std::stod(std::string(&this->_line[i], 1)));
 		if (isMathOperand(_line[i]))
 		{
 			second = stack.top();
@@ -78,17 +81,17 @@ void				RPN::buildStack()
 }
 
 
-RPN::RPN(std::string const & name, std::string const & line)
-	: _name(name), _line(line)
+RPN::RPN(std::string const & line)
+	: _line(line)
 {
 	buildStack();
-	ilog(getName(), "Overload constructed⚪");
+	ilog(getLine(), "Overload constructed⚪");
 	return ;
 }
 /* --------------------------------- DESTRUCTOR --------------------------------- */
 RPN::~RPN()
 {
-	ilog(getName(), "-Destroyed⭕");
+	ilog(getLine(), "-Destroyed⭕");
 	return ;
 }
 /* White and red dots means default constructed or destructed */
@@ -96,32 +99,32 @@ RPN::~RPN()
 RPN::RPN(RPN const &src)
 {
 	*this = src;
-	ilog(getName(), "Copy constructed");
+	ilog(getLine(), "Copy constructed");
 	return ;
 }
 /* Overload actually is previous to copy constructor, since cc uses the assign operator. */
 RPN & RPN::operator=(RPN const &rhs)
 {
-	ilog(getName(), "[=] Assignation operator called");
+	ilog(getLine(), "[=] Assignation operator called");
 	if (this != &rhs)
-		this->setName(rhs.getName());
+		this->setLine(rhs.getLine());
 	return (*this);
 }
 /* --------------------------------- GET | SET --------------------------------- */
-std::string const & RPN::getName() const
+std::string const & RPN::getLine() const
 {
-	return (this->_name);
+	return (this->_line);
 }
 
-void RPN::setName(std::string const &name)
+void RPN::setLine(std::string const &line)
 { 
-	this->_name = name;
+	this->_line = line;
 }
 /* --------------------------------- METHODS --------------------------------- */
 /* ilog = instance log */
-void RPN::ilog(const std::string & name, const std::string & msg) const
+void RPN::ilog(const std::string & line, const std::string & msg) const
 {
-	
-	std::cout << "[Class]RPN	- [Instance]" << name << "	|	"\
+	return ;
+	std::cout << "[Class]RPN	- [Instance]" << line << "	|	"\
 	<< msg << std::endl;
 }
