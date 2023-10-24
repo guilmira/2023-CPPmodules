@@ -47,11 +47,6 @@ double	solveOperator(double first, double second, char z)
 		result = first * second;
 	if (z == DIVISION)
 		result = first / second;
-	if (result > DBL_MAX || result < DBL_MIN)
-	{
-		std::cout << "Oveflowing RPN limit" << std::endl;
-		throw	std::exception();
-	}
 	return result;
 }
 
@@ -61,20 +56,41 @@ void				RPN::buildStack()
 	double					second;
 	double					result;
 	std::stack<double>		stack;
+	size_t					size = 0;
+	bool					flag;
 
-
+	flag = false;
 	for (size_t i = 0; i < this->_line.length(); i++)
 	{
+		if (_line[i] == '-' && isdigit(_line[i + 1]))
+			flag = true;
 		if (isdigit(_line[i]))
-			stack.push(std::stod(std::string(&this->_line[i], 1)));
-		if (isMathOperand(_line[i]))
 		{
+			for (size_t j = i; this->_line.length(); j++)
+			{
+				if (!isdigit(_line[j]))
+					break ;
+				size++;
+			}
+			result = std::stod(std::string(&this->_line[i], size));
+			if (flag)
+				stack.push(result * (-1));
+			else
+				stack.push(result);
+			i = i + size;
+			size = 0;
+			flag = false;
+		}
+		else if (isMathOperand(_line[i]) && !flag)
+		{
+
 			second = stack.top();
 			stack.pop();
 			first = stack.top();
 			stack.pop();
 			result = solveOperator(first, second, _line[i]);
 			stack.push(result);
+			flag = false;
 		}
 	}
 	std::cout << stack.top() << std::endl;

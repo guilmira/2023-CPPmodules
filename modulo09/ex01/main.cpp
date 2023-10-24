@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 13:28:42 by guilmira          #+#    #+#             */
-/*   Updated: 2023/10/05 15:05:15 by guilmira         ###   ########.fr       */
+/*   Updated: 2023/10/24 16:14:22 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,17 +29,30 @@ static bool		parserCorrect(std::string const &line)
 {
 	int		digits = 0;
 	int		operators = 0;
+	bool	flag = 0;
 
 	for (size_t i = 0; i < line.length(); i++)
 	{
-		if (isdigit(line[i]))
+		if (isdigit(line[i]) && !flag)
+		{
 			digits++;
+			flag = 1;
+		}
+		if (isspace(line[i]))
+			flag = 0;
 		if (isMathOperand(line[i]))
-			operators++;
-		if ((isdigit(line[i]) || isMathOperand(line[i])) && (i + 1) != line.length())
-			if (!isspace(line[i + 1]))
-				return false;		
-	}
+		{
+			if ((i + 1) != line.length())
+			{
+				if (line[i] == '-' && isdigit(line[i + 1]))	
+					;
+				else
+					operators++;
+			}
+			else
+				operators++;
+		}
+	}	
 	if (digits == operators + 1)
 		return true;
 	return false;
@@ -50,7 +63,7 @@ int main(int argc, char **argv)
 {
 	if (argc != 2)
 	{
-		std::cout << "Error: worng argumen number. Exected: 1 arg" << std::endl;
+		std::cout << "Error: wrong argumen number. Expected: 1 arg" << std::endl;
 		exit(1);
 	}
 	std::string line(argv[1]);

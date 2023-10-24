@@ -16,8 +16,11 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <deque>
+
 
 typedef std::vector<int> myVector;
+typedef std::deque<int> myDeque;
 /* CLASS DECLARATION. */
 class PmergeMe
 {
@@ -30,18 +33,12 @@ class PmergeMe
 
 		std::string const &	getLine() const;
 		void				setLine(std::string const &line);
+		
+		myVector sortMI(myVector vector);
+		myDeque DequeSortMI(myDeque deque);
 
-		void	displayAfter();
-		void	displayBefore();
-		void	displayEnd();
-
-	
-		void	mergeInsertionSort();
-
-
-		void	printVec(myVector const & vector) const;
 		std::vector<int>	_before;
-		std::vector<int>	_after;
+		std::deque<int>		_beforeDeque;
 
 	private:
 		std::string			_line;

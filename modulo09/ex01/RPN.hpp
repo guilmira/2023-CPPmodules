@@ -24,6 +24,7 @@
 #define MULTIPLICATION '*'
 #define DIVISION '/'
 
+
 /* CLASS DECLARATION. */
 class RPN
 {

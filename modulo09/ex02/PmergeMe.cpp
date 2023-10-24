@@ -60,7 +60,7 @@ PmergeMe::PmergeMe(char **argv, std::string const & line, int totalElements)
 		if (!parserCheck(str))
 			throw std::exception();
 		_before.push_back(std::stoi(str));
-		_after.push_back(std::stoi(str));
+		_beforeDeque.push_back(std::stoi(str));
 	}
 	ilog(getLine(), "Overload constructed⚪");
 	return ;
@@ -68,6 +68,7 @@ PmergeMe::PmergeMe(char **argv, std::string const & line, int totalElements)
 /* --------------------------------- DESTRUCTOR --------------------------------- */
 PmergeMe::~PmergeMe()
 {
+	
 	ilog(getLine(), "-Destroyed⭕");
 	return ;
 }
@@ -76,6 +77,8 @@ PmergeMe::~PmergeMe()
 PmergeMe::PmergeMe(PmergeMe const &src)
 {
 	*this = src;
+
+	(void) _totalElements;
 	ilog(getLine(), "Copy constructed");
 	return ;
 }
@@ -106,85 +109,24 @@ void PmergeMe::ilog(const std::string & line, const std::string & msg) const
 	<< msg << std::endl;
 }
 
-void	PmergeMe::displayBefore()
-{
-	std::cout << "Before:";
-	for (std::vector<int>::iterator it = _before.begin(); it != _before.end() ; it++)
-		std::cout << " " << *it;
-	std::cout << std::endl;
-
-	/* std::vector<int> v;
-	 std::sort(v.begin(), v.end());
-	for (std::vector<int>::iterator it = v.begin(); it != v.end() ; it++)
-		std::cout << " " << *it;
-	std::cout << std::endl; */
 
 
-	return ;
-}
-
-void	PmergeMe::displayAfter()
-{
-	std::cout << "After:";
-	std::cout << std::endl;
-	for (std::vector<int>::iterator it = _after.begin(); it != _after.end() ; it++)
-		std::cout << " " << *it;
-	std::cout << std::endl;
-	return ;
-}
-
-void	PmergeMe::displayEnd()
-{
-	double		time1 = 0;
-	double		time2 = 0;
-
-	std::cout << "Time to process a range of " << _totalElements << " elements with std::vector : " << time1 << " us" << std::endl;
-	std::cout << "Time to process a range of " << _totalElements << " elements with std::list : " << time2 << " us" << std::endl;
-	return ;
-}
-
-
-bool isEven(myVector vector)
-{
-	if (vector.size() % 2 == 0)
-		return true;
-	else
-		return false;
-}
-
-void	PmergeMe::printVec(myVector const & vector) const
-{
-	for (myVector::const_iterator it = vector.begin(); it != vector.end() ; it++)
-	{
-		std::cout << *it << " ";
-	}
-	std::cout << std::endl;
-}
-
-void	printVec(myVector const & vector)
-{
-	for (myVector::const_iterator it = vector.begin(); it != vector.end() ; it++)
-	{
-		std::cout << *it << " ";
-	}
-	std::cout << std::endl;
-}
-
-void splitVector(myVector & first, myVector & second, myVector const & vector) 
+template <typename T>
+static void splitContainer(T & first, T & second, T const & container) 
 {
 	int medianPosition;
 
-	medianPosition = ((int) vector.size() / 2);
-	first = myVector(vector.begin(), vector.begin() + medianPosition);
-	second = myVector(vector.begin() + medianPosition, vector.end());
+	medianPosition = ((int) container.size() / 2);
+	first = T(container.begin(), container.begin() + medianPosition);
+	second = T(container.begin() + medianPosition, container.end());
 }
 
-myVector mergeInsertion(myVector first, myVector second)
+static myVector mergeInsertion(myVector first, myVector second)
 {
 	int				minValueFirst;
 	int				minValueSecond;
 	size_t totalSize = first.size() + second.size();
-	myVector		result(totalSize, -1);
+	myVector			result(totalSize, -1);
 	
 	int 			firstCounter = 0;
 	int 			secondCounter = 0;
@@ -203,8 +145,6 @@ myVector mergeInsertion(myVector first, myVector second)
 				minValueFirst = minValue;
 			}
 		}
-		
-		
 		minValueSecond = -1;
 		for (myVector::const_iterator iterSec = second.begin() + secondCounter; iterSec != second.end() ; iterSec++)
 		{
@@ -229,10 +169,9 @@ myVector mergeInsertion(myVector first, myVector second)
 		minValue = -1;
 	}
 	return result;
-
 }
 
-myVector mergeRecursion(myVector vector)
+myVector PmergeMe::sortMI(myVector vector)
 {
 	myVector first;
 	myVector second;
@@ -242,20 +181,79 @@ myVector mergeRecursion(myVector vector)
 		return myVector(vector);
 	else
 	{
-		splitVector(first, second, vector);
-		first = mergeRecursion(first);
-		second = mergeRecursion(second);
+		splitContainer(first, second, vector);
+		first = sortMI(first);
+		second = sortMI(second);
 		merged = mergeInsertion(first, second);
 		return (merged);
 	}
 }
 
-void	PmergeMe::mergeInsertionSort()
-{
-	std::vector<int> firstHalf;
-	std::vector<int> secondHalf;
-	std::vector<int> result;
 
-	splitVector(firstHalf, secondHalf, _before);
-	_after = mergeRecursion(_before);
+static myDeque DequeMergeInsertion(myDeque first, myDeque second)
+{
+	int				minValueFirst;
+	int				minValueSecond;
+	size_t totalSize = first.size() + second.size();
+	myDeque		result(totalSize, -1);
+	
+	int 			firstCounter = 0;
+	int 			secondCounter = 0;
+	int 			minValue;
+
+	minValue = -1;
+	for (myDeque::iterator iterResult = result.begin(); iterResult != result.end() ; iterResult++)
+	{
+		for (myDeque::const_iterator iterFirst = first.begin() + firstCounter; iterFirst != first.end() ; iterFirst++)
+		{
+			if (minValue < 0)
+				minValue = *iterFirst;
+			if (*iterFirst <= minValue)
+			{
+				minValue = *iterFirst;
+				minValueFirst = minValue;
+			}
+		}
+		minValueSecond = -1;
+		for (myDeque::const_iterator iterSec = second.begin() + secondCounter; iterSec != second.end() ; iterSec++)
+		{
+			if (minValue < 0)
+				minValue = *iterSec;
+			if (*iterSec <= minValue)
+			{
+				minValue = *iterSec;
+				minValueSecond = minValue;
+			}
+		}
+		if (minValueSecond > 0)
+		{
+			*iterResult = minValueSecond;
+			secondCounter++;
+		}
+		else
+		{
+			*iterResult = minValueFirst;
+			firstCounter++;
+		}
+		minValue = -1;
+	}
+	return result;
+}
+
+myDeque PmergeMe::DequeSortMI(myDeque vector)
+{
+	myDeque first;
+	myDeque second;
+	myDeque merged;
+
+	if (vector.size() == 1)
+		return myDeque(vector);
+	else
+	{
+		splitContainer(first, second, vector);
+		first = DequeSortMI(first);
+		second = DequeSortMI(second);
+		merged = DequeMergeInsertion(first, second);
+		return (merged);
+	}
 }
