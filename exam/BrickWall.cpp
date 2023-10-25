@@ -1,3 +1,0 @@
-
-
-#include "BrickWall.hpp"
