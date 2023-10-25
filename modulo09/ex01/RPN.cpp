@@ -83,7 +83,6 @@ void				RPN::buildStack()
 		}
 		else if (isMathOperand(_line[i]) && !flag)
 		{
-
 			second = stack.top();
 			stack.pop();
 			first = stack.top();

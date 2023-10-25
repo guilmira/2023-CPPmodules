@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 13:28:42 by guilmira          #+#    #+#             */
-/*   Updated: 2023/10/24 16:14:22 by guilmira         ###   ########.fr       */
+/*   Updated: 2023/10/25 10:38:35 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ static bool		parserCorrect(std::string const &line)
 
 	for (size_t i = 0; i < line.length(); i++)
 	{
+		if (!isdigit(line[i]) && !isMathOperand(line[i]) && !isspace(line[i]))
+			return false;
 		if (isdigit(line[i]) && !flag)
 		{
 			digits++;
@@ -52,7 +54,7 @@ static bool		parserCorrect(std::string const &line)
 			else
 				operators++;
 		}
-	}	
+	}
 	if (digits == operators + 1)
 		return true;
 	return false;
