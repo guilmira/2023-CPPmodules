@@ -6,13 +6,11 @@
 #    By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/17 10:57:42 by guilmira          #+#    #+#              #
-#    Updated: 2023/10/05 15:23:27 by guilmira         ###   ########.fr        #
+#    Updated: 2023/10/25 10:47:22 by guilmira         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= btc
-ARGS		= btcTest.txt
-ARGS2		= CSVdatabase/evaTest.csv
 ARGS		= input.txt
 #--------------------------------------------------------------------------------------------------------------COMPILER
 CXX			= c++

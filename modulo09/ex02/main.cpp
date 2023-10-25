@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 13:28:42 by guilmira          #+#    #+#             */
-/*   Updated: 2023/10/24 17:47:09 by guilmira         ###   ########.fr       */
+/*   Updated: 2023/10/25 10:55:37 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 static void	displayEnd(int elements, std::clock_t *time)
 {
 	std::cout << "Time to process a range of " << elements << " elements with std::vector : " << time[1] - time[0] << " us" << std::endl;
-	std::cout << "Time to process a range of " << elements << " elements with std::list : " << time[3] - time[2] << " us" << std::endl;
+	std::cout << "Time to process a range of " << elements << " elements with std::deque : " << time[3] - time[2] << " us" << std::endl;
 	return ;
 }
 
@@ -44,23 +44,18 @@ int main(int argc, char **argv)
 	{
 		PmergeMe merge(argv, line, argc - 1);
 
-		std::cout << "Before: ";
-
+		std::cout << "Before:  ";
 		displayContainer(merge._before);
 		
 		time[0] = std::clock();
 		sortedVec = merge.sortMI(merge._before);
-
-		std::cout << "After: ";
-		displayContainer(sortedVec);
-
-
 		time[1] = std::clock();
+
+		std::cout << "After:   ";
+		displayContainer(sortedVec);
+		
 		time[2] = std::clock();
 		sortedDeque = merge.DequeSortMI(merge._beforeDeque);
-
-		std::cout << "After: ";
-		displayContainer(sortedDeque);
 		time[3] = std::clock();
 
 		displayEnd(merge._before.size(), time);
